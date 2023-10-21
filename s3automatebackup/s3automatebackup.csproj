@@ -11,7 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="cloud.ico" />
+    <None Remove="cloud.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="cloud.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="cloud.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -28,9 +37,6 @@
 
   <ItemGroup>
     <None Update="cloud.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="cloud.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Properties\Settings.settings">

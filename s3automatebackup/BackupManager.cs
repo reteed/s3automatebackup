@@ -27,8 +27,15 @@ namespace S3AutomateBackup
 
         private void PerformBackup(object sender, ElapsedEventArgs e)
         {
-            _s3Uploader.EnsureVersioningEnabled();
-            _s3Uploader.UploadDirectory(_backupFolderPath);
+            try
+            {
+                _s3Uploader.EnsureVersioningEnabled();
+                _s3Uploader.UploadDirectory(_backupFolderPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "s3automatebackup": {
+      "commandName": "Project",
+      "commandLineArgs": "-startup"
+    }
+  }
+}

@@ -19,7 +19,16 @@ namespace S3AutomateBackup
                     new ToolStripMenuItem("Exit", null, new EventHandler(Exit), "Exit")
                 }
             };
-            notifyIcon.Icon = new Icon("cloud.ico");
+            string iconPath = Path.Combine(Application.StartupPath, "cloud.ico");
+            if (File.Exists(iconPath))
+            {
+                notifyIcon.Icon = new Icon(iconPath);
+            }
+            else
+            {
+                notifyIcon.Icon = SystemIcons.Application; // Default system icon as a fallback
+            }
+
             notifyIcon.Visible = true;
         }
         private void ShowConfiguration(object sender, EventArgs e)
