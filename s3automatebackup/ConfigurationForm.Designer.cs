@@ -191,7 +191,7 @@
             Controls.Add(serverTextBox);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ConfigurationForm";
-            Text = "Configuration";
+            Text = "Configuration - S3AutomateBackup";
             ResumeLayout(false);
             PerformLayout();
         }

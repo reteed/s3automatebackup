@@ -32,7 +32,7 @@ namespace S3AutomateBackup
             }
             else
             {
-                configuration.ShowDialog();
+                configuration.Show();
             }
         }
         private void Exit(object sender, EventArgs e)

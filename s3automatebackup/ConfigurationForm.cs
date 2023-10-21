@@ -41,7 +41,6 @@ namespace S3AutomateBackup
                 backupFolderTextBox.Text = fieldValues[4];
                 periodComboBox.SelectedIndex = Convert.ToInt32(fieldValues[5]) - 1;
             }
-
         }
 
         private void generateTaskButton_Click(object sender, EventArgs e)
@@ -68,6 +67,14 @@ namespace S3AutomateBackup
                 default:
                     throw new ArgumentException("Invalid period key");
             }
+        }
+
+        private void ScheduleBackup()
+        {
+            S3Uploader uploader = new S3Uploader(serverTextBox.Text, accessKeyTextBox.Text, secretKeyTextBox.Text, bucketNameTextBox.Text);
+            int selectedKey = ((KeyValuePair<int, string>)periodComboBox.SelectedItem).Key;
+            double intervalMilliseconds = GetIntervalFromPeriod(selectedKey);
+            BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, uploader, intervalMilliseconds);
         }
     }
 }
