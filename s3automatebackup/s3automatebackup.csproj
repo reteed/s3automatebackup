@@ -11,14 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="cloud.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="cloud.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cloud.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
