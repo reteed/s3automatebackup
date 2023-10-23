@@ -47,7 +47,7 @@
             // 
             // serverTextBox
             // 
-            serverTextBox.Location = new Point(105, 91);
+            serverTextBox.Location = new Point(133, 92);
             serverTextBox.Name = "serverTextBox";
             serverTextBox.Size = new Size(219, 23);
             serverTextBox.TabIndex = 0;
@@ -68,9 +68,9 @@
             serverLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             serverLabel.Location = new Point(30, 92);
             serverLabel.Name = "serverLabel";
-            serverLabel.Size = new Size(64, 21);
+            serverLabel.Size = new Size(97, 21);
             serverLabel.TabIndex = 2;
-            serverLabel.Text = "Server:";
+            serverLabel.Text = "Server URL:";
             // 
             // accessKeyLabel
             // 
