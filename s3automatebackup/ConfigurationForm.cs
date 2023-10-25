@@ -40,6 +40,7 @@ namespace S3AutomateBackup
                 bucketNameTextBox.Text = fieldValues[3];
                 backupFolderTextBox.Text = fieldValues[4];
                 periodComboBox.SelectedIndex = Convert.ToInt32(fieldValues[5]) - 1;
+                dayDateTimePicker.Value = Convert.ToDateTime(fieldValues[6]);
             }
         }
 
@@ -47,34 +48,45 @@ namespace S3AutomateBackup
         {
             S3Uploader uploader = new S3Uploader(serverTextBox.Text, accessKeyTextBox.Text, secretKeyTextBox.Text, bucketNameTextBox.Text);
             int selectedKey = ((KeyValuePair<int, string>)periodComboBox.SelectedItem).Key;
-            double intervalMilliseconds = GetIntervalFromPeriod(selectedKey);
-            BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, uploader, intervalMilliseconds);
-            string formFieldsData = $"{serverTextBox.Text},{accessKeyTextBox.Text},{secretKeyTextBox.Text},{bucketNameTextBox.Text},{backupFolderTextBox.Text},{Convert.ToString(selectedKey)}";
-            storage.SaveFormFields(formFieldsData);
-            this.Hide();
-        }
-
-        public double GetIntervalFromPeriod(int periodKey)
-        {
-            switch (periodKey)
+            DateTime selectedDate = dayDateTimePicker.Value;
+            if (selectedDate >= DateTime.Now)
             {
-                case 1: // Daily
-                    return TimeSpan.FromDays(1).TotalMilliseconds;
-                case 2: // Weekly
-                    return TimeSpan.FromDays(7).TotalMilliseconds;
-                case 3: // Monthly (assuming 30 days for simplicity)
-                    return TimeSpan.FromDays(30).TotalMilliseconds;
-                default:
-                    throw new ArgumentException("Invalid period key");
+                double intervalMilliseconds = GetIntervalFromNextOccurrence(selectedKey, selectedDate);
+                BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, uploader, intervalMilliseconds);
+                string formFieldsData = $"{serverTextBox.Text},{accessKeyTextBox.Text},{secretKeyTextBox.Text},{bucketNameTextBox.Text},{backupFolderTextBox.Text},{Convert.ToString(selectedKey)}, {Convert.ToString(selectedDate)}";
+                storage.SaveFormFields(formFieldsData);
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Date must be future!");
             }
         }
 
-        private void ScheduleBackup()
+        public double GetIntervalFromNextOccurrence(int periodKey, DateTime selectedDate)
         {
-            S3Uploader uploader = new S3Uploader(serverTextBox.Text, accessKeyTextBox.Text, secretKeyTextBox.Text, bucketNameTextBox.Text);
-            int selectedKey = ((KeyValuePair<int, string>)periodComboBox.SelectedItem).Key;
-            double intervalMilliseconds = GetIntervalFromPeriod(selectedKey);
-            BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, uploader, intervalMilliseconds);
+            DateTime nextDate;
+
+            switch (periodKey)
+            {
+                case 1: // Daily
+                    nextDate = selectedDate.AddDays(1);
+                    break;
+
+                case 2: // Monthly
+                    nextDate = selectedDate.AddMonths(1);
+                    break;
+
+                case 3: // Yearly
+                    nextDate = selectedDate.AddYears(1);
+                    break;
+
+                default:
+                    throw new ArgumentException("Invalid period key");
+            }
+
+            TimeSpan interval = nextDate - DateTime.Now; // Calculate the difference between the next date and now.
+            return interval.TotalMilliseconds;
         }
     }
 }

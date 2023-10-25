@@ -15,7 +15,6 @@ namespace S3AutomateBackup
             {
                 // Force the application to start with Windows
                 SetStartup();
-                System.Threading.Thread.Sleep(5000);
                 // To customize application configuration such as set high DPI settings or default font,
                 // see https://aka.ms/applicationconfiguration.
                 ApplicationConfiguration.Initialize();
@@ -42,7 +41,7 @@ namespace S3AutomateBackup
                 {
                     string[] fieldValues = loadedData.Split(',');
                     S3Uploader uploader = new S3Uploader(fieldValues[0], fieldValues[1], fieldValues[2], fieldValues[3]);
-                    double intervalMilliseconds = GetIntervalFromPeriod(Convert.ToInt32(fieldValues[5]));
+                    double intervalMilliseconds = GetIntervalFromNextOccurrence(Convert.ToInt32(fieldValues[5]), Convert.ToDateTime(fieldValues[6]));
                     BackupManager backupManager = new BackupManager(fieldValues[4], uploader, intervalMilliseconds);
                 }
             }
@@ -53,19 +52,30 @@ namespace S3AutomateBackup
 
         }
 
-        public static double GetIntervalFromPeriod(int periodKey)
+        public static double GetIntervalFromNextOccurrence(int periodKey, DateTime selectedDate)
         {
+            DateTime nextDate;
+
             switch (periodKey)
             {
                 case 1: // Daily
-                    return TimeSpan.FromDays(1).TotalMilliseconds;
-                case 2: // Weekly
-                    return TimeSpan.FromDays(7).TotalMilliseconds;
-                case 3: // Monthly (assuming 30 days for simplicity)
-                    return TimeSpan.FromDays(30).TotalMilliseconds;
+                    nextDate = selectedDate.AddDays(1);
+                    break;
+
+                case 2: // Monthly
+                    nextDate = selectedDate.AddMonths(1);
+                    break;
+
+                case 3: // Yearly
+                    nextDate = selectedDate.AddYears(1);
+                    break;
+
                 default:
                     throw new ArgumentException("Invalid period key");
             }
+
+            TimeSpan interval = nextDate - DateTime.Now; // Calculate the difference between the next date and now.
+            return interval.TotalMilliseconds;
         }
 
         private static void SetStartup()
