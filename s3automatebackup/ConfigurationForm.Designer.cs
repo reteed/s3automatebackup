@@ -43,6 +43,8 @@
             generateTaskButton = new Button();
             bucketNameLabel = new Label();
             bucketNameTextBox = new TextBox();
+            dayDateTimePicker = new DateTimePicker();
+            dayLabel = new Label();
             SuspendLayout();
             // 
             // serverTextBox
@@ -170,11 +172,31 @@
             bucketNameTextBox.Size = new Size(225, 23);
             bucketNameTextBox.TabIndex = 13;
             // 
+            // dayDateTimePicker
+            // 
+            dayDateTimePicker.CustomFormat = "";
+            dayDateTimePicker.Location = new Point(487, 210);
+            dayDateTimePicker.Name = "dayDateTimePicker";
+            dayDateTimePicker.Size = new Size(200, 23);
+            dayDateTimePicker.TabIndex = 14;
+            // 
+            // dayLabel
+            // 
+            dayLabel.AutoSize = true;
+            dayLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dayLabel.Location = new Point(417, 210);
+            dayLabel.Name = "dayLabel";
+            dayLabel.Size = new Size(44, 21);
+            dayLabel.TabIndex = 15;
+            dayLabel.Text = "Day:";
+            // 
             // ConfigurationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dayLabel);
+            Controls.Add(dayDateTimePicker);
             Controls.Add(bucketNameTextBox);
             Controls.Add(bucketNameLabel);
             Controls.Add(generateTaskButton);
@@ -212,5 +234,7 @@
         private Button generateTaskButton;
         private Label bucketNameLabel;
         private TextBox bucketNameTextBox;
+        private DateTimePicker dayDateTimePicker;
+        private Label dayLabel;
     }
 }
