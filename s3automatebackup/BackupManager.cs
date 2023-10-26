@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace S3AutomateBackup
 {
+    using Amazon.S3.Model;
+    using Amazon.S3;
     using System.Timers;
 
     public class BackupManager
@@ -16,16 +18,14 @@ namespace S3AutomateBackup
 
         public BackupManager(string backupFolderPath, S3Uploader s3Uploader, double intervalMilliseconds, bool first)
         {
-            if(first)
+            _backupFolderPath = backupFolderPath;
+            _s3Uploader = s3Uploader;
+            if (first)
             {
-                s3Uploader.EnsureVersioningEnabled();
-                s3Uploader.UploadDirectory(backupFolderPath);
+                PerformBackup(null, null);
             }
             else
             {
-                _backupFolderPath = backupFolderPath;
-                _s3Uploader = s3Uploader;
-
                 _backupTimer = new Timer(intervalMilliseconds);
                 _backupTimer.Elapsed += PerformBackup;
                 _backupTimer.AutoReset = true;
@@ -33,17 +33,61 @@ namespace S3AutomateBackup
             }
         }
 
-        private void PerformBackup(object sender, ElapsedEventArgs e)
+        private async void PerformBackup(object sender, ElapsedEventArgs e)
         {
             try
             {
                 _s3Uploader.EnsureVersioningEnabled();
-                _s3Uploader.UploadDirectory(_backupFolderPath);
+                string[] localFiles = Directory.GetFiles(_backupFolderPath, "*.*", SearchOption.AllDirectories);
+
+                foreach (string localFilePath in localFiles)
+                {
+                    // Calculate the relative path of the file from the backup folder
+                    string relativePath = GetRelativePath(localFilePath, _backupFolderPath);
+
+
+                    // Use the DoesFileExist method to check if the file exists in the S3 bucket
+                    DateTime? fileExistsInS3 = await _s3Uploader.DoesFileExist(relativePath);
+
+                    if (fileExistsInS3 == null)
+                    {
+                        // File doesn't exist in the bucket, upload it
+                        _s3Uploader.UploadFile(localFilePath, relativePath);
+                    }
+                    else
+                    {
+                        // File exists in the bucket, compare timestamps
+                        DateTime localLastModified = File.GetLastWriteTime(localFilePath);
+
+                        // If the local file is newer, upload it to update the one in the bucket
+                        if (localLastModified > fileExistsInS3)
+                        {
+                            _s3Uploader.UploadFile(localFilePath, relativePath);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private string GetRelativePath(string fullPath, string basePath)
+        {
+            string lastDirectoryName = Path.GetFileName(basePath);
+
+            if (!basePath.EndsWith(Path.DirectorySeparatorChar.ToString()))
+            {
+                basePath += Path.DirectorySeparatorChar;
+            }
+
+            if (fullPath.StartsWith(basePath, StringComparison.OrdinalIgnoreCase))
+            {
+                string relativePath = fullPath.Substring(basePath.Length);
+                return Path.Combine(lastDirectoryName, relativePath).Replace(Path.DirectorySeparatorChar, '/');
+            }
+            return fullPath.Replace(Path.DirectorySeparatorChar, '/');
         }
     }
 }

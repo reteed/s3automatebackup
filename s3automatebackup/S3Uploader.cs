@@ -57,7 +57,7 @@ namespace S3AutomateBackup
             }
         }
 
-        public void UploadFile(string filePath)
+        public void UploadFile(string localFilePath, string s3Key)
         {
             var config = new AmazonS3Config
             {
@@ -70,8 +70,8 @@ namespace S3AutomateBackup
 
             try
             {
-                transferUtility.Upload(filePath, _bucketName);
-                Console.WriteLine($"Successfully uploaded {filePath} to bucket {_bucketName}.");
+                transferUtility.Upload(localFilePath, _bucketName, s3Key); // Added s3Key as the third parameter
+                Console.WriteLine($"Successfully uploaded {localFilePath} to {_bucketName}/{s3Key}.");
             }
             catch (Exception ex)
             {
@@ -79,7 +79,7 @@ namespace S3AutomateBackup
             }
         }
 
-        public void UploadDirectory(string directoryPath)
+        public async Task<DateTime?> DoesFileExist(string keyName)
         {
             var config = new AmazonS3Config
             {
@@ -88,24 +88,30 @@ namespace S3AutomateBackup
             };
 
             using var client = new AmazonS3Client(_accessKey, _secretKey, config);
-            using var transferUtility = new TransferUtility(client);
 
             try
             {
-                var transferUtilityRequest = new TransferUtilityUploadDirectoryRequest
+                var request = new GetObjectMetadataRequest
                 {
                     BucketName = _bucketName,
-                    Directory = directoryPath,
-                    SearchOption = SearchOption.AllDirectories, // This will ensure all subdirectories are included
-                    KeyPrefix = Path.GetFileName(directoryPath)  // This can be adjusted as needed
+                    Key = keyName
                 };
 
-                transferUtility.UploadDirectory(transferUtilityRequest);
-                Console.WriteLine($"Successfully uploaded directory {directoryPath} to bucket {_bucketName}.");
+                GetObjectMetadataResponse response = await client.GetObjectMetadataAsync(request);
+                if(response != null)
+                {
+                    return response.LastModified;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            catch (Exception ex)
+            catch (AmazonS3Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                if (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    return null;
+                throw; // Some other exception occurred, rethrow
             }
         }
     }
