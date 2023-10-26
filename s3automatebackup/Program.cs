@@ -15,8 +15,6 @@ namespace S3AutomateBackup
             {
                 // Force the application to start with Windows
                 SetStartup();
-                // To customize application configuration such as set high DPI settings or default font,
-                // see https://aka.ms/applicationconfiguration.
                 ApplicationConfiguration.Initialize();
                 string[] args = Environment.GetCommandLineArgs();
                 if (args.Contains("-startup"))
@@ -52,29 +50,51 @@ namespace S3AutomateBackup
 
         }
 
-        public static double GetIntervalFromNextOccurrence(int periodKey, DateTime selectedDate)
+        private static double GetIntervalFromNextOccurrence(int periodKey, DateTime selectedDate)
         {
+            DateTime currentDate = DateTime.Now;
             DateTime nextDate;
 
             switch (periodKey)
             {
                 case 1: // Daily
-                    nextDate = selectedDate.AddDays(1);
+                    nextDate = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
+                    if (currentDate >= nextDate) // If the time has already passed for the selected date
+                    {
+                        nextDate = nextDate.AddDays(1); // Schedule for the same time on the next day
+                    }
                     break;
-
                 case 2: // Monthly
-                    nextDate = selectedDate.AddMonths(1);
+                    try
+                    {
+                        nextDate = new DateTime(currentDate.Year, currentDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        // This accounts for selecting dates like February 29 on non-leap years
+                        nextDate = new DateTime(currentDate.Year, currentDate.Month + 1, 1).AddDays(-1);
+                    }
+
+                    if (currentDate >= nextDate) // If the date has already passed this month
+                    {
+                        nextDate = nextDate.AddMonths(1); // Schedule for the same date next month
+                    }
                     break;
 
                 case 3: // Yearly
-                    nextDate = selectedDate.AddYears(1);
+                    nextDate = new DateTime(currentDate.Year, selectedDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
+
+                    if (currentDate >= nextDate) // If the date has already passed this year
+                    {
+                        nextDate = nextDate.AddYears(1); // Schedule for the same date next year
+                    }
                     break;
 
                 default:
                     throw new ArgumentException("Invalid period key");
             }
 
-            TimeSpan interval = nextDate - DateTime.Now; // Calculate the difference between the next date and now.
+            TimeSpan interval = nextDate - currentDate; // Calculate the difference between the next date and now.
             return interval.TotalMilliseconds;
         }
 

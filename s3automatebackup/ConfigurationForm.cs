@@ -15,7 +15,7 @@ namespace S3AutomateBackup
 {
     public partial class ConfigurationForm : Form
     {
-        private SecureFormStorage storage = new();
+        private SecureFormStorage Storage = new();
 
         readonly Dictionary<int, string> Period = new Dictionary<int, string>
         {
@@ -30,7 +30,7 @@ namespace S3AutomateBackup
             periodComboBox.DataSource = new BindingSource(Period, null);
             periodComboBox.DisplayMember = "Value"; // This displays the string part.
             periodComboBox.ValueMember = "Key";     // This is the underlying value, e.g. for when you want to know which int was selected.
-            string loadedData = storage.LoadFormFields();
+            string loadedData = Storage.LoadFormFields();
             if (loadedData != null)
             {
                 string[] fieldValues = loadedData.Split(',');
@@ -49,47 +49,76 @@ namespace S3AutomateBackup
             S3Uploader uploader = new S3Uploader(serverTextBox.Text, accessKeyTextBox.Text, secretKeyTextBox.Text, bucketNameTextBox.Text);
             int selectedKey = ((KeyValuePair<int, string>)periodComboBox.SelectedItem).Key;
             DateTime selectedDate = dayDateTimePicker.Value;
-            if (selectedDate >= DateTime.Now)
+            if (!string.IsNullOrWhiteSpace(serverTextBox.Text) && !string.IsNullOrWhiteSpace(accessKeyTextBox.Text) && !string.IsNullOrWhiteSpace(secretKeyTextBox.Text) && !string.IsNullOrWhiteSpace(bucketNameTextBox.Text) && !string.IsNullOrWhiteSpace(backupFolderTextBox.Text))
             {
-                if(firstBackupCheckBox.Checked)
+                if (selectedDate >= DateTime.Now)
                 {
-                    BackupManager backupManagerNow = new BackupManager(backupFolderTextBox.Text, uploader, 5000, true);
+                    if (firstBackupCheckBox.Checked)
+                    {
+                        BackupManager backupManagerNow = new BackupManager(backupFolderTextBox.Text, uploader, 5000, true);
+                    }
+                    double intervalMilliseconds = GetIntervalFromNextOccurrence(selectedKey, selectedDate);
+                    BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, uploader, intervalMilliseconds, false);
+                    string formFieldsData = $"{serverTextBox.Text},{accessKeyTextBox.Text},{secretKeyTextBox.Text},{bucketNameTextBox.Text},{backupFolderTextBox.Text},{Convert.ToString(selectedKey)}, {Convert.ToString(selectedDate)}";
+                    Storage.SaveFormFields(formFieldsData);
+                    this.Hide();
                 }
-                double intervalMilliseconds = GetIntervalFromNextOccurrence(selectedKey, selectedDate);
-                BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, uploader, intervalMilliseconds, false);
-                string formFieldsData = $"{serverTextBox.Text},{accessKeyTextBox.Text},{secretKeyTextBox.Text},{bucketNameTextBox.Text},{backupFolderTextBox.Text},{Convert.ToString(selectedKey)}, {Convert.ToString(selectedDate)}";
-                storage.SaveFormFields(formFieldsData);
-                this.Hide();
+                else
+                {
+                    MessageBox.Show("Date must be future!");
+                }
             }
             else
             {
-                MessageBox.Show("Date must be future!");
+                MessageBox.Show("All fields are required!");
             }
         }
 
         public double GetIntervalFromNextOccurrence(int periodKey, DateTime selectedDate)
         {
+            DateTime currentDate = DateTime.Now;
             DateTime nextDate;
 
             switch (periodKey)
             {
                 case 1: // Daily
-                    nextDate = selectedDate.AddDays(1);
+                    nextDate = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
+                    if (currentDate >= nextDate) // If the time has already passed for the selected date
+                    {
+                        nextDate = nextDate.AddDays(1); // Schedule for the same time on the next day
+                    }
                     break;
-
                 case 2: // Monthly
-                    nextDate = selectedDate.AddMonths(1);
+                    try
+                    {
+                        nextDate = new DateTime(currentDate.Year, currentDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        // This accounts for selecting dates like February 29 on non-leap years
+                        nextDate = new DateTime(currentDate.Year, currentDate.Month + 1, 1).AddDays(-1);
+                    }
+
+                    if (currentDate >= nextDate) // If the date has already passed this month
+                    {
+                        nextDate = nextDate.AddMonths(1); // Schedule for the same date next month
+                    }
                     break;
 
                 case 3: // Yearly
-                    nextDate = selectedDate.AddYears(1);
+                    nextDate = new DateTime(currentDate.Year, selectedDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
+
+                    if (currentDate >= nextDate) // If the date has already passed this year
+                    {
+                        nextDate = nextDate.AddYears(1); // Schedule for the same date next year
+                    }
                     break;
 
                 default:
                     throw new ArgumentException("Invalid period key");
             }
 
-            TimeSpan interval = nextDate - DateTime.Now; // Calculate the difference between the next date and now.
+            TimeSpan interval = nextDate - currentDate; // Calculate the difference between the next date and now.
             return interval.TotalMilliseconds;
         }
     }

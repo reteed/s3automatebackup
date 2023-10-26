@@ -50,7 +50,7 @@
             // 
             // serverTextBox
             // 
-            serverTextBox.Location = new Point(190, 153);
+            serverTextBox.Location = new Point(216, 156);
             serverTextBox.Margin = new Padding(4, 5, 4, 5);
             serverTextBox.Name = "serverTextBox";
             serverTextBox.Size = new Size(311, 31);
@@ -102,18 +102,18 @@
             // 
             // accessKeyTextBox
             // 
-            accessKeyTextBox.Location = new Point(189, 245);
+            accessKeyTextBox.Location = new Point(216, 245);
             accessKeyTextBox.Margin = new Padding(4, 5, 4, 5);
             accessKeyTextBox.Name = "accessKeyTextBox";
-            accessKeyTextBox.Size = new Size(348, 31);
+            accessKeyTextBox.Size = new Size(311, 31);
             accessKeyTextBox.TabIndex = 5;
             // 
             // secretKeyTextBox
             // 
-            secretKeyTextBox.Location = new Point(184, 342);
+            secretKeyTextBox.Location = new Point(216, 342);
             secretKeyTextBox.Margin = new Padding(4, 5, 4, 5);
             secretKeyTextBox.Name = "secretKeyTextBox";
-            secretKeyTextBox.Size = new Size(351, 31);
+            secretKeyTextBox.Size = new Size(311, 31);
             secretKeyTextBox.TabIndex = 6;
             // 
             // backupFolderLabel
@@ -129,7 +129,7 @@
             // 
             // backupFolderTextBox
             // 
-            backupFolderTextBox.Location = new Point(780, 148);
+            backupFolderTextBox.Location = new Point(800, 149);
             backupFolderTextBox.Margin = new Padding(4, 5, 4, 5);
             backupFolderTextBox.Name = "backupFolderTextBox";
             backupFolderTextBox.Size = new Size(308, 31);
@@ -138,7 +138,7 @@
             // periodComboBox
             // 
             periodComboBox.FormattingEnabled = true;
-            periodComboBox.Location = new Point(696, 245);
+            periodComboBox.Location = new Point(711, 247);
             periodComboBox.Margin = new Padding(4, 5, 4, 5);
             periodComboBox.Name = "periodComboBox";
             periodComboBox.Size = new Size(171, 33);
@@ -181,17 +181,17 @@
             // 
             // bucketNameTextBox
             // 
-            bucketNameTextBox.Location = new Point(216, 447);
+            bucketNameTextBox.Location = new Point(238, 447);
             bucketNameTextBox.Margin = new Padding(4, 5, 4, 5);
             bucketNameTextBox.Name = "bucketNameTextBox";
-            bucketNameTextBox.Size = new Size(320, 31);
+            bucketNameTextBox.Size = new Size(311, 31);
             bucketNameTextBox.TabIndex = 13;
             // 
             // dayDateTimePicker
             // 
-            dayDateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            dayDateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm";
             dayDateTimePicker.Format = DateTimePickerFormat.Custom;
-            dayDateTimePicker.Location = new Point(696, 350);
+            dayDateTimePicker.Location = new Point(685, 350);
             dayDateTimePicker.Margin = new Padding(4, 5, 4, 5);
             dayDateTimePicker.Name = "dayDateTimePicker";
             dayDateTimePicker.Size = new Size(392, 31);
@@ -213,7 +213,7 @@
             firstBackupCheckBox.AutoSize = true;
             firstBackupCheckBox.Checked = true;
             firstBackupCheckBox.CheckState = CheckState.Checked;
-            firstBackupCheckBox.Location = new Point(596, 449);
+            firstBackupCheckBox.Location = new Point(607, 449);
             firstBackupCheckBox.Name = "firstBackupCheckBox";
             firstBackupCheckBox.Size = new Size(173, 29);
             firstBackupCheckBox.TabIndex = 16;
