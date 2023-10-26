@@ -51,8 +51,12 @@ namespace S3AutomateBackup
             DateTime selectedDate = dayDateTimePicker.Value;
             if (selectedDate >= DateTime.Now)
             {
+                if(firstBackupCheckBox.Checked)
+                {
+                    BackupManager backupManagerNow = new BackupManager(backupFolderTextBox.Text, uploader, 5000, true);
+                }
                 double intervalMilliseconds = GetIntervalFromNextOccurrence(selectedKey, selectedDate);
-                BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, uploader, intervalMilliseconds);
+                BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, uploader, intervalMilliseconds, false);
                 string formFieldsData = $"{serverTextBox.Text},{accessKeyTextBox.Text},{secretKeyTextBox.Text},{bucketNameTextBox.Text},{backupFolderTextBox.Text},{Convert.ToString(selectedKey)}, {Convert.ToString(selectedDate)}";
                 storage.SaveFormFields(formFieldsData);
                 this.Hide();

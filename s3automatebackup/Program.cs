@@ -42,7 +42,7 @@ namespace S3AutomateBackup
                     string[] fieldValues = loadedData.Split(',');
                     S3Uploader uploader = new S3Uploader(fieldValues[0], fieldValues[1], fieldValues[2], fieldValues[3]);
                     double intervalMilliseconds = GetIntervalFromNextOccurrence(Convert.ToInt32(fieldValues[5]), Convert.ToDateTime(fieldValues[6]));
-                    BackupManager backupManager = new BackupManager(fieldValues[4], uploader, intervalMilliseconds);
+                    BackupManager backupManager = new BackupManager(fieldValues[4], uploader, intervalMilliseconds, false);
                 }
             }
             catch (Exception ex)

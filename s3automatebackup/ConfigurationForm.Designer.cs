@@ -45,6 +45,7 @@
             bucketNameTextBox = new TextBox();
             dayDateTimePicker = new DateTimePicker();
             dayLabel = new Label();
+            firstBackupCheckBox = new CheckBox();
             SuspendLayout();
             // 
             // serverTextBox
@@ -207,11 +208,24 @@
             dayLabel.TabIndex = 15;
             dayLabel.Text = "Day:";
             // 
+            // firstBackupCheckBox
+            // 
+            firstBackupCheckBox.AutoSize = true;
+            firstBackupCheckBox.Checked = true;
+            firstBackupCheckBox.CheckState = CheckState.Checked;
+            firstBackupCheckBox.Location = new Point(596, 449);
+            firstBackupCheckBox.Name = "firstBackupCheckBox";
+            firstBackupCheckBox.Size = new Size(173, 29);
+            firstBackupCheckBox.TabIndex = 16;
+            firstBackupCheckBox.Text = "First backup now";
+            firstBackupCheckBox.UseVisualStyleBackColor = true;
+            // 
             // ConfigurationForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1143, 750);
+            Controls.Add(firstBackupCheckBox);
             Controls.Add(dayLabel);
             Controls.Add(dayDateTimePicker);
             Controls.Add(bucketNameTextBox);
@@ -254,5 +268,6 @@
         private TextBox bucketNameTextBox;
         private DateTimePicker dayDateTimePicker;
         private Label dayLabel;
+        private CheckBox firstBackupCheckBox;
     }
 }

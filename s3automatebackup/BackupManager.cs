@@ -14,15 +14,23 @@ namespace S3AutomateBackup
         private string _backupFolderPath;
         private S3Uploader _s3Uploader;
 
-        public BackupManager(string backupFolderPath, S3Uploader s3Uploader, double intervalMilliseconds)
+        public BackupManager(string backupFolderPath, S3Uploader s3Uploader, double intervalMilliseconds, bool first)
         {
-            _backupFolderPath = backupFolderPath;
-            _s3Uploader = s3Uploader;
+            if(first)
+            {
+                s3Uploader.EnsureVersioningEnabled();
+                s3Uploader.UploadDirectory(backupFolderPath);
+            }
+            else
+            {
+                _backupFolderPath = backupFolderPath;
+                _s3Uploader = s3Uploader;
 
-            _backupTimer = new Timer(intervalMilliseconds);
-            _backupTimer.Elapsed += PerformBackup;
-            _backupTimer.AutoReset = true;
-            _backupTimer.Enabled = true;
+                _backupTimer = new Timer(intervalMilliseconds);
+                _backupTimer.Elapsed += PerformBackup;
+                _backupTimer.AutoReset = true;
+                _backupTimer.Enabled = true;
+            }
         }
 
         private void PerformBackup(object sender, ElapsedEventArgs e)
