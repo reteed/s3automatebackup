@@ -1,4 +1,5 @@
-﻿using System;
+﻿using s3automatebackup;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace S3AutomateBackup
                 Items =
                 {
                     new ToolStripMenuItem("Configuration", null, new EventHandler(ShowConfiguration), "Configuration"),
+                    new ToolStripMenuItem("Versions", null, new EventHandler(ShowVersions), "Versions"),
                     new ToolStripMenuItem("Exit", null, new EventHandler(Exit), "Exit")
                 }
             };
@@ -33,15 +35,28 @@ namespace S3AutomateBackup
         }
         private void ShowConfiguration(object sender, EventArgs e)
         {
-            ConfigurationForm configuration = new();
+            ConfigurationForm configurationForm = new();
             // If we are already showing the window, merely focus it.
-            if (configuration.Visible)
+            if (configurationForm.Visible)
             {
-                configuration.Activate();
+                configurationForm.Activate();
             }
             else
             {
-                configuration.Show();
+                configurationForm.Show();
+            }
+        }
+        private void ShowVersions(object sender, EventArgs e)
+        {
+            VersionsForm versionsForm = new();
+            // If we are already showing the window, merely focus it.
+            if (versionsForm.Visible)
+            {
+                versionsForm.Activate();
+            }
+            else
+            {
+                versionsForm.Show();
             }
         }
         private void Exit(object sender, EventArgs e)

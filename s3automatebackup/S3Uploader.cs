@@ -114,5 +114,73 @@ namespace S3AutomateBackup
                 throw; // Some other exception occurred, rethrow
             }
         }
+
+        public async Task<List<S3Object>> ListAllObjects()
+        {
+            var config = new AmazonS3Config
+            {
+                ServiceURL = _serviceUrl,
+                ForcePathStyle = true
+            };
+
+            using var client = new AmazonS3Client(_accessKey, _secretKey, config);
+            var request = new ListObjectsV2Request
+            {
+                BucketName = _bucketName
+            };
+
+            var response = await client.ListObjectsV2Async(request);
+
+            return response.S3Objects;
+        }
+
+
+        public async Task<List<S3ObjectVersion>> GetObjectVersions(string key)
+        {
+            var config = new AmazonS3Config
+            {
+                ServiceURL = _serviceUrl,
+                ForcePathStyle = true
+            };
+
+            using var client = new AmazonS3Client(_accessKey, _secretKey, config);
+            var request = new ListVersionsRequest
+            {
+                BucketName = _bucketName,
+                Prefix = key
+            };
+
+            var response = await client.ListVersionsAsync(request);
+
+            return response.Versions;
+        }
+
+        public async Task RestoreVersion(S3Object s3Object, string versionId)
+        {
+            var config = new AmazonS3Config
+            {
+                ServiceURL = _serviceUrl,
+                ForcePathStyle = true
+            };
+            var request = new CopyObjectRequest
+            {
+                SourceBucket = _bucketName,
+                SourceKey = s3Object.Key,
+                SourceVersionId = versionId,
+                DestinationBucket = _bucketName,
+                DestinationKey = s3Object.Key
+            };
+
+            try
+            {
+                using var client = new AmazonS3Client(_accessKey, _secretKey, config);
+                await client.CopyObjectAsync(request);
+                Console.WriteLine($"Successfully restored version {versionId} of {s3Object.Key}.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+        }
     }
 }

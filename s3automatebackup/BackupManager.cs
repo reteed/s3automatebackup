@@ -57,7 +57,7 @@ namespace S3AutomateBackup
                     else
                     {
                         // File exists in the bucket, compare timestamps
-                        DateTime localLastModified = File.GetLastWriteTime(localFilePath);
+                        DateTime localLastModified = File.GetCreationTimeUtc(localFilePath);
 
                         // If the local file is newer, upload it to update the one in the bucket
                         if (localLastModified > fileExistsInS3)
