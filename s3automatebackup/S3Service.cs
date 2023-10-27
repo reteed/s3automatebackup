@@ -12,14 +12,14 @@ namespace S3AutomateBackup
     using System;
     using System.IO;
 
-    public class S3Uploader
+    public class S3Service
     {
         private string _accessKey;
         private string _secretKey;
         private string _serviceUrl;
         private string _bucketName;
 
-        public S3Uploader(string serviceUrl, string accessKey, string secretKey, string bucketName)
+        public S3Service(string serviceUrl, string accessKey, string secretKey, string bucketName)
         {
             _accessKey = accessKey;
             _secretKey = secretKey;
@@ -115,7 +115,7 @@ namespace S3AutomateBackup
             }
         }
 
-        public async Task<List<S3Object>> ListAllObjects()
+        public async Task<List<S3Object>> ListAllObjects(string bucketName)
         {
             var config = new AmazonS3Config
             {
@@ -126,7 +126,7 @@ namespace S3AutomateBackup
             using var client = new AmazonS3Client(_accessKey, _secretKey, config);
             var request = new ListObjectsV2Request
             {
-                BucketName = _bucketName
+                BucketName = bucketName
             };
 
             var response = await client.ListObjectsV2Async(request);
@@ -181,6 +181,26 @@ namespace S3AutomateBackup
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
+        }
+
+        public async Task<Dictionary<string, string>> ListAllBucketsAsync()
+        {
+            var config = new AmazonS3Config
+            {
+                ServiceURL = _serviceUrl,
+                ForcePathStyle = true
+            };
+
+            using var client = new AmazonS3Client(_accessKey, _secretKey, config);
+            var response = await client.ListBucketsAsync();
+
+            Dictionary<string, string> buckets = new();
+            foreach (var bucket in response.Buckets)
+            {
+                buckets[bucket.BucketName] = bucket.BucketName;
+            }
+
+            return buckets;
         }
     }
 }

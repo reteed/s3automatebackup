@@ -46,7 +46,7 @@ namespace S3AutomateBackup
 
         private void generateTaskButton_Click(object sender, EventArgs e)
         {
-            S3Uploader uploader = new S3Uploader(serverTextBox.Text, accessKeyTextBox.Text, secretKeyTextBox.Text, bucketNameTextBox.Text);
+            S3Service s3Service = new S3Service(serverTextBox.Text, accessKeyTextBox.Text, secretKeyTextBox.Text, bucketNameTextBox.Text);
             int selectedKey = ((KeyValuePair<int, string>)periodComboBox.SelectedItem).Key;
             DateTime selectedDate = dayDateTimePicker.Value;
             if (!string.IsNullOrWhiteSpace(serverTextBox.Text) && !string.IsNullOrWhiteSpace(accessKeyTextBox.Text) && !string.IsNullOrWhiteSpace(secretKeyTextBox.Text) && !string.IsNullOrWhiteSpace(bucketNameTextBox.Text) && !string.IsNullOrWhiteSpace(backupFolderTextBox.Text))
@@ -55,10 +55,10 @@ namespace S3AutomateBackup
                 {
                     if (firstBackupCheckBox.Checked)
                     {
-                        BackupManager backupManagerNow = new BackupManager(backupFolderTextBox.Text, uploader, 5000, true);
+                        BackupManager backupManagerNow = new BackupManager(backupFolderTextBox.Text, s3Service, 5000, true);
                     }
                     double intervalMilliseconds = GetIntervalFromNextOccurrence(selectedKey, selectedDate);
-                    BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, uploader, intervalMilliseconds, false);
+                    BackupManager backupManager = new BackupManager(backupFolderTextBox.Text, s3Service, intervalMilliseconds, false);
                     string formFieldsData = $"{serverTextBox.Text},{accessKeyTextBox.Text},{secretKeyTextBox.Text},{bucketNameTextBox.Text},{backupFolderTextBox.Text},{Convert.ToString(selectedKey)}, {Convert.ToString(selectedDate)}";
                     Storage.SaveFormFields(formFieldsData);
                     this.Hide();

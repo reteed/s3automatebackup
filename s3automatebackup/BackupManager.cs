@@ -14,12 +14,12 @@ namespace S3AutomateBackup
     {
         private Timer _backupTimer;
         private string _backupFolderPath;
-        private S3Uploader _s3Uploader;
+        private S3Service _s3Service;
 
-        public BackupManager(string backupFolderPath, S3Uploader s3Uploader, double intervalMilliseconds, bool first)
+        public BackupManager(string backupFolderPath, S3Service s3Service, double intervalMilliseconds, bool first)
         {
             _backupFolderPath = backupFolderPath;
-            _s3Uploader = s3Uploader;
+            _s3Service = s3Service;
             if (first)
             {
                 PerformBackup(null, null);
@@ -37,7 +37,7 @@ namespace S3AutomateBackup
         {
             try
             {
-                _s3Uploader.EnsureVersioningEnabled();
+                _s3Service.EnsureVersioningEnabled();
                 string[] localFiles = Directory.GetFiles(_backupFolderPath, "*.*", SearchOption.AllDirectories);
 
                 foreach (string localFilePath in localFiles)
@@ -47,12 +47,12 @@ namespace S3AutomateBackup
 
 
                     // Use the DoesFileExist method to check if the file exists in the S3 bucket
-                    DateTime? fileExistsInS3 = await _s3Uploader.DoesFileExist(relativePath);
+                    DateTime? fileExistsInS3 = await _s3Service.DoesFileExist(relativePath);
 
                     if (fileExistsInS3 == null)
                     {
                         // File doesn't exist in the bucket, upload it
-                        _s3Uploader.UploadFile(localFilePath, relativePath);
+                        _s3Service.UploadFile(localFilePath, relativePath);
                     }
                     else
                     {
@@ -62,7 +62,7 @@ namespace S3AutomateBackup
                         // If the local file is newer, upload it to update the one in the bucket
                         if (localLastModified > fileExistsInS3)
                         {
-                            _s3Uploader.UploadFile(localFilePath, relativePath);
+                            _s3Service.UploadFile(localFilePath, relativePath);
                         }
                     }
                 }

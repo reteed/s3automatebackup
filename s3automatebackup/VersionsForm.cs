@@ -16,11 +16,13 @@ namespace s3automatebackup
     public partial class VersionsForm : Form
     {
         List<S3Object> allObjects;
+        S3Service globalS3Service;
         public VersionsForm()
         {
             InitializeComponent();
             PopulateTreeView();
         }
+
         private async void PopulateTreeView()
         {
             SecureFormStorage storage = new();
@@ -28,24 +30,38 @@ namespace s3automatebackup
             if (loadedData != null)
             {
                 string[] fieldValues = loadedData.Split(',');
-                S3Uploader s3Uploader = new S3Uploader(fieldValues[0], fieldValues[1], fieldValues[2], fieldValues[3]);
-                allObjects = await s3Uploader.ListAllObjects();
+                S3Service s3Service = new S3Service(fieldValues[0], fieldValues[1], fieldValues[2], fieldValues[3]);
+                globalS3Service = s3Service;
+                PopulateBucketsComboBox(s3Service);
+            }
+        }
 
-                foreach (var obj in allObjects)
+        private async void PopulateBucketsComboBox(S3Service s3Service)
+        {
+            Dictionary<string, string> buckets = await s3Service.ListAllBucketsAsync();
+            bucketListComboBox.SelectedIndexChanged -= bucketListComboBox_SelectedIndexChanged;
+            bucketListComboBox.DataSource = new BindingSource(buckets, null);
+            bucketListComboBox.SelectedIndex = -1;
+            bucketListComboBox.SelectedIndexChanged += bucketListComboBox_SelectedIndexChanged;
+        }
+
+        private async void GetObjectsFromBucket(S3Service s3Service, string bucketName)
+        {
+            allObjects = await s3Service.ListAllObjects(bucketName);
+            foreach (var obj in allObjects)
+            {
+                TreeNode fileNode = new TreeNode(obj.Key);
+                fileNode.Tag = "File"; // Assign a simple string tag to indicate this is a file node
+
+                var versions = await s3Service.GetObjectVersions(obj.Key);
+                foreach (var version in versions)
                 {
-                    TreeNode fileNode = new TreeNode(obj.Key);
-                    fileNode.Tag = "File"; // Assign a simple string tag to indicate this is a file node
-
-                    var versions = await s3Uploader.GetObjectVersions(obj.Key);
-                    foreach (var version in versions)
-                    {
-                        TreeNode versionNode = new TreeNode($"{version.VersionId} - {version.LastModified}");
-                        versionNode.Tag = version; // Storing the version info for easy access later
-                        fileNode.Nodes.Add(versionNode);
-                    }
-
-                    versionsTreeView.Nodes.Add(fileNode);
+                    TreeNode versionNode = new TreeNode($"{version.VersionId} - {version.LastModified}");
+                    versionNode.Tag = version; // Storing the version info for easy access later
+                    fileNode.Nodes.Add(versionNode);
                 }
+
+                versionsTreeView.Nodes.Add(fileNode);
             }
         }
 
@@ -87,11 +103,30 @@ namespace s3automatebackup
             if (loadedData != null)
             {
                 string[] fieldValues = loadedData.Split(',');
-                S3Uploader s3Uploader = new S3Uploader(fieldValues[0], fieldValues[1], fieldValues[2], fieldValues[3]);
+                S3Service s3Uploader = new S3Service(fieldValues[0], fieldValues[1], fieldValues[2], fieldValues[3]);
 
                 await s3Uploader.RestoreVersion(s3Object, versionId);
             }
         }
 
+        private void bucketListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedBucket = (string)bucketListComboBox.SelectedValue;
+            if (selectedBucket != null)
+            {
+                versionsTreeView.Nodes.Clear();
+                GetObjectsFromBucket(globalS3Service, selectedBucket);
+            }
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            string selectedBucket = (string)bucketListComboBox.SelectedValue;
+            if (selectedBucket != null)
+            {
+                versionsTreeView.Nodes.Clear();
+                GetObjectsFromBucket(globalS3Service, selectedBucket);
+            }
+        }
     }
 }
