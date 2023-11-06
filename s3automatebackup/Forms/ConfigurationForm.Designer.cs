@@ -1,4 +1,4 @@
-﻿namespace S3AutomateBackup
+﻿namespace s3automatebackup.Forms
 {
     partial class ConfigurationForm
     {

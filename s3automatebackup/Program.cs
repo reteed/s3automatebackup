@@ -53,48 +53,39 @@ namespace S3AutomateBackup
         private static double GetIntervalFromNextOccurrence(int periodKey, DateTime selectedDate)
         {
             DateTime currentDate = DateTime.Now;
-            DateTime nextDate;
+            DateTime nextDate = selectedDate;
 
             switch (periodKey)
             {
-                case 1: // Daily
-                    nextDate = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
-                    if (currentDate >= nextDate) // If the time has already passed for the selected date
+                case 1: // Diario
+                    nextDate = currentDate.Date.AddHours(selectedDate.Hour).AddMinutes(selectedDate.Minute);
+                    if (currentDate >= nextDate)
                     {
-                        nextDate = nextDate.AddDays(1); // Schedule for the same time on the next day
+                        nextDate = nextDate.AddDays(1);
                     }
                     break;
-                case 2: // Monthly
-                    try
+                case 2: // Mensual
+                    nextDate = new DateTime(currentDate.Year, currentDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
+                    if (currentDate >= nextDate || nextDate.Day != selectedDate.Day) // Si ya pasó o no es posible (ej. 30 de febrero)
                     {
-                        nextDate = new DateTime(currentDate.Year, currentDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
-                    }
-                    catch (ArgumentOutOfRangeException)
-                    {
-                        // This accounts for selecting dates like February 29 on non-leap years
-                        nextDate = new DateTime(currentDate.Year, currentDate.Month + 1, 1).AddDays(-1);
-                    }
-
-                    if (currentDate >= nextDate) // If the date has already passed this month
-                    {
-                        nextDate = nextDate.AddMonths(1); // Schedule for the same date next month
+                        nextDate = nextDate.AddMonths(1);
+                        // Corrige el día si es necesario (ej. 31 en un mes que no lo tiene)
+                        int daysInMonth = DateTime.DaysInMonth(nextDate.Year, nextDate.Month);
+                        nextDate = new DateTime(nextDate.Year, nextDate.Month, Math.Min(daysInMonth, selectedDate.Day), selectedDate.Hour, selectedDate.Minute, 0);
                     }
                     break;
-
-                case 3: // Yearly
+                case 3: // Anual
                     nextDate = new DateTime(currentDate.Year, selectedDate.Month, selectedDate.Day, selectedDate.Hour, selectedDate.Minute, 0);
-
-                    if (currentDate >= nextDate) // If the date has already passed this year
+                    if (currentDate >= nextDate)
                     {
-                        nextDate = nextDate.AddYears(1); // Schedule for the same date next year
+                        nextDate = nextDate.AddYears(1);
                     }
                     break;
-
                 default:
                     throw new ArgumentException("Invalid period key");
             }
 
-            TimeSpan interval = nextDate - currentDate; // Calculate the difference between the next date and now.
+            TimeSpan interval = nextDate - currentDate;
             return interval.TotalMilliseconds;
         }
 
