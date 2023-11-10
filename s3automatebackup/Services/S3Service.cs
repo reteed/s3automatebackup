@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Amazon.S3;
+using Amazon.S3.Model;
+using Amazon.S3.Transfer;
+using System;
+using System.IO;
 
-namespace S3AutomateBackup
+namespace s3automatebackup.Services
 {
-    using Amazon.S3;
-    using Amazon.S3.Model;
-    using Amazon.S3.Transfer;
-    using System;
-    using System.IO;
-
     public class S3Service
     {
         private string _accessKey;
@@ -98,7 +97,7 @@ namespace S3AutomateBackup
                 };
 
                 GetObjectMetadataResponse response = await client.GetObjectMetadataAsync(request);
-                if(response != null)
+                if (response != null)
                 {
                     return response.LastModified;
                 }

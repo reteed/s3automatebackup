@@ -1,11 +1,11 @@
-﻿using s3automatebackup;
+﻿using s3automatebackup.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S3AutomateBackup
+namespace s3automatebackup
 {
     public class AppApplicationContext : ApplicationContext
     {
@@ -16,7 +16,8 @@ namespace S3AutomateBackup
             {
                 Items =
                 {
-                    new ToolStripMenuItem("Configuration", null, new EventHandler(ShowConfiguration), "Configuration"),
+                    new ToolStripMenuItem("Tasks", null, new EventHandler(ShowTasks), "Tasks"),
+                    new ToolStripMenuItem("Configurations", null, new EventHandler(ShowConfigurations), "Configurations"),
                     new ToolStripMenuItem("Versions", null, new EventHandler(ShowVersions), "Versions"),
                     new ToolStripMenuItem("Exit", null, new EventHandler(Exit), "Exit")
                 }
@@ -33,9 +34,22 @@ namespace S3AutomateBackup
 
             notifyIcon.Visible = true;
         }
-        private void ShowConfiguration(object sender, EventArgs e)
+        private void ShowTasks(object sender, EventArgs e)
         {
-            ConfigurationForm configurationForm = new();
+            TasksForm tasksForm = new();
+            // If we are already showing the window, merely focus it.
+            if (tasksForm.Visible)
+            {
+                tasksForm.Activate();
+            }
+            else
+            {
+                tasksForm.Show();
+            }
+        }
+        private void ShowConfigurations(object sender, EventArgs e)
+        {
+            ConfigurationsForm configurationForm = new();
             // If we are already showing the window, merely focus it.
             if (configurationForm.Visible)
             {

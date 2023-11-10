@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace s3automatebackup.Forms
 {
-    public partial class Tasks : Form
+    public partial class TasksForm : Form
     {
-        public Tasks()
+        public TasksForm()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace s3automatebackup.Forms
 {
-    partial class Tasks
+    partial class TasksForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Tasks";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TasksForm));
+            SuspendLayout();
+            // 
+            // TasksForm
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1002, 712);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "TasksForm";
+            Text = "Tasks - S3AutomateBackup";
+            ResumeLayout(false);
         }
 
         #endregion

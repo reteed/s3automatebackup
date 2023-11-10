@@ -1,5 +1,6 @@
 ﻿using Amazon.S3.Model;
-using S3AutomateBackup;
+using s3automatebackup.Models;
+using s3automatebackup.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,59 +10,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace s3automatebackup.Forms
 {
     public partial class VersionsForm : Form
     {
+        private StorageService storageService = new();
+        private S3Service s3Service;
         List<S3Object> allObjects;
-        S3Service globalS3Service;
+
         public VersionsForm()
         {
             InitializeComponent();
-            PopulateTreeView();
+            PopulateConfigurations();
+
         }
 
-        private async void PopulateTreeView()
+        private void configurationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SecureFormStorage storage = new();
-            string loadedData = storage.LoadFormFields();
-            if (loadedData != null)
+            if(configurationComboBox.SelectedIndex != -1)
             {
-                string[] fieldValues = loadedData.Split(',');
-                S3Service s3Service = new S3Service(fieldValues[0], fieldValues[1], fieldValues[2], fieldValues[3]);
-                globalS3Service = s3Service;
-                PopulateBucketsComboBox(s3Service);
+                bucketComboBox.SelectedIndex = -1;
+                Configuration configuration = (Configuration)configurationComboBox.SelectedItem;
+                PopulateBuckets(configuration);
             }
         }
 
-        private async void PopulateBucketsComboBox(S3Service s3Service)
+        private void bucketComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Dictionary<string, string> buckets = await s3Service.ListAllBucketsAsync();
-            bucketListComboBox.SelectedIndexChanged -= bucketListComboBox_SelectedIndexChanged;
-            bucketListComboBox.DataSource = new BindingSource(buckets, null);
-            bucketListComboBox.SelectedIndex = -1;
-            bucketListComboBox.SelectedIndexChanged += bucketListComboBox_SelectedIndexChanged;
-        }
-
-        private async void GetObjectsFromBucket(S3Service s3Service, string bucketName)
-        {
-            allObjects = await s3Service.ListAllObjects(bucketName);
-            foreach (var obj in allObjects)
+            if (bucketComboBox.SelectedIndex != -1)
             {
-                TreeNode fileNode = new TreeNode(obj.Key);
-                fileNode.Tag = "File"; // Assign a simple string tag to indicate this is a file node
-
-                var versions = await s3Service.GetObjectVersions(obj.Key);
-                foreach (var version in versions)
+                string selectedBucket = (string)bucketComboBox.SelectedValue;
+                if (selectedBucket != null)
                 {
-                    TreeNode versionNode = new TreeNode($"{version.VersionId} - {version.LastModified}");
-                    versionNode.Tag = version; // Storing the version info for easy access later
-                    fileNode.Nodes.Add(versionNode);
+                    versionsTreeView.Nodes.Clear();
+                    GetObjectsFromBucket(s3Service, selectedBucket);
                 }
-
-                versionsTreeView.Nodes.Add(fileNode);
             }
         }
 
@@ -96,37 +80,48 @@ namespace s3automatebackup.Forms
             }
         }
 
+        private void PopulateConfigurations()
+        {
+            List<Configuration> configurations = storageService.LoadConfigurations();
+            configurationComboBox.SelectedIndexChanged -= configurationComboBox_SelectedIndexChanged;
+            configurationComboBox.DataSource = new BindingSource(configurations, null);
+            configurationComboBox.SelectedIndex = -1;
+            configurationComboBox.SelectedIndexChanged += configurationComboBox_SelectedIndexChanged;
+        }
+
+        private async void PopulateBuckets(Configuration configuration)
+        {
+            s3Service = new S3Service(configuration.Server, configuration.AccessKey, configuration.SecretKey, null);
+            Dictionary<string, string> buckets = await s3Service.ListAllBucketsAsync();
+            bucketComboBox.SelectedIndexChanged -= bucketComboBox_SelectedIndexChanged;
+            bucketComboBox.DataSource = new BindingSource(buckets, null);
+            bucketComboBox.SelectedIndex = -1;
+            bucketComboBox.SelectedIndexChanged += bucketComboBox_SelectedIndexChanged;
+        }
+
+        private async void GetObjectsFromBucket(S3Service s3Service, string bucketName)
+        {
+            allObjects = await s3Service.ListAllObjects(bucketName);
+            foreach (var obj in allObjects)
+            {
+                TreeNode fileNode = new TreeNode(obj.Key);
+                fileNode.Tag = "File"; // Assign a simple string tag to indicate this is a file node
+
+                var versions = await s3Service.GetObjectVersions(obj.Key);
+                foreach (var version in versions)
+                {
+                    TreeNode versionNode = new TreeNode($"{version.VersionId} - {version.LastModified}");
+                    versionNode.Tag = version; // Storing the version info for easy access later
+                    fileNode.Nodes.Add(versionNode);
+                }
+
+                versionsTreeView.Nodes.Add(fileNode);
+            }
+        }
+
         private async void RestoreVersion(S3Object s3Object, string versionId)
         {
-            SecureFormStorage storage = new();
-            string loadedData = storage.LoadFormFields();
-            if (loadedData != null)
-            {
-                string[] fieldValues = loadedData.Split(',');
-                S3Service s3Uploader = new S3Service(fieldValues[0], fieldValues[1], fieldValues[2], fieldValues[3]);
-
-                await s3Uploader.RestoreVersion(s3Object, versionId);
-            }
-        }
-
-        private void bucketListComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedBucket = (string)bucketListComboBox.SelectedValue;
-            if (selectedBucket != null)
-            {
-                versionsTreeView.Nodes.Clear();
-                GetObjectsFromBucket(globalS3Service, selectedBucket);
-            }
-        }
-
-        private void refreshButton_Click(object sender, EventArgs e)
-        {
-            string selectedBucket = (string)bucketListComboBox.SelectedValue;
-            if (selectedBucket != null)
-            {
-                versionsTreeView.Nodes.Clear();
-                GetObjectsFromBucket(globalS3Service, selectedBucket);
-            }
+            await s3Service.RestoreVersion(s3Object, versionId);
         }
     }
 }

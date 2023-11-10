@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.7.34202.233
+VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "s3automatebackup", "S3AutomateBackup\s3automatebackup.csproj", "{ECCCAAF3-172D-4795-BFBB-4C5F724D8092}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "s3automatebackup", "s3automatebackup\s3automatebackup.csproj", "{9C566419-C091-4B5E-A058-054F6527F853}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ECCCAAF3-172D-4795-BFBB-4C5F724D8092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECCCAAF3-172D-4795-BFBB-4C5F724D8092}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECCCAAF3-172D-4795-BFBB-4C5F724D8092}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECCCAAF3-172D-4795-BFBB-4C5F724D8092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C566419-C091-4B5E-A058-054F6527F853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C566419-C091-4B5E-A058-054F6527F853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C566419-C091-4B5E-A058-054F6527F853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C566419-C091-4B5E-A058-054F6527F853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {08594E9E-258B-40F8-8011-BBBA536CB0A6}
+		SolutionGuid = {2CE0FFB6-F656-4296-9CF5-BBED9EBFE094}
 	EndGlobalSection
 EndGlobal
