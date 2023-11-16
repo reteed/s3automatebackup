@@ -182,7 +182,7 @@ namespace s3automatebackup.Services
             }
         }
 
-        public async Task<Dictionary<string, string>> ListAllBucketsAsync()
+        public async Task<List<string>> ListAllBucketsAsync()
         {
             var config = new AmazonS3Config
             {
@@ -193,10 +193,10 @@ namespace s3automatebackup.Services
             using var client = new AmazonS3Client(_accessKey, _secretKey, config);
             var response = await client.ListBucketsAsync();
 
-            Dictionary<string, string> buckets = new();
+            List<string> buckets = new();
             foreach (var bucket in response.Buckets)
             {
-                buckets[bucket.BucketName] = bucket.BucketName;
+                buckets.Add(bucket.BucketName);
             }
 
             return buckets;

@@ -49,6 +49,7 @@ namespace s3automatebackup.Forms
                 if (createConfigurationForm.ShowDialog() == DialogResult.OK)
                 {
                     Configuration newConfiguration = createConfigurationForm.Configuration;
+                    newConfiguration.Id = configurations.Count + 1;
                     configurations.Add(newConfiguration);
                     storageService.SaveConfigurations(configurations);
                     PopulateListView(configurations);

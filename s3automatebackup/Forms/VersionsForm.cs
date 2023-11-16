@@ -28,11 +28,15 @@ namespace s3automatebackup.Forms
 
         private void configurationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(configurationComboBox.SelectedIndex != -1)
+            if (configurationComboBox.SelectedIndex != -1)
             {
                 bucketComboBox.SelectedIndex = -1;
-                Configuration configuration = (Configuration)configurationComboBox.SelectedItem;
-                PopulateBuckets(configuration);
+                int selectedConfigurationId = (int)configurationComboBox.SelectedValue;
+
+                List<Configuration> configurations = storageService.LoadConfigurations();
+                Configuration configuration = configurations.Find(c => c.Id == selectedConfigurationId);
+                if (configuration != null)
+                    PopulateBuckets(configuration);
             }
         }
 
@@ -83,8 +87,18 @@ namespace s3automatebackup.Forms
         private void PopulateConfigurations()
         {
             List<Configuration> configurations = storageService.LoadConfigurations();
+            Dictionary<int, string> configurationDictionary = new();
+            foreach (Configuration configuration in configurations)
+            {
+                configurationDictionary.Add(configuration.Id, configuration.Name);
+            }
+
             configurationComboBox.SelectedIndexChanged -= configurationComboBox_SelectedIndexChanged;
-            configurationComboBox.DataSource = new BindingSource(configurations, null);
+
+            configurationComboBox.DataSource = new BindingSource(configurationDictionary, null);
+            configurationComboBox.DisplayMember = "Value"; // Display the configuration name
+            configurationComboBox.ValueMember = "Key"; // Use the configuration ID as the underlying value
+
             configurationComboBox.SelectedIndex = -1;
             configurationComboBox.SelectedIndexChanged += configurationComboBox_SelectedIndexChanged;
         }
@@ -92,7 +106,7 @@ namespace s3automatebackup.Forms
         private async void PopulateBuckets(Configuration configuration)
         {
             s3Service = new S3Service(configuration.Server, configuration.AccessKey, configuration.SecretKey, null);
-            Dictionary<string, string> buckets = await s3Service.ListAllBucketsAsync();
+            List<string> buckets = await s3Service.ListAllBucketsAsync();
             bucketComboBox.SelectedIndexChanged -= bucketComboBox_SelectedIndexChanged;
             bucketComboBox.DataSource = new BindingSource(buckets, null);
             bucketComboBox.SelectedIndex = -1;
