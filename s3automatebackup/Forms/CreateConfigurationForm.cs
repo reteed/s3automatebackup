@@ -20,15 +20,32 @@ namespace s3automatebackup.Forms
             InitializeComponent();
         }
 
+        public CreateConfigurationForm(Configuration configuration)
+        {
+            InitializeComponent();
+            Configuration = configuration;
+
+            // Populate form fields with configuration data
+            if (Configuration != null)
+            {
+                nameTextBox.Text = Configuration.Name;
+                serverTextBox.Text = Configuration.Server;
+                accessKeyTextBox.Text = Configuration.AccessKey;
+                secretKeyTextBox.Text = Configuration.SecretKey;
+            }
+        }
+
         private void saveButton_Click(object sender, EventArgs e)
         {
-            Configuration = new()
+            if (Configuration == null)
             {
-                Name = nameTextBox.Text,
-                Server = serverTextBox.Text,
-                AccessKey = accessKeyTextBox.Text,
-                SecretKey = secretKeyTextBox.Text,
-            };
+                Configuration = new Configuration();
+            }
+
+            Configuration.Name = nameTextBox.Text;
+            Configuration.Server = serverTextBox.Text;
+            Configuration.AccessKey = accessKeyTextBox.Text;
+            Configuration.SecretKey = secretKeyTextBox.Text;
 
             this.DialogResult = DialogResult.OK;
             this.Close();

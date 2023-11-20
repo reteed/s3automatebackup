@@ -34,6 +34,7 @@
             createConfigurationButton = new Button();
             listViewContextMenuStrip = new ContextMenuStrip(components);
             deleteToolStripMenuItem = new ToolStripMenuItem();
+            editToolStripMenuItem = new ToolStripMenuItem();
             listViewContextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,16 +60,23 @@
             // listViewContextMenuStrip
             // 
             listViewContextMenuStrip.ImageScalingSize = new Size(24, 24);
-            listViewContextMenuStrip.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem });
+            listViewContextMenuStrip.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, deleteToolStripMenuItem });
             listViewContextMenuStrip.Name = "contextMenuStrip1";
-            listViewContextMenuStrip.Size = new Size(135, 36);
+            listViewContextMenuStrip.Size = new Size(241, 101);
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(134, 32);
+            deleteToolStripMenuItem.Size = new Size(240, 32);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(240, 32);
+            editToolStripMenuItem.Text = "Edit";
+            editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
             // ConfigurationsForm
             // 
@@ -90,5 +98,6 @@
         private Button createConfigurationButton;
         private ContextMenuStrip listViewContextMenuStrip;
         private ToolStripMenuItem deleteToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
     }
 }

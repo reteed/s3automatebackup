@@ -83,5 +83,30 @@ namespace s3automatebackup.Forms
                 }
             }
         }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewConfigurations.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listViewConfigurations.SelectedItems[0];
+                Configuration selectedConfig = (Configuration)selectedItem.Tag;
+
+                using (CreateConfigurationForm editForm = new CreateConfigurationForm(selectedConfig))
+                {
+                    if (editForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Replace the old configuration object with the updated one
+                        int index = configurations.IndexOf(selectedConfig);
+                        if (index != -1)
+                        {
+                            configurations[index] = editForm.Configuration;
+                        }
+
+                        storageService.SaveConfigurations(configurations);
+                        PopulateListView(configurations);
+                    }
+                }
+            }
+        }
     }
 }
