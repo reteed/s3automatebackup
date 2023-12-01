@@ -30,22 +30,22 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurationsForm));
-            listViewConfigurations = new ListView();
+            configurationsListView = new ListView();
             createConfigurationButton = new Button();
             listViewContextMenuStrip = new ContextMenuStrip(components);
-            deleteToolStripMenuItem = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
             listViewContextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
-            // listViewConfigurations
+            // configurationsListView
             // 
-            listViewConfigurations.Location = new Point(49, 80);
-            listViewConfigurations.Name = "listViewConfigurations";
-            listViewConfigurations.Size = new Size(898, 569);
-            listViewConfigurations.TabIndex = 0;
-            listViewConfigurations.UseCompatibleStateImageBehavior = false;
-            listViewConfigurations.MouseClick += listViewConfigurations_MouseClick;
+            configurationsListView.Location = new Point(49, 80);
+            configurationsListView.Name = "configurationsListView";
+            configurationsListView.Size = new Size(898, 569);
+            configurationsListView.TabIndex = 0;
+            configurationsListView.UseCompatibleStateImageBehavior = false;
+            configurationsListView.MouseClick += listViewConfigurations_MouseClick;
             // 
             // createConfigurationButton
             // 
@@ -62,21 +62,21 @@
             listViewContextMenuStrip.ImageScalingSize = new Size(24, 24);
             listViewContextMenuStrip.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, deleteToolStripMenuItem });
             listViewContextMenuStrip.Name = "contextMenuStrip1";
-            listViewContextMenuStrip.Size = new Size(241, 101);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(240, 32);
-            deleteToolStripMenuItem.Text = "Delete";
-            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
+            listViewContextMenuStrip.Size = new Size(135, 68);
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(240, 32);
+            editToolStripMenuItem.Size = new Size(134, 32);
             editToolStripMenuItem.Text = "Edit";
             editToolStripMenuItem.Click += editToolStripMenuItem_Click;
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(134, 32);
+            deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // ConfigurationsForm
             // 
@@ -84,9 +84,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1002, 712);
             Controls.Add(createConfigurationButton);
-            Controls.Add(listViewConfigurations);
+            Controls.Add(configurationsListView);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ConfigurationsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Configurations - S3AutomateBackup";
             listViewContextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
@@ -94,7 +95,7 @@
 
         #endregion
 
-        private ListView listViewConfigurations;
+        private ListView configurationsListView;
         private Button createConfigurationButton;
         private ContextMenuStrip listViewContextMenuStrip;
         private ToolStripMenuItem deleteToolStripMenuItem;

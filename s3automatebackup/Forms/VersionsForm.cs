@@ -18,12 +18,12 @@ namespace s3automatebackup.Forms
         private StorageService storageService = new();
         private S3Service s3Service;
         List<S3Object> allObjects;
+        Configuration configuration = new();
 
         public VersionsForm()
         {
             InitializeComponent();
             PopulateConfigurations();
-
         }
 
         private void configurationComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace s3automatebackup.Forms
                 int selectedConfigurationId = (int)configurationComboBox.SelectedValue;
 
                 List<Configuration> configurations = storageService.LoadConfigurations();
-                Configuration configuration = configurations.Find(c => c.Id == selectedConfigurationId);
+                configuration = configurations.Find(c => c.Id == selectedConfigurationId);
                 if (configuration != null)
                     PopulateBuckets(configuration);
             }
@@ -115,6 +115,7 @@ namespace s3automatebackup.Forms
 
         private async void GetObjectsFromBucket(S3Service s3Service, string bucketName)
         {
+            s3Service._bucketName = bucketName;
             allObjects = await s3Service.ListAllObjects(bucketName);
             foreach (var obj in allObjects)
             {
@@ -136,6 +137,19 @@ namespace s3automatebackup.Forms
         private async void RestoreVersion(S3Object s3Object, string versionId)
         {
             await s3Service.RestoreVersion(s3Object, versionId);
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            if (bucketComboBox.SelectedIndex != -1)
+            {
+                string selectedBucket = (string)bucketComboBox.SelectedValue;
+                if (selectedBucket != null)
+                {
+                    versionsTreeView.Nodes.Clear();
+                    GetObjectsFromBucket(s3Service, selectedBucket);
+                }
+            }
         }
     }
 }

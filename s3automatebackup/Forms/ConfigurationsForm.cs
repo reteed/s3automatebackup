@@ -21,16 +21,16 @@ namespace s3automatebackup.Forms
         public ConfigurationsForm()
         {
             InitializeComponent();
-            listViewConfigurations.View = View.Details;
-            listViewConfigurations.Columns.Add("Name", 150, HorizontalAlignment.Left);
-            listViewConfigurations.Columns.Add("Server", 300, HorizontalAlignment.Left);
-            listViewConfigurations.Columns.Add("Access Key", 350, HorizontalAlignment.Left); // Be cautious with sensitive data
+            configurationsListView.View = View.Details;
+            configurationsListView.Columns.Add("Name", 150, HorizontalAlignment.Left);
+            configurationsListView.Columns.Add("Server", 300, HorizontalAlignment.Left);
+            configurationsListView.Columns.Add("Access Key", 350, HorizontalAlignment.Left); // Be cautious with sensitive data
             configurations = storageService.LoadConfigurations();
             PopulateListView(configurations);
         }
         private void PopulateListView(List<Configuration> configurations)
         {
-            listViewConfigurations.Items.Clear();
+            configurationsListView.Items.Clear();
 
             foreach (Configuration configuration in configurations)
             {
@@ -38,7 +38,7 @@ namespace s3automatebackup.Forms
                 item.SubItems.Add(configuration.Server);
                 item.SubItems.Add(configuration.AccessKey);
                 item.Tag = configuration;
-                listViewConfigurations.Items.Add(item);
+                configurationsListView.Items.Add(item);
             }
         }
 
@@ -61,7 +61,7 @@ namespace s3automatebackup.Forms
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (listViewConfigurations.FocusedItem.Bounds.Contains(e.Location) == true)
+                if (configurationsListView.FocusedItem.Bounds.Contains(e.Location) == true)
                 {
                     listViewContextMenuStrip.Show(Cursor.Position);
                 }
@@ -70,13 +70,13 @@ namespace s3automatebackup.Forms
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listViewConfigurations.SelectedItems.Count > 0)
+            if (configurationsListView.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listViewConfigurations.SelectedItems[0];
+                ListViewItem selectedItem = configurationsListView.SelectedItems[0];
                 Configuration selectedConfig = selectedItem.Tag as Configuration;
                 if (MessageBox.Show("Are you sure you want to delete this configuration?", "Delete Configuration", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    listViewConfigurations.Items.Remove(selectedItem);
+                    configurationsListView.Items.Remove(selectedItem);
                     configurations.Remove(selectedConfig);
                     storageService.SaveConfigurations(configurations);
                     PopulateListView(configurations);
@@ -86,9 +86,9 @@ namespace s3automatebackup.Forms
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listViewConfigurations.SelectedItems.Count > 0)
+            if (configurationsListView.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listViewConfigurations.SelectedItems[0];
+                ListViewItem selectedItem = configurationsListView.SelectedItems[0];
                 Configuration selectedConfig = (Configuration)selectedItem.Tag;
 
                 using (CreateConfigurationForm editForm = new CreateConfigurationForm(selectedConfig))

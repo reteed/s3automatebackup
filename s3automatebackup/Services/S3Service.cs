@@ -13,10 +13,10 @@ namespace s3automatebackup.Services
 {
     public class S3Service
     {
-        private string _accessKey;
-        private string _secretKey;
-        private string _serviceUrl;
-        private string _bucketName;
+        public string _accessKey { get; set; }
+        public string _secretKey { get; set; }
+        public string _serviceUrl { get; set; }
+        public string _bucketName { get; set; }
 
         public S3Service(string serviceUrl, string accessKey, string secretKey, string bucketName)
         {

@@ -146,6 +146,7 @@
             Controls.Add(saveButton);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CreateConfigurationForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Create Configuration - S3AutomateBackup";
             ResumeLayout(false);
             PerformLayout();

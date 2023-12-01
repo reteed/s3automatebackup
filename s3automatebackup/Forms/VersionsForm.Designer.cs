@@ -87,6 +87,7 @@
             refreshButton.TabIndex = 4;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += refreshButton_Click;
             // 
             // versionsTreeView
             // 
@@ -123,6 +124,7 @@
             Controls.Add(configurationLabel);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "VersionsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Versions - S3AutomateBackup";
             versionsContextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
