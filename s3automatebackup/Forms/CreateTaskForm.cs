@@ -17,6 +17,7 @@ namespace s3automatebackup.Forms
         public BackupTask Task { get; private set; }
         private List<Configuration> Configurations = new();
         private StorageService storageService = new();
+        bool ByPassDateCheck = false;
 
         public CreateTaskForm()
         {
@@ -36,6 +37,7 @@ namespace s3automatebackup.Forms
             // Populate form fields with task data
             if (Task != null)
             {
+                ByPassDateCheck = true;
                 bucketNameTextBox.Text = Task.BucketName;
                 backupFolderTextBox.Text = Task.BackupFolder;
                 scheduledDateAndTimeDateTimePicker.Value = Task.ScheduledTime;
@@ -71,7 +73,8 @@ namespace s3automatebackup.Forms
             {
                 { 1, "Daily" },
                 { 2, "Weekly" },
-                { 3, "Yearly" }
+                { 3, "Monthly" },
+                { 4, "Yearly" }
             };
 
             periodComboBox.DataSource = new BindingSource(periodOptions, null);
@@ -92,23 +95,40 @@ namespace s3automatebackup.Forms
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (Task == null)
+            DateTime date = scheduledDateAndTimeDateTimePicker.Value;
+            DateTime dateNow = DateTime.Now;
+            if (!string.IsNullOrWhiteSpace(bucketNameTextBox.Text) && !string.IsNullOrWhiteSpace(backupFolderTextBox.Text) && date > dateNow && configurationComboBox.SelectedIndex > -1)
             {
-                Task = new BackupTask();
+                if (Task == null)
+                {
+                    Task = new BackupTask();
+                }
+
+                Task.BucketName = bucketNameTextBox.Text;
+                Task.BackupFolder = backupFolderTextBox.Text;
+                Task.ScheduledTime = scheduledDateAndTimeDateTimePicker.Value;
+                Task.PeriodKey = (int)periodComboBox.SelectedValue;
+
+                // Get the selected configuration ID and find the corresponding Configuration object
+                int selectedConfigId = (int)configurationComboBox.SelectedValue;
+                Configuration selectedConfig = Configurations.FirstOrDefault(c => c.Id == selectedConfigId);
+                Task.Configuration = selectedConfig;
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                if (date <= dateNow)
+                {
+                    MessageBox.Show("Please select a date and time in the future.", "Invalid Date Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Please fill in all the required fields before proceeding.", "Required Fields Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
 
-            Task.BucketName = bucketNameTextBox.Text;
-            Task.BackupFolder = backupFolderTextBox.Text;
-            Task.ScheduledTime = scheduledDateAndTimeDateTimePicker.Value;
-            Task.PeriodKey = (int)periodComboBox.SelectedValue;
-
-            // Get the selected configuration ID and find the corresponding Configuration object
-            int selectedConfigId = (int)configurationComboBox.SelectedValue;
-            Configuration selectedConfig = Configurations.FirstOrDefault(c => c.Id == selectedConfigId);
-            Task.Configuration = selectedConfig;
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -123,11 +143,15 @@ namespace s3automatebackup.Forms
             DateTime selectedDate = scheduledDateAndTimeDateTimePicker.Value;
 
             // Check if the selected date is in the past
-            if (selectedDate <= DateTime.Now)
+            if (selectedDate <= DateTime.Now && !ByPassDateCheck)
             {
-                MessageBox.Show("Please select a future date and time.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a date and time in the future.", "Invalid Date Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 DateTime dateNow = DateTime.Now;
                 scheduledDateAndTimeDateTimePicker.Value = dateNow.AddHours(1);
+            }
+            else
+            {
+                ByPassDateCheck = false;
             }
         }
     }

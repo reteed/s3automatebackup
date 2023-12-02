@@ -81,11 +81,13 @@ namespace s3automatebackup.Services
         {
             switch (periodKey)
             {
-                case 0: // Daily
+                case 1: // Daily
                     return lastOccurrence.AddDays(1);
-                case 1: // Monthly
+                case 2: // Weekly
+                    return lastOccurrence.AddDays(7);
+                case 3: // Monthly
                     return lastOccurrence.AddMonths(1);
-                case 2: // Yearly
+                case 4: // Yearly
                     return lastOccurrence.AddYears(1);
                 default:
                     throw new InvalidOperationException("Invalid Period Key.");

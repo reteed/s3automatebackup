@@ -64,7 +64,7 @@
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            nameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             nameLabel.Location = new Point(112, 67);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(67, 25);
@@ -74,7 +74,7 @@
             // serverLabel
             // 
             serverLabel.AutoSize = true;
-            serverLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            serverLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             serverLabel.Location = new Point(112, 125);
             serverLabel.Name = "serverLabel";
             serverLabel.Size = new Size(73, 25);
@@ -84,7 +84,7 @@
             // accessKeyLabel
             // 
             accessKeyLabel.AutoSize = true;
-            accessKeyLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            accessKeyLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             accessKeyLabel.Location = new Point(112, 179);
             accessKeyLabel.Name = "accessKeyLabel";
             accessKeyLabel.Size = new Size(111, 25);
@@ -94,7 +94,7 @@
             // secretKeyLabel
             // 
             secretKeyLabel.AutoSize = true;
-            secretKeyLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            secretKeyLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             secretKeyLabel.Location = new Point(112, 236);
             secretKeyLabel.Name = "secretKeyLabel";
             secretKeyLabel.Size = new Size(107, 25);
@@ -112,7 +112,7 @@
             // 
             serverTextBox.Location = new Point(205, 125);
             serverTextBox.Name = "serverTextBox";
-            serverTextBox.Size = new Size(150, 31);
+            serverTextBox.Size = new Size(322, 31);
             serverTextBox.TabIndex = 7;
             // 
             // accessKeyTextBox

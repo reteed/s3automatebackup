@@ -37,18 +37,25 @@ namespace s3automatebackup.Forms
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (Configuration == null)
+            if(!string.IsNullOrWhiteSpace(nameTextBox.Text) && !string.IsNullOrWhiteSpace(serverTextBox.Text) && !string.IsNullOrWhiteSpace(accessKeyTextBox.Text) && !string.IsNullOrWhiteSpace(secretKeyTextBox.Text))
             {
-                Configuration = new Configuration();
+                if (Configuration == null)
+                {
+                    Configuration = new Configuration();
+                }
+
+                Configuration.Name = nameTextBox.Text;
+                Configuration.Server = serverTextBox.Text;
+                Configuration.AccessKey = accessKeyTextBox.Text;
+                Configuration.SecretKey = secretKeyTextBox.Text;
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
-
-            Configuration.Name = nameTextBox.Text;
-            Configuration.Server = serverTextBox.Text;
-            Configuration.AccessKey = accessKeyTextBox.Text;
-            Configuration.SecretKey = secretKeyTextBox.Text;
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            else
+            {
+                MessageBox.Show("Please fill in all the required fields before proceeding.", "Required Fields Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

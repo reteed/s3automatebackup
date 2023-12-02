@@ -73,13 +73,22 @@ namespace s3automatebackup.Forms
             if (configurationsListView.SelectedItems.Count > 0)
             {
                 ListViewItem selectedItem = configurationsListView.SelectedItems[0];
-                Configuration selectedConfig = selectedItem.Tag as Configuration;
-                if (MessageBox.Show("Are you sure you want to delete this configuration?", "Delete Configuration", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                Configuration selectedConfiguration = selectedItem.Tag as Configuration;
+                if (MessageBox.Show("Are you sure you want to delete this configuration?", "Delete Configuration", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    configurationsListView.Items.Remove(selectedItem);
-                    configurations.Remove(selectedConfig);
-                    storageService.SaveConfigurations(configurations);
-                    PopulateListView(configurations);
+                    List<BackupTask> backupTasks = storageService.LoadTasks();
+                    BackupTask backupTask = backupTasks.FirstOrDefault(bt => bt.Configuration.Id == selectedConfiguration.Id);
+                    if (backupTask != null)
+                    {
+                        MessageBox.Show("You cannot delete configurations that have associated tasks. Please remove the tasks containing this configuration first.", "Configuration In Use", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        configurationsListView.Items.Remove(selectedItem);
+                        configurations.Remove(selectedConfiguration);
+                        storageService.SaveConfigurations(configurations);
+                        PopulateListView(configurations);
+                    }
                 }
             }
         }

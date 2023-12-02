@@ -46,8 +46,8 @@
             // bucketNameLabel
             // 
             bucketNameLabel.AutoSize = true;
-            bucketNameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            bucketNameLabel.Location = new Point(197, 53);
+            bucketNameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            bucketNameLabel.Location = new Point(193, 37);
             bucketNameLabel.Name = "bucketNameLabel";
             bucketNameLabel.Size = new Size(128, 25);
             bucketNameLabel.TabIndex = 0;
@@ -56,8 +56,8 @@
             // backupFolderLabel
             // 
             backupFolderLabel.AutoSize = true;
-            backupFolderLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            backupFolderLabel.Location = new Point(145, 115);
+            backupFolderLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            backupFolderLabel.Location = new Point(141, 99);
             backupFolderLabel.Name = "backupFolderLabel";
             backupFolderLabel.Size = new Size(180, 25);
             backupFolderLabel.TabIndex = 1;
@@ -66,8 +66,8 @@
             // scheduledTimeLabel
             // 
             scheduledTimeLabel.AutoSize = true;
-            scheduledTimeLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            scheduledTimeLabel.Location = new Point(106, 188);
+            scheduledTimeLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            scheduledTimeLabel.Location = new Point(102, 172);
             scheduledTimeLabel.Name = "scheduledTimeLabel";
             scheduledTimeLabel.Size = new Size(219, 25);
             scheduledTimeLabel.TabIndex = 2;
@@ -76,8 +76,8 @@
             // periodLabel
             // 
             periodLabel.AutoSize = true;
-            periodLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            periodLabel.Location = new Point(254, 252);
+            periodLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            periodLabel.Location = new Point(250, 297);
             periodLabel.Name = "periodLabel";
             periodLabel.Size = new Size(71, 25);
             periodLabel.TabIndex = 3;
@@ -85,14 +85,14 @@
             // 
             // bucketNameTextBox
             // 
-            bucketNameTextBox.Location = new Point(349, 53);
+            bucketNameTextBox.Location = new Point(345, 37);
             bucketNameTextBox.Name = "bucketNameTextBox";
             bucketNameTextBox.Size = new Size(215, 31);
             bucketNameTextBox.TabIndex = 4;
             // 
             // backupFolderTextBox
             // 
-            backupFolderTextBox.Location = new Point(349, 115);
+            backupFolderTextBox.Location = new Point(345, 99);
             backupFolderTextBox.Name = "backupFolderTextBox";
             backupFolderTextBox.Size = new Size(326, 31);
             backupFolderTextBox.TabIndex = 5;
@@ -101,16 +101,16 @@
             // 
             scheduledDateAndTimeDateTimePicker.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             scheduledDateAndTimeDateTimePicker.Format = DateTimePickerFormat.Custom;
-            scheduledDateAndTimeDateTimePicker.Location = new Point(346, 185);
+            scheduledDateAndTimeDateTimePicker.Location = new Point(342, 169);
             scheduledDateAndTimeDateTimePicker.Name = "scheduledDateAndTimeDateTimePicker";
-            scheduledDateAndTimeDateTimePicker.Size = new Size(300, 31);
+            scheduledDateAndTimeDateTimePicker.Size = new Size(218, 31);
             scheduledDateAndTimeDateTimePicker.TabIndex = 6;
             scheduledDateAndTimeDateTimePicker.ValueChanged += scheduledDateAndTimeDateTimePicker_ValueChanged;
             // 
             // periodComboBox
             // 
             periodComboBox.FormattingEnabled = true;
-            periodComboBox.Location = new Point(346, 252);
+            periodComboBox.Location = new Point(342, 294);
             periodComboBox.Name = "periodComboBox";
             periodComboBox.Size = new Size(182, 33);
             periodComboBox.TabIndex = 7;
@@ -138,8 +138,8 @@
             // configurationLabel
             // 
             configurationLabel.AutoSize = true;
-            configurationLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            configurationLabel.Location = new Point(192, 305);
+            configurationLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            configurationLabel.Location = new Point(186, 239);
             configurationLabel.Name = "configurationLabel";
             configurationLabel.Size = new Size(135, 25);
             configurationLabel.TabIndex = 10;
@@ -148,7 +148,7 @@
             // configurationComboBox
             // 
             configurationComboBox.FormattingEnabled = true;
-            configurationComboBox.Location = new Point(343, 310);
+            configurationComboBox.Location = new Point(342, 236);
             configurationComboBox.Name = "configurationComboBox";
             configurationComboBox.Size = new Size(182, 33);
             configurationComboBox.TabIndex = 11;

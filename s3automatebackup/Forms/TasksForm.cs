@@ -44,17 +44,25 @@ namespace s3automatebackup.Forms
 
         private void createTaskButton_Click(object sender, EventArgs e)
         {
-            using (CreateTaskForm createTaskForm = new CreateTaskForm())
+            List<Configuration> configurations = storageService.LoadConfigurations();
+            if(configurations.Count > 0)
             {
-                if (createTaskForm.ShowDialog() == DialogResult.OK)
+                using (CreateTaskForm createTaskForm = new CreateTaskForm())
                 {
-                    BackupTask newTask = createTaskForm.Task;
-                    newTask.Id = tasks.Count + 1;
-                    tasks.Add(newTask);
-                    storageService.SaveTasks(tasks);
-                    PopulateListView(tasks);
-                    RescheduleAllTasks();
+                    if (createTaskForm.ShowDialog() == DialogResult.OK)
+                    {
+                        BackupTask newTask = createTaskForm.Task;
+                        newTask.Id = tasks.Count + 1;
+                        tasks.Add(newTask);
+                        storageService.SaveTasks(tasks);
+                        PopulateListView(tasks);
+                        RescheduleAllTasks();
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("You haven't created any configuration you must do it before creating a backup task.", "Missing Configurations", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -75,7 +83,7 @@ namespace s3automatebackup.Forms
             {
                 ListViewItem selectedItem = scheduledTaskslistView.SelectedItems[0];
                 BackupTask selectedTask = selectedItem.Tag as BackupTask;
-                if (MessageBox.Show("Are you sure you want to delete this configuration?", "Delete Configuration", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you want to delete this task?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     scheduledTaskslistView.Items.Remove(selectedItem);
                     tasks.Remove(selectedTask);
