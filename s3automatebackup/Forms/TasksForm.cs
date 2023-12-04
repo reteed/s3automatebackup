@@ -35,7 +35,7 @@ namespace s3automatebackup.Forms
             foreach (BackupTask task in tasks)
             {
                 ListViewItem item = new ListViewItem(task.BucketName);
-                item.SubItems.Add(task.BackupFolder);
+                item.SubItems.Add(task.BackupPath);
                 item.SubItems.Add(task.ScheduledTime.ToString());
                 item.Tag = task;
                 scheduledTaskslistView.Items.Add(item);

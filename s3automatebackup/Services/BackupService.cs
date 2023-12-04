@@ -96,41 +96,58 @@ namespace s3automatebackup.Services
 
         private async void ExecuteTask(BackupTask task)
         {
-            // Create a new S3Service instance for the task using its configuration.
             Configuration config = task.Configuration;
             S3Service s3Service = new S3Service(config.Server, config.AccessKey, config.SecretKey, task.BucketName);
 
             s3Service.EnsureVersioningEnabled();
-            string[] localFiles = Directory.GetFiles(task.BackupFolder, "*.*", SearchOption.AllDirectories);
 
-            foreach (string localFilePath in localFiles)
+            // Check if the path is a directory or a file
+            if (File.Exists(task.BackupPath))
             {
-                // Calculate the relative path of the file from the backup folder
-                string relativePath = GetRelativePath(localFilePath, task.BackupFolder);
-
-
-                // Use the DoesFileExist method to check if the file exists in the S3 bucket
-                DateTime? fileExistsInS3 = await s3Service.DoesFileExist(relativePath);
-
-                if (fileExistsInS3 == null)
+                // It's a file; process this single file
+                await ProcessFile(task.BackupPath, s3Service);
+            }
+            else if (Directory.Exists(task.BackupPath))
+            {
+                // It's a directory; process all files in the directory
+                string[] localFiles = Directory.GetFiles(task.BackupPath, "*.*", SearchOption.AllDirectories);
+                foreach (string localFilePath in localFiles)
                 {
-                    // File doesn't exist in the bucket, upload it
-                    s3Service.UploadFile(localFilePath, relativePath);
-                }
-                else
-                {
-                    // File exists in the bucket, compare timestamps
-                    DateTime localLastModified = File.GetLastWriteTimeUtc(localFilePath);
-
-                    // If the local file is newer, upload it to update the one in the bucket
-                    if (localLastModified > fileExistsInS3)
-                    {
-                        s3Service.UploadFile(localFilePath, relativePath);
-                    }
+                    await ProcessFile(localFilePath, s3Service);
                 }
             }
+            else
+            {
+                Console.WriteLine($"The path does not exist: {task.BackupPath}");
+            }
+
             Console.WriteLine($"Backup task for {task.BucketName} executed.");
         }
+
+        private async Task ProcessFile(string localFilePath, S3Service s3Service)
+        {
+            string relativePath = GetRelativePath(localFilePath, Path.GetDirectoryName(localFilePath));
+
+            DateTime? fileExistsInS3 = await s3Service.DoesFileExist(relativePath);
+
+            if (fileExistsInS3 == null)
+            {
+                // File doesn't exist in the bucket, upload it
+                await s3Service.UploadFileAsync(localFilePath, relativePath);
+            }
+            else
+            {
+                // File exists in the bucket, compare timestamps
+                DateTime localLastModified = File.GetLastWriteTimeUtc(localFilePath);
+
+                if (localLastModified > fileExistsInS3)
+                {
+                    // If the local file is newer, upload it to update the one in the bucket
+                    await s3Service.UploadFileAsync(localFilePath, relativePath);
+                }
+            }
+        }
+
 
         protected virtual void Dispose(bool disposing)
         {

@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateTaskForm));
             bucketNameLabel = new Label();
-            backupFolderLabel = new Label();
+            backupPathLabel = new Label();
             scheduledTimeLabel = new Label();
             periodLabel = new Label();
             bucketNameTextBox = new TextBox();
@@ -53,15 +53,15 @@
             bucketNameLabel.TabIndex = 0;
             bucketNameLabel.Text = "Bucket name:";
             // 
-            // backupFolderLabel
+            // backupPathLabel
             // 
-            backupFolderLabel.AutoSize = true;
-            backupFolderLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            backupFolderLabel.Location = new Point(141, 99);
-            backupFolderLabel.Name = "backupFolderLabel";
-            backupFolderLabel.Size = new Size(180, 25);
-            backupFolderLabel.TabIndex = 1;
-            backupFolderLabel.Text = "Backup folder path:";
+            backupPathLabel.AutoSize = true;
+            backupPathLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            backupPathLabel.Location = new Point(197, 102);
+            backupPathLabel.Name = "backupPathLabel";
+            backupPathLabel.Size = new Size(124, 25);
+            backupPathLabel.TabIndex = 1;
+            backupPathLabel.Text = "Backup path:";
             // 
             // scheduledTimeLabel
             // 
@@ -103,7 +103,7 @@
             scheduledDateAndTimeDateTimePicker.Format = DateTimePickerFormat.Custom;
             scheduledDateAndTimeDateTimePicker.Location = new Point(342, 169);
             scheduledDateAndTimeDateTimePicker.Name = "scheduledDateAndTimeDateTimePicker";
-            scheduledDateAndTimeDateTimePicker.Size = new Size(218, 31);
+            scheduledDateAndTimeDateTimePicker.Size = new Size(255, 31);
             scheduledDateAndTimeDateTimePicker.TabIndex = 6;
             scheduledDateAndTimeDateTimePicker.ValueChanged += scheduledDateAndTimeDateTimePicker_ValueChanged;
             // 
@@ -168,7 +168,7 @@
             Controls.Add(bucketNameTextBox);
             Controls.Add(periodLabel);
             Controls.Add(scheduledTimeLabel);
-            Controls.Add(backupFolderLabel);
+            Controls.Add(backupPathLabel);
             Controls.Add(bucketNameLabel);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CreateTaskForm";
@@ -181,7 +181,7 @@
         #endregion
 
         private Label bucketNameLabel;
-        private Label backupFolderLabel;
+        private Label backupPathLabel;
         private Label scheduledTimeLabel;
         private Label periodLabel;
         private TextBox bucketNameTextBox;

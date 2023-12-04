@@ -39,7 +39,7 @@ namespace s3automatebackup.Forms
             {
                 ByPassDateCheck = true;
                 bucketNameTextBox.Text = Task.BucketName;
-                backupFolderTextBox.Text = Task.BackupFolder;
+                backupFolderTextBox.Text = Task.BackupPath;
                 scheduledDateAndTimeDateTimePicker.Value = Task.ScheduledTime;
                 // Set the selected value of the configurationComboBox
                 if (Task.Configuration != null)
@@ -105,7 +105,7 @@ namespace s3automatebackup.Forms
                 }
 
                 Task.BucketName = bucketNameTextBox.Text;
-                Task.BackupFolder = backupFolderTextBox.Text;
+                Task.BackupPath = backupFolderTextBox.Text;
                 Task.ScheduledTime = scheduledDateAndTimeDateTimePicker.Value;
                 Task.PeriodKey = (int)periodComboBox.SelectedValue;
 

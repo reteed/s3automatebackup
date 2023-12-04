@@ -11,7 +11,7 @@ namespace s3automatebackup.Models
         public int Id { get; set; } 
         public Configuration Configuration { get; set; }
         public string BucketName { get; set; }
-        public string BackupFolder { get; set; }
+        public string BackupPath { get; set; }
         public DateTime ScheduledTime { get; set; }
         public int PeriodKey { get; set; }
         public System.Threading.Timer Timer { get; set; }

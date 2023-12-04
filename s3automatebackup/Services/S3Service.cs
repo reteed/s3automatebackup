@@ -56,7 +56,7 @@ namespace s3automatebackup.Services
             }
         }
 
-        public void UploadFile(string localFilePath, string s3Key)
+        public async Task UploadFileAsync(string localFilePath, string s3Key)
         {
             var config = new AmazonS3Config
             {
@@ -69,7 +69,7 @@ namespace s3automatebackup.Services
 
             try
             {
-                transferUtility.Upload(localFilePath, _bucketName, s3Key); // Added s3Key as the third parameter
+                await transferUtility.UploadAsync(localFilePath, _bucketName, s3Key); // Added s3Key as the third parameter
                 Console.WriteLine($"Successfully uploaded {localFilePath} to {_bucketName}/{s3Key}.");
             }
             catch (Exception ex)
