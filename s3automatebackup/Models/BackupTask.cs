@@ -14,6 +14,8 @@ namespace s3automatebackup.Models
         public string BackupPath { get; set; }
         public DateTime ScheduledTime { get; set; }
         public int PeriodKey { get; set; }
+        public bool DeletePath { get; set; }
+        public bool Hierarchy { get; set; }
         public System.Threading.Timer Timer { get; set; }
     }
 }

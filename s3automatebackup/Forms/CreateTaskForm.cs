@@ -48,6 +48,8 @@ namespace s3automatebackup.Forms
                     configurationComboBox.SelectedValue = configId;
                 }
                 PopulatePeriodComboBox();
+                deletePathCheckBox.Checked = task.DeletePath;
+                hierarchyCheckBox.Checked = task.Hierarchy;
             }
         }
 
@@ -108,6 +110,8 @@ namespace s3automatebackup.Forms
                 Task.BackupPath = backupFolderTextBox.Text;
                 Task.ScheduledTime = scheduledDateAndTimeDateTimePicker.Value;
                 Task.PeriodKey = (int)periodComboBox.SelectedValue;
+                Task.DeletePath = deletePathCheckBox.Checked;
+                Task.Hierarchy = hierarchyCheckBox.Checked;
 
                 // Get the selected configuration ID and find the corresponding Configuration object
                 int selectedConfigId = (int)configurationComboBox.SelectedValue;

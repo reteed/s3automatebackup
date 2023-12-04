@@ -28,23 +28,20 @@ namespace s3automatebackup.Services
 
         public async void EnsureVersioningEnabled()
         {
-            var config = new AmazonS3Config
+            AmazonS3Config config = new()
             {
                 ServiceURL = _serviceUrl,
                 ForcePathStyle = true
             };
-
-            using var client = new AmazonS3Client(_accessKey, _secretKey, config);
-
-            var request = new PutBucketVersioningRequest
+            using AmazonS3Client client = new(_accessKey, _secretKey, config);
+            PutBucketVersioningRequest request = new()
             {
                 BucketName = _bucketName,
-                VersioningConfig = new S3BucketVersioningConfig
+                VersioningConfig = new()
                 {
                     Status = VersionStatus.Enabled
                 }
             };
-
             try
             {
                 await client.PutBucketVersioningAsync(request);
@@ -56,41 +53,39 @@ namespace s3automatebackup.Services
             }
         }
 
-        public async Task UploadFileAsync(string localFilePath, string s3Key)
+        public async Task<bool> UploadFileAsync(string localFilePath, string s3Key)
         {
-            var config = new AmazonS3Config
+            AmazonS3Config config = new()
             {
                 ServiceURL = _serviceUrl,
                 ForcePathStyle = true
             };
-
-            using var client = new AmazonS3Client(_accessKey, _secretKey, config);
-            using var transferUtility = new TransferUtility(client);
-
+            using AmazonS3Client client = new(_accessKey, _secretKey, config);
+            using TransferUtility transferUtility = new(client);
             try
             {
-                await transferUtility.UploadAsync(localFilePath, _bucketName, s3Key); // Added s3Key as the third parameter
+                await transferUtility.UploadAsync(localFilePath, _bucketName, s3Key);
                 Console.WriteLine($"Successfully uploaded {localFilePath} to {_bucketName}/{s3Key}.");
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
+                return false;
             }
         }
 
         public async Task<DateTime?> DoesFileExist(string keyName)
         {
-            var config = new AmazonS3Config
+            AmazonS3Config config = new()
             {
                 ServiceURL = _serviceUrl,
                 ForcePathStyle = true
             };
-
-            using var client = new AmazonS3Client(_accessKey, _secretKey, config);
-
+            using AmazonS3Client client = new(_accessKey, _secretKey, config);
             try
             {
-                var request = new GetObjectMetadataRequest
+                GetObjectMetadataRequest request = new()
                 {
                     BucketName = _bucketName,
                     Key = keyName
@@ -110,58 +105,53 @@ namespace s3automatebackup.Services
             {
                 if (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
                     return null;
-                throw; // Some other exception occurred, rethrow
+                throw;
             }
         }
 
         public async Task<List<S3Object>> ListAllObjects(string bucketName)
         {
-            var config = new AmazonS3Config
+            AmazonS3Config config = new()
             {
                 ServiceURL = _serviceUrl,
                 ForcePathStyle = true
             };
-
-            using var client = new AmazonS3Client(_accessKey, _secretKey, config);
-            var request = new ListObjectsV2Request
+            using AmazonS3Client client = new(_accessKey, _secretKey, config);
+            ListObjectsV2Request request = new()
             {
                 BucketName = bucketName
             };
-
-            var response = await client.ListObjectsV2Async(request);
-
+            ListObjectsV2Response response = await client.ListObjectsV2Async(request);
             return response.S3Objects;
         }
 
 
         public async Task<List<S3ObjectVersion>> GetObjectVersions(string key)
         {
-            var config = new AmazonS3Config
+            AmazonS3Config config = new()
             {
                 ServiceURL = _serviceUrl,
                 ForcePathStyle = true
             };
-
-            using var client = new AmazonS3Client(_accessKey, _secretKey, config);
-            var request = new ListVersionsRequest
+            using AmazonS3Client client = new(_accessKey, _secretKey, config);
+            ListVersionsRequest request = new()
             {
                 BucketName = _bucketName,
                 Prefix = key
             };
 
-            var response = await client.ListVersionsAsync(request);
-
+            ListVersionsResponse response = await client.ListVersionsAsync(request);
             return response.Versions;
         }
 
         public async Task RestoreVersion(S3Object s3Object, string versionId)
         {
-            var config = new AmazonS3Config
+            AmazonS3Config config = new()
             {
                 ServiceURL = _serviceUrl,
                 ForcePathStyle = true
             };
-            var request = new CopyObjectRequest
+            CopyObjectRequest request = new()
             {
                 SourceBucket = _bucketName,
                 SourceKey = s3Object.Key,
@@ -172,7 +162,7 @@ namespace s3automatebackup.Services
 
             try
             {
-                using var client = new AmazonS3Client(_accessKey, _secretKey, config);
+                using AmazonS3Client client = new(_accessKey, _secretKey, config);
                 await client.CopyObjectAsync(request);
                 Console.WriteLine($"Successfully restored version {versionId} of {s3Object.Key}.");
             }
@@ -184,21 +174,20 @@ namespace s3automatebackup.Services
 
         public async Task<List<string>> ListAllBucketsAsync()
         {
-            var config = new AmazonS3Config
+            AmazonS3Config config = new()
             {
                 ServiceURL = _serviceUrl,
                 ForcePathStyle = true
             };
+            using AmazonS3Client client = new(_accessKey, _secretKey, config);
+            ListBucketsResponse response = await client.ListBucketsAsync();
 
-            using var client = new AmazonS3Client(_accessKey, _secretKey, config);
-            var response = await client.ListBucketsAsync();
-
-            List<string> buckets = new();
-            foreach (var bucket in response.Buckets)
+            List<string> list = [];
+            List<string> buckets = list;
+            foreach (S3Bucket bucket in response.Buckets)
             {
                 buckets.Add(bucket.BucketName);
             }
-
             return buckets;
         }
     }

@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace s3automatebackup.Services
 {
-    public class BackupService : IDisposable
+    public class BackupService
     {
         private StorageService _storageService;
         private List<System.Threading.Timer> _timers = new();
@@ -38,7 +38,7 @@ namespace s3automatebackup.Services
             DateTime currentTime = DateTime.Now;
 
             Configuration config = task.Configuration;
-            S3Service s3Service = new S3Service(config.Server, config.AccessKey, config.SecretKey, task.BucketName);
+            S3Service s3Service = new(config.Server, config.AccessKey, config.SecretKey, task.BucketName);
 
 
             // Check if the scheduled time has passed and get next occurrence if needed.
@@ -97,7 +97,7 @@ namespace s3automatebackup.Services
         private async void ExecuteTask(BackupTask task)
         {
             Configuration config = task.Configuration;
-            S3Service s3Service = new S3Service(config.Server, config.AccessKey, config.SecretKey, task.BucketName);
+            S3Service s3Service = new(config.Server, config.AccessKey, config.SecretKey, task.BucketName);
 
             s3Service.EnsureVersioningEnabled();
 
@@ -105,7 +105,13 @@ namespace s3automatebackup.Services
             if (File.Exists(task.BackupPath))
             {
                 // It's a file; process this single file
-                await ProcessFile(task.BackupPath, s3Service);
+                bool processed = await ProcessFile(task.BackupPath, s3Service, task.Hierarchy);
+                // Delete backed up file from local disk.
+                if (task.DeletePath && processed)
+                {
+                    File.Delete(task.BackupPath);
+                }
+                Console.WriteLine($"Backup task for {task.BucketName} executed.");
             }
             else if (Directory.Exists(task.BackupPath))
             {
@@ -113,27 +119,47 @@ namespace s3automatebackup.Services
                 string[] localFiles = Directory.GetFiles(task.BackupPath, "*.*", SearchOption.AllDirectories);
                 foreach (string localFilePath in localFiles)
                 {
-                    await ProcessFile(localFilePath, s3Service);
+                    bool processed = await ProcessFile(localFilePath, s3Service, task.Hierarchy);
+                    // Delete backed up files from local disk.
+                    if (task.DeletePath && processed)
+                    {
+                        File.Delete(localFilePath);
+                    }
                 }
+                Console.WriteLine($"Backup task for {task.BucketName} executed.");
             }
             else
             {
                 Console.WriteLine($"The path does not exist: {task.BackupPath}");
             }
-
-            Console.WriteLine($"Backup task for {task.BucketName} executed.");
         }
 
-        private async Task ProcessFile(string localFilePath, S3Service s3Service)
+        private async Task<bool> ProcessFile(string localFilePath, S3Service s3Service, bool hierarchy)
         {
-            string relativePath = GetRelativePath(localFilePath, Path.GetDirectoryName(localFilePath));
+            string fileName;
+            if (hierarchy)
+            {
+                fileName = GetRelativePath(localFilePath, Path.GetDirectoryName(localFilePath));
+            }
+            else
+            {
+                fileName = Path.GetFileName(localFilePath);
+            }
 
-            DateTime? fileExistsInS3 = await s3Service.DoesFileExist(relativePath);
+            DateTime? fileExistsInS3 = await s3Service.DoesFileExist(fileName);
 
             if (fileExistsInS3 == null)
             {
                 // File doesn't exist in the bucket, upload it
-                await s3Service.UploadFileAsync(localFilePath, relativePath);
+                bool uploaded = await s3Service.UploadFileAsync(localFilePath, fileName);
+                if (uploaded)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
@@ -143,39 +169,21 @@ namespace s3automatebackup.Services
                 if (localLastModified > fileExistsInS3)
                 {
                     // If the local file is newer, upload it to update the one in the bucket
-                    await s3Service.UploadFileAsync(localFilePath, relativePath);
-                }
-            }
-        }
-
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    // Dispose managed state (managed objects).
-                    foreach (System.Threading.Timer timer in _timers)
+                    bool uploaded = await s3Service.UploadFileAsync(localFilePath, fileName);
+                    if (uploaded)
                     {
-                        timer?.Dispose();
+                        return true;
                     }
-                    _timers.Clear();
+                    else
+                    {
+                        return false;
+                    }
                 }
-
-                _disposed = true;
+                else
+                {
+                    return false;
+                }
             }
-        }
-
-        ~BackupService()
-        {
-            Dispose(disposing: false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
         }
 
         private string GetRelativePath(string fullPath, string basePath)
