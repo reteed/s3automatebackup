@@ -42,7 +42,7 @@ For questions, feature requests, or support, please fill an issue in our GitHub 
 
 ## Screenshots
 ### Configurations List
-<img src="https://images.reteed.com/s3automatebackup/configurations.png" alt="Configurations List" />
+<img height="150" width="150" src="https://images.reteed.com/s3automatebackup/configurations.png" alt="Configurations List" />
 
 ### Create Configuration
 <img src="https://images.reteed.com/s3automatebackup/create-configuration.png" alt="Create Configuration" />
