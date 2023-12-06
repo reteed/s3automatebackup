@@ -23,7 +23,7 @@ If you find S3AutomateBackup useful and would like to see it developed for other
 • **Intuitive Interface:** A user-friendly interface makes setting up and managing backup tasks straightforward and efficient. The app remains on the Windows system tray and you can access it anytime.<br><br>
 • **Efficient Data Management:** Automatic detection of file changes and timestamp comparisons to ensure only the necessary files are uploaded, reducing redundancy and saving bandwidth.<br><br>
 • **Secure Data Handling:** Implements best practices for secure data transfer to the cloud, ensuring your data's integrity and confidentiality.<br><br>
-• **Versioning Support:** Capability to enable versioning on S3 buckets, allowing you to maintain multiple versions of your backed-up files.
+• **Versioning Support:** Enables versioning on S3 buckets, allowing you to maintain multiple versions of your backed-up files. With the version viewer, you can easily view, manage, and restore older versions of files and folders in your S3 or S3-compatible bucket.
 
 ## Getting Started
 ### Prerequisites
@@ -38,4 +38,4 @@ If you find S3AutomateBackup useful and would like to see it developed for other
 S3AutomateBackup is released under the GNU <a href="https://www.gnu.org/licenses/gpl-3.0.html#license-text" target="_blank">General Public License v3.0 (GPL-3)</a>. This license allows you the freedom to run, study, share, and modify the software. Please refer to the license file for more details.
 
 ## Contact
-For questions, feature requests, or support, please file an issue in our GitHub repository. We're committed to continually improving S3AutomateBackup and appreciate your feedback and involvement.
+For questions, feature requests, or support, please fill an issue in our GitHub repository or contact us at our <a href="https://reteed.com/contact" target="_blank">website</a>. We're committed to continually improving S3AutomateBackup and appreciate your feedback and involvement.
