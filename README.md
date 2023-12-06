@@ -43,13 +43,13 @@ For questions, feature requests, or support, please fill an issue in our GitHub 
 
 ## Screenshots
 ### Configurations List
-<img height="350px" width="500px" src="https://images.reteed.com/s3automatebackup/configuration.png" alt="Configurations List" />
+<img height="350px" width="500px" src="https://images.reteed.com/s3automatebackup/configurations-list.png" alt="Configurations List" />
 
 ### Create Configuration
 <img height="350px" width="500px" src="https://images.reteed.com/s3automatebackup/create-configuration.png" alt="Create Configuration" />
 
 ### Tasks List
-<img height="350px" width="500px" src="https://images.reteed.com/s3automatebackup/tasks.png" alt="Tasks List" />
+<img height="350px" width="500px" src="https://images.reteed.com/s3automatebackup/tasks-list.png" alt="Tasks List" />
 
 ### Create Task
 <img height="350px" width="500px" src="https://images.reteed.com/s3automatebackup/create-task.png" alt="Create Task" />
