@@ -14,7 +14,7 @@ If you find S3AutomateBackup useful and would like to see it developed for other
 • **Spreading the Word:** Share your experiences with S3AutomateBackup, recommend it in your professional network, and help increase its visibility<br><br>
 • **Contributing:** Contributions in the form of code, bug reports, feature requests, or documentation can significantly accelerate development for additional platforms.<br><br>
 • **Feedback:** Your feedback and suggestions are invaluable. Let us know what features or improvements you would like to see.<br><br>
-• **Donations:** If you would like to support the project financially, consider donating. Your donations will help accelerate development and cover costs. <a href="https://www.paypal.com/donate/?hosted_button_id=P57HF4DCKG9VN" target="_blank">Click here to donate</a>.
+• **Donations:** If you would like to support the project financially, consider donating. Your donations will help accelerate development and cover costs. <a href="https://www.paypal.com/donate/?hosted_button_id=P57HF4DCKG9VN" target="_blank">Click here if you wish to donate</a>.
 
 ## Features
 • **Flexible Task Scheduling:** Schedule your backup tasks at specific times and intervals, accommodating daily, weekly, monthly or yearly routines.<br><br>
