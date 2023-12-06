@@ -3,12 +3,12 @@
 S3AutomateBackup is an open-source backup task scheduler and executor designed to seamlessly upload files and directories to Amazon S3 or S3-compatible buckets. This versatile tool simplifies the process of regular backups, ensuring the safety and accessibility of your data in cloud storage.
 
 ## Features
-• **Flexible Task Scheduling:** Schedule your backup tasks at specific times and intervals, accommodating daily, weekly, or yearly routines.
-• **Support for Various File Types:** Whether it's individual files or entire directories, S3AutomateBackup handles various data types, ensuring comprehensive backup solutions.
-• **S3 and S3-Compatible Buckets:** Designed to work with Amazon S3 and other S3-compatible storage solutions, offering versatility in cloud storage options.
-• **Intuitive Interface:** A user-friendly interface makes setting up and managing backup tasks straightforward and efficient. The app remains on the Windows system tray and you can access it anytime.
-• **Efficient Data Management:** Automatic detection of file changes and timestamp comparisons to ensure only the necessary files are uploaded, reducing redundancy and saving bandwidth.
-• **Secure Data Handling:** Implements best practices for secure data transfer to the cloud, ensuring your data's integrity and confidentiality.
+• **Flexible Task Scheduling:** Schedule your backup tasks at specific times and intervals, accommodating daily, weekly, or yearly routines.<br>
+• **Support for Various File Types:** Whether it's individual files or entire directories, S3AutomateBackup handles various data types, ensuring comprehensive backup solutions.<br>
+• **S3 and S3-Compatible Buckets:** Designed to work with Amazon S3 and other S3-compatible storage solutions, offering versatility in cloud storage options.<br>
+• **Intuitive Interface:** A user-friendly interface makes setting up and managing backup tasks straightforward and efficient. The app remains on the Windows system tray and you can access it anytime.<br>
+• **Efficient Data Management:** Automatic detection of file changes and timestamp comparisons to ensure only the necessary files are uploaded, reducing redundancy and saving bandwidth.<br>
+• **Secure Data Handling:** Implements best practices for secure data transfer to the cloud, ensuring your data's integrity and confidentiality.<br>
 • **Versioning Support:** Capability to enable versioning on S3 buckets, allowing you to maintain multiple versions of your backed-up files.
 
 ## Getting Started
@@ -17,7 +17,7 @@ S3AutomateBackup is an open-source backup task scheduler and executor designed t
 • Familiarity with AWS access keys and bucket policies is beneficial for setup and configuration.
 
 ## Installation and Setup
-• Download and install the latest release you can find it under the releases section on GitHub or here you have a direct download link: <a href="tny.ac/7kv0" target="_blank" style="text-decoration: none;">Click here</a>.
+• Download and install the latest release you can find it under the releases section on GitHub or here you have a direct download link: <a href="tny.ac/7kv0" target="_blank" style="text-decoration: none;">Click here</a>.<br>
 • Read the documentation section.
 
 ## License
