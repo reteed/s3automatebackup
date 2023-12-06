@@ -31,7 +31,7 @@ If you find S3AutomateBackup useful and would like to see it developed for other
 • Familiarity with AWS access keys and bucket policies is beneficial for setup and configuration.
 
 ## Installation and Setup
-• **Download** and **install** the latest release you can find it under the <a href="https://github.com/reteed/s3automatebackup/releases" target="_blank">releases</a> section on GitHub or here you have a **direct download link**: <a href="tny.ac/7kv0" target="_blank">Click here</a>.<br><br>
+• **Download** and **install** the latest release. You can find it under the <a href="https://github.com/reteed/s3automatebackup/releases" target="_blank">releases</a> section on GitHub or you have a **direct download link**: <a href="tny.ac/7kv0" target="_blank">Click here</a>.<br><br>
 • Read the documentation section.<br><br>
 • You can find the installer project available at the following link: <a href="https://github.com/reteed/s3automatebackupinstaller" target="_blank">Click here</a>.
 
