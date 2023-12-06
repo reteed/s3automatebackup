@@ -17,7 +17,7 @@ If you find S3AutomateBackup useful and would like to see it developed for other
 • **Donations:** If you would like to support the project financially, consider donating. Your donations will help accelerate development and cover costs. <a href="https://www.paypal.com/donate/?hosted_button_id=P57HF4DCKG9VN" target="_blank">Click here to donate</a>.
 
 ## Features
-• **Flexible Task Scheduling:** Schedule your backup tasks at specific times and intervals, accommodating daily, weekly, or yearly routines.<br><br>
+• **Flexible Task Scheduling:** Schedule your backup tasks at specific times and intervals, accommodating daily, weekly, monthly or yearly routines.<br><br>
 • **Support for Various File Types:** Whether it's individual files or entire directories, S3AutomateBackup handles various data types, ensuring comprehensive backup solutions.<br><br>
 • **S3 and S3-Compatible Buckets:** Designed to work with Amazon S3 and other S3-compatible storage solutions, offering versatility in cloud storage options.<br><br>
 • **Intuitive Interface:** A user-friendly interface makes setting up and managing backup tasks straightforward and efficient. The app remains on the Windows system tray and you can access it anytime.<br><br>
