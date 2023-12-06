@@ -27,7 +27,7 @@ If you find S3AutomateBackup useful and would like to see it developed for other
 
 ## Getting Started
 ### Prerequisites
-• Ensure you have access to an Amazon S3 bucket or an S3-compatible storage service.
+• Ensure you have access to an Amazon S3 bucket or an S3-compatible storage service.<br><br>
 • Familiarity with AWS access keys and bucket policies is beneficial for setup and configuration.
 
 ## Installation and Setup
