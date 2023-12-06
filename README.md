@@ -41,9 +41,6 @@ S3AutomateBackup is released under the GNU <a href="https://www.gnu.org/licenses
 For questions, feature requests, or support, please fill an issue in our GitHub repository or contact us at our <a href="https://reteed.com/contact" target="_blank">website</a>. We're committed to continually improving S3AutomateBackup and appreciate your feedback and involvement.
 
 ## Screenshots
-### Configurations List
-<img src="https://images.reteed.com/s3automatebackup/configurations.png" alt="Configurations List" />
-
 ### Create Configuration
 <img src="https://images.reteed.com/s3automatebackup/create-configuration.png" alt="Create Configuration" />
 
