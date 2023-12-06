@@ -1,6 +1,20 @@
 # S3AutomateBackup
 ## Overview
-S3AutomateBackup is an open-source backup task scheduler and executor designed to seamlessly upload files and directories to Amazon S3 or S3-compatible buckets. This versatile tool simplifies the process of regular backups, ensuring the safety and accessibility of your data in cloud storage.
+**S3AutomateBackup** is an open-source backup task scheduler and executor designed to seamlessly upload files and directories to Amazon S3 or S3-compatible buckets. This versatile tool simplifies the process of regular backups, ensuring the safety and accessibility of your data in cloud storage.
+
+## Platform Availability
+### Current Support
+Currently, S3AutomateBackup is available exclusively for Windows operating systems. This focus allows us to ensure optimal performance and stability on this platform.
+
+### Future Development
+We understand the importance of cross-platform compatibility and are keen on extending support to other operating systems. The realization of this goal greatly depends on the community's interest and support.
+
+## How You Can Help
+If you find S3AutomateBackup useful and would like to see it developed for other platforms (like macOS or Linux), please consider:<br><br>
+• **Spreading the Word:** Share your experiences with S3AutomateBackup, recommend it in your professional network, and help increase its visibility<br><br>
+• **Contributing:** Contributions in the form of code, bug reports, feature requests, or documentation can significantly accelerate development for additional platforms.<br><br>
+• **Feedback:** Your feedback and suggestions are invaluable. Let us know what features or improvements you would like to see.<br><br>
+• **Donations:** If you would like to support the project financially, consider donating. Your donations will help accelerate development and cover costs. <a href="https://www.paypal.com/donate/?hosted_button_id=P57HF4DCKG9VN" target="_blank">Click here to donate</a>.
 
 ## Features
 • **Flexible Task Scheduling:** Schedule your backup tasks at specific times and intervals, accommodating daily, weekly, or yearly routines.<br><br>
