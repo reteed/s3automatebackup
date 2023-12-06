@@ -31,8 +31,9 @@ If you find S3AutomateBackup useful and would like to see it developed for other
 • Familiarity with AWS access keys and bucket policies is beneficial for setup and configuration.
 
 ## Installation and Setup
-• Download and install the latest release you can find it under the releases section on GitHub or here you have a direct download link: <a href="tny.ac/7kv0" target="_blank">Click here</a>.<br><br>
-• Read the documentation section.
+• **Download** and **install** the latest release you can find it under the <a href="https://github.com/reteed/s3automatebackup/releases" target="_blank">releases</a> section on GitHub or here you have a **direct download link**: <a href="tny.ac/7kv0" target="_blank">Click here</a>.<br><br>
+• Read the documentation section.<br><br>
+• You can find the installer project available at the following link: <a href="https://github.com/reteed/s3automatebackupinstaller" target="_blank">Click here</a>.
 
 ## License
 S3AutomateBackup is released under the GNU <a href="https://www.gnu.org/licenses/gpl-3.0.html#license-text" target="_blank">General Public License v3.0 (GPL-3)</a>. This license allows you the freedom to run, study, share, and modify the software. Please refer to the license file for more details.
