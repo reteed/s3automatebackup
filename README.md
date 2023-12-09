@@ -32,7 +32,7 @@ If you find S3AutomateBackup useful and would like to see it developed for other
 
 ## Installation and Setup
 • Download and install the latest release. You can find it under the <a href="https://github.com/reteed/s3automatebackup/releases" target="_blank">releases</a> section on GitHub or you have a direct download link <a href="tny.ac/7kv0" target="_blank">here</a>.<br><br>
-• Read the documentation section.<br><br>
+• Read the documentation <a href="https://reteed.gitbook.io/s3automatebackup/">website</a> if you wish to download, compile and execute the code of the project.<br><br>
 • You can find the installer project available at the following <a href="https://github.com/reteed/s3automatebackupinstaller" target="_blank">link</a>.
 
 ## License
