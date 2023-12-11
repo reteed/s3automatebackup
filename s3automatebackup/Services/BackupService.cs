@@ -71,10 +71,16 @@ namespace s3automatebackup.Services
             DateTime nextOccurrence = GetNextOccurrence(task.PeriodKey, DateTime.Now);
 
             // Update the task's ScheduledTime to the next occurrence.
-            task.ScheduledTime = nextOccurrence;
-
-            // Reschedule the task for the next period.
-            ScheduleTask(task);
+            StorageService storageService = new();
+            List<BackupTask> tasks = storageService.LoadTasks();
+            BackupTask taskToFind = tasks.Find(t => t.Id == task.Id);
+            if (taskToFind != null)
+            {
+                taskToFind.ScheduledTime = nextOccurrence;
+                storageService.SaveTasks(tasks);
+                // Reschedule the task for the next period.
+                ScheduleTask(taskToFind);
+            }
         }
 
         private DateTime GetNextOccurrence(int periodKey, DateTime lastOccurrence)

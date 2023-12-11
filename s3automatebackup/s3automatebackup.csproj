@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>cloud.ico</ApplicationIcon>
-    <FileVersion>0.0.1</FileVersion>
+    <FileVersion>0.0.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
