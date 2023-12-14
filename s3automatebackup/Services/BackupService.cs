@@ -67,8 +67,8 @@ namespace s3automatebackup.Services
             // Perform the backup task.
             ExecuteTask(task);
 
-            // Calculate the next occurrence based on the PeriodKey.
-            DateTime nextOccurrence = GetNextOccurrence(task.PeriodKey, DateTime.Now);
+            // Calculate the next occurrence based on the PeriodKey and current ScheduledTime.
+            DateTime nextOccurrence = GetNextOccurrence(task.PeriodKey, task.ScheduledTime);
 
             // Update the task's ScheduledTime to the next occurrence.
             StorageService storageService = new();
