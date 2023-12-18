@@ -43,9 +43,10 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(512, 342);
+            saveButton.Location = new Point(358, 205);
+            saveButton.Margin = new Padding(2, 2, 2, 2);
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(112, 34);
+            saveButton.Size = new Size(80, 30);
             saveButton.TabIndex = 0;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
@@ -53,9 +54,10 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(181, 342);
+            cancelButton.Location = new Point(127, 205);
+            cancelButton.Margin = new Padding(2, 2, 2, 2);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(112, 34);
+            cancelButton.Size = new Size(80, 30);
             cancelButton.TabIndex = 1;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -65,9 +67,10 @@
             // 
             nameLabel.AutoSize = true;
             nameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            nameLabel.Location = new Point(112, 67);
+            nameLabel.Location = new Point(78, 40);
+            nameLabel.Margin = new Padding(2, 0, 2, 0);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(67, 25);
+            nameLabel.Size = new Size(43, 15);
             nameLabel.TabIndex = 2;
             nameLabel.Text = "Name:";
             // 
@@ -75,9 +78,10 @@
             // 
             serverLabel.AutoSize = true;
             serverLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            serverLabel.Location = new Point(112, 125);
+            serverLabel.Location = new Point(78, 75);
+            serverLabel.Margin = new Padding(2, 0, 2, 0);
             serverLabel.Name = "serverLabel";
-            serverLabel.Size = new Size(73, 25);
+            serverLabel.Size = new Size(48, 15);
             serverLabel.TabIndex = 3;
             serverLabel.Text = "Server:";
             // 
@@ -85,9 +89,10 @@
             // 
             accessKeyLabel.AutoSize = true;
             accessKeyLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            accessKeyLabel.Location = new Point(112, 179);
+            accessKeyLabel.Location = new Point(78, 107);
+            accessKeyLabel.Margin = new Padding(2, 0, 2, 0);
             accessKeyLabel.Name = "accessKeyLabel";
-            accessKeyLabel.Size = new Size(111, 25);
+            accessKeyLabel.Size = new Size(71, 15);
             accessKeyLabel.TabIndex = 4;
             accessKeyLabel.Text = "Access Key:";
             // 
@@ -95,45 +100,50 @@
             // 
             secretKeyLabel.AutoSize = true;
             secretKeyLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            secretKeyLabel.Location = new Point(112, 236);
+            secretKeyLabel.Location = new Point(78, 142);
+            secretKeyLabel.Margin = new Padding(2, 0, 2, 0);
             secretKeyLabel.Name = "secretKeyLabel";
-            secretKeyLabel.Size = new Size(107, 25);
+            secretKeyLabel.Size = new Size(71, 15);
             secretKeyLabel.TabIndex = 5;
             secretKeyLabel.Text = "Secret Key:";
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(195, 67);
+            nameTextBox.Location = new Point(136, 40);
+            nameTextBox.Margin = new Padding(2, 2, 2, 2);
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(150, 31);
+            nameTextBox.Size = new Size(106, 23);
             nameTextBox.TabIndex = 6;
             // 
             // serverTextBox
             // 
-            serverTextBox.Location = new Point(205, 125);
+            serverTextBox.Location = new Point(144, 75);
+            serverTextBox.Margin = new Padding(2, 2, 2, 2);
             serverTextBox.Name = "serverTextBox";
-            serverTextBox.Size = new Size(322, 31);
+            serverTextBox.Size = new Size(227, 23);
             serverTextBox.TabIndex = 7;
             // 
             // accessKeyTextBox
             // 
-            accessKeyTextBox.Location = new Point(239, 179);
+            accessKeyTextBox.Location = new Point(167, 107);
+            accessKeyTextBox.Margin = new Padding(2, 2, 2, 2);
             accessKeyTextBox.Name = "accessKeyTextBox";
-            accessKeyTextBox.Size = new Size(385, 31);
+            accessKeyTextBox.Size = new Size(271, 23);
             accessKeyTextBox.TabIndex = 8;
             // 
             // secretKeyTextBox
             // 
-            secretKeyTextBox.Location = new Point(239, 236);
+            secretKeyTextBox.Location = new Point(167, 142);
+            secretKeyTextBox.Margin = new Padding(2, 2, 2, 2);
             secretKeyTextBox.Name = "secretKeyTextBox";
-            secretKeyTextBox.Size = new Size(385, 31);
+            secretKeyTextBox.Size = new Size(271, 23);
             secretKeyTextBox.TabIndex = 9;
             // 
             // CreateConfigurationForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 270);
             Controls.Add(secretKeyTextBox);
             Controls.Add(accessKeyTextBox);
             Controls.Add(serverTextBox);
@@ -145,6 +155,7 @@
             Controls.Add(cancelButton);
             Controls.Add(saveButton);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2, 2, 2, 2);
             Name = "CreateConfigurationForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Create Configuration - S3AutomateBackup";

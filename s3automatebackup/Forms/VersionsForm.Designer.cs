@@ -44,46 +44,51 @@
             // configurationLabel
             // 
             configurationLabel.AutoSize = true;
-            configurationLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            configurationLabel.Location = new Point(29, 33);
+            configurationLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            configurationLabel.Location = new Point(20, 15);
+            configurationLabel.Margin = new Padding(2, 0, 2, 0);
             configurationLabel.Name = "configurationLabel";
-            configurationLabel.Size = new Size(184, 32);
+            configurationLabel.Size = new Size(125, 21);
             configurationLabel.TabIndex = 0;
             configurationLabel.Text = "Configuration:";
             // 
             // configurationComboBox
             // 
             configurationComboBox.FormattingEnabled = true;
-            configurationComboBox.Location = new Point(219, 36);
+            configurationComboBox.Location = new Point(153, 15);
+            configurationComboBox.Margin = new Padding(2);
             configurationComboBox.Name = "configurationComboBox";
-            configurationComboBox.Size = new Size(182, 33);
+            configurationComboBox.Size = new Size(129, 23);
             configurationComboBox.TabIndex = 1;
             configurationComboBox.SelectedIndexChanged += configurationComboBox_SelectedIndexChanged;
             // 
             // bucketLabel
             // 
             bucketLabel.AutoSize = true;
-            bucketLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            bucketLabel.Location = new Point(447, 37);
+            bucketLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            bucketLabel.Location = new Point(313, 15);
+            bucketLabel.Margin = new Padding(2, 0, 2, 0);
             bucketLabel.Name = "bucketLabel";
-            bucketLabel.Size = new Size(103, 32);
+            bucketLabel.Size = new Size(69, 21);
             bucketLabel.TabIndex = 2;
             bucketLabel.Text = "Bucket:";
             // 
             // bucketComboBox
             // 
             bucketComboBox.FormattingEnabled = true;
-            bucketComboBox.Location = new Point(556, 40);
+            bucketComboBox.Location = new Point(389, 15);
+            bucketComboBox.Margin = new Padding(2);
             bucketComboBox.Name = "bucketComboBox";
-            bucketComboBox.Size = new Size(182, 33);
+            bucketComboBox.Size = new Size(129, 23);
             bucketComboBox.TabIndex = 3;
             bucketComboBox.SelectedIndexChanged += bucketComboBox_SelectedIndexChanged;
             // 
             // refreshButton
             // 
-            refreshButton.Location = new Point(846, 40);
+            refreshButton.Location = new Point(588, 11);
+            refreshButton.Margin = new Padding(2);
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(112, 34);
+            refreshButton.Size = new Size(80, 30);
             refreshButton.TabIndex = 4;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
@@ -91,9 +96,10 @@
             // 
             // versionsTreeView
             // 
-            versionsTreeView.Location = new Point(31, 112);
+            versionsTreeView.Location = new Point(38, 50);
+            versionsTreeView.Margin = new Padding(2);
             versionsTreeView.Name = "versionsTreeView";
-            versionsTreeView.Size = new Size(927, 564);
+            versionsTreeView.Size = new Size(630, 343);
             versionsTreeView.TabIndex = 5;
             versionsTreeView.NodeMouseClick += versionsTreeView_NodeMouseClick;
             // 
@@ -102,20 +108,20 @@
             versionsContextMenuStrip.ImageScalingSize = new Size(24, 24);
             versionsContextMenuStrip.Items.AddRange(new ToolStripItem[] { restoreToolStripMenuItem });
             versionsContextMenuStrip.Name = "versionsContextMenuStrip";
-            versionsContextMenuStrip.Size = new Size(144, 36);
+            versionsContextMenuStrip.Size = new Size(114, 26);
             // 
             // restoreToolStripMenuItem
             // 
             restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            restoreToolStripMenuItem.Size = new Size(143, 32);
+            restoreToolStripMenuItem.Size = new Size(113, 22);
             restoreToolStripMenuItem.Text = "Restore";
             restoreToolStripMenuItem.Click += restoreToolStripMenuItem_Click;
             // 
             // VersionsForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1002, 712);
+            ClientSize = new Size(701, 427);
             Controls.Add(versionsTreeView);
             Controls.Add(refreshButton);
             Controls.Add(bucketComboBox);
@@ -123,6 +129,7 @@
             Controls.Add(configurationComboBox);
             Controls.Add(configurationLabel);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
             Name = "VersionsForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Versions - S3AutomateBackup";

@@ -43,15 +43,17 @@
             configurationComboBox = new ComboBox();
             deletePathCheckBox = new CheckBox();
             hierarchyCheckBox = new CheckBox();
+            additionalSettingsLabel = new Label();
             SuspendLayout();
             // 
             // bucketNameLabel
             // 
             bucketNameLabel.AutoSize = true;
             bucketNameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            bucketNameLabel.Location = new Point(238, 58);
+            bucketNameLabel.Location = new Point(306, 33);
+            bucketNameLabel.Margin = new Padding(2, 0, 2, 0);
             bucketNameLabel.Name = "bucketNameLabel";
-            bucketNameLabel.Size = new Size(128, 25);
+            bucketNameLabel.Size = new Size(84, 15);
             bucketNameLabel.TabIndex = 0;
             bucketNameLabel.Text = "Bucket name:";
             // 
@@ -59,9 +61,10 @@
             // 
             backupPathLabel.AutoSize = true;
             backupPathLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            backupPathLabel.Location = new Point(151, 126);
+            backupPathLabel.Location = new Point(45, 79);
+            backupPathLabel.Margin = new Padding(2, 0, 2, 0);
             backupPathLabel.Name = "backupPathLabel";
-            backupPathLabel.Size = new Size(215, 25);
+            backupPathLabel.Size = new Size(139, 15);
             backupPathLabel.TabIndex = 1;
             backupPathLabel.Text = "Backup folder/file path:";
             // 
@@ -69,9 +72,10 @@
             // 
             scheduledTimeLabel.AutoSize = true;
             scheduledTimeLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            scheduledTimeLabel.Location = new Point(147, 193);
+            scheduledTimeLabel.Location = new Point(42, 130);
+            scheduledTimeLabel.Margin = new Padding(2, 0, 2, 0);
             scheduledTimeLabel.Name = "scheduledTimeLabel";
-            scheduledTimeLabel.Size = new Size(219, 25);
+            scheduledTimeLabel.Size = new Size(142, 15);
             scheduledTimeLabel.TabIndex = 2;
             scheduledTimeLabel.Text = "Sheduled date and time:";
             // 
@@ -79,49 +83,55 @@
             // 
             periodLabel.AutoSize = true;
             periodLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            periodLabel.Location = new Point(295, 318);
+            periodLabel.Location = new Point(394, 130);
+            periodLabel.Margin = new Padding(2, 0, 2, 0);
             periodLabel.Name = "periodLabel";
-            periodLabel.Size = new Size(71, 25);
+            periodLabel.Size = new Size(46, 15);
             periodLabel.TabIndex = 3;
             periodLabel.Text = "Period:";
             // 
             // bucketNameTextBox
             // 
-            bucketNameTextBox.Location = new Point(390, 58);
+            bucketNameTextBox.Location = new Point(394, 33);
+            bucketNameTextBox.Margin = new Padding(2);
             bucketNameTextBox.Name = "bucketNameTextBox";
-            bucketNameTextBox.Size = new Size(215, 31);
+            bucketNameTextBox.Size = new Size(152, 23);
             bucketNameTextBox.TabIndex = 4;
             // 
             // backupFolderTextBox
             // 
-            backupFolderTextBox.Location = new Point(390, 120);
+            backupFolderTextBox.Location = new Point(195, 79);
+            backupFolderTextBox.Margin = new Padding(2);
             backupFolderTextBox.Name = "backupFolderTextBox";
-            backupFolderTextBox.Size = new Size(326, 31);
+            backupFolderTextBox.Size = new Size(229, 23);
             backupFolderTextBox.TabIndex = 5;
             // 
             // scheduledDateAndTimeDateTimePicker
             // 
             scheduledDateAndTimeDateTimePicker.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             scheduledDateAndTimeDateTimePicker.Format = DateTimePickerFormat.Custom;
-            scheduledDateAndTimeDateTimePicker.Location = new Point(387, 190);
+            scheduledDateAndTimeDateTimePicker.Location = new Point(191, 130);
+            scheduledDateAndTimeDateTimePicker.Margin = new Padding(2);
             scheduledDateAndTimeDateTimePicker.Name = "scheduledDateAndTimeDateTimePicker";
-            scheduledDateAndTimeDateTimePicker.Size = new Size(255, 31);
+            scheduledDateAndTimeDateTimePicker.Size = new Size(180, 23);
             scheduledDateAndTimeDateTimePicker.TabIndex = 6;
             scheduledDateAndTimeDateTimePicker.ValueChanged += scheduledDateAndTimeDateTimePicker_ValueChanged;
             // 
             // periodComboBox
             // 
             periodComboBox.FormattingEnabled = true;
-            periodComboBox.Location = new Point(387, 315);
+            periodComboBox.Location = new Point(444, 130);
+            periodComboBox.Margin = new Padding(2);
             periodComboBox.Name = "periodComboBox";
-            periodComboBox.Size = new Size(182, 33);
+            periodComboBox.Size = new Size(129, 23);
             periodComboBox.TabIndex = 7;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(225, 562);
+            cancelButton.Location = new Point(154, 311);
+            cancelButton.Margin = new Padding(2);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(112, 34);
+            cancelButton.Size = new Size(80, 30);
             cancelButton.TabIndex = 8;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -129,9 +139,10 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(567, 562);
+            saveButton.Location = new Point(393, 311);
+            saveButton.Margin = new Padding(2);
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(112, 34);
+            saveButton.Size = new Size(80, 30);
             saveButton.TabIndex = 9;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
@@ -141,27 +152,30 @@
             // 
             configurationLabel.AutoSize = true;
             configurationLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            configurationLabel.Location = new Point(231, 260);
+            configurationLabel.Location = new Point(45, 33);
+            configurationLabel.Margin = new Padding(2, 0, 2, 0);
             configurationLabel.Name = "configurationLabel";
-            configurationLabel.Size = new Size(135, 25);
+            configurationLabel.Size = new Size(86, 15);
             configurationLabel.TabIndex = 10;
             configurationLabel.Text = "Configuration:";
             // 
             // configurationComboBox
             // 
             configurationComboBox.FormattingEnabled = true;
-            configurationComboBox.Location = new Point(387, 257);
+            configurationComboBox.Location = new Point(135, 33);
+            configurationComboBox.Margin = new Padding(2);
             configurationComboBox.Name = "configurationComboBox";
-            configurationComboBox.Size = new Size(182, 33);
+            configurationComboBox.Size = new Size(129, 23);
             configurationComboBox.TabIndex = 11;
             // 
             // deletePathCheckBox
             // 
             deletePathCheckBox.AutoSize = true;
             deletePathCheckBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deletePathCheckBox.Location = new Point(295, 395);
+            deletePathCheckBox.Location = new Point(75, 216);
+            deletePathCheckBox.Margin = new Padding(2);
             deletePathCheckBox.Name = "deletePathCheckBox";
-            deletePathCheckBox.Size = new Size(345, 29);
+            deletePathCheckBox.Size = new Size(230, 19);
             deletePathCheckBox.TabIndex = 13;
             deletePathCheckBox.Text = "Delete backed up file/s from local disk.";
             deletePathCheckBox.UseVisualStyleBackColor = true;
@@ -169,18 +183,30 @@
             // hierarchyCheckBox
             // 
             hierarchyCheckBox.AutoSize = true;
-            hierarchyCheckBox.Location = new Point(277, 461);
+            hierarchyCheckBox.Location = new Point(75, 239);
+            hierarchyCheckBox.Margin = new Padding(2);
             hierarchyCheckBox.Name = "hierarchyCheckBox";
-            hierarchyCheckBox.Size = new Size(370, 29);
+            hierarchyCheckBox.Size = new Size(249, 19);
             hierarchyCheckBox.TabIndex = 14;
             hierarchyCheckBox.Text = "Back up file/s keeping directory hierarchy?";
             hierarchyCheckBox.UseVisualStyleBackColor = true;
             // 
+            // additionalSettingsLabel
+            // 
+            additionalSettingsLabel.AutoSize = true;
+            additionalSettingsLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            additionalSettingsLabel.Location = new Point(45, 189);
+            additionalSettingsLabel.Name = "additionalSettingsLabel";
+            additionalSettingsLabel.Size = new Size(113, 15);
+            additionalSettingsLabel.TabIndex = 15;
+            additionalSettingsLabel.Text = "Additional settings:";
+            // 
             // CreateTaskForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(881, 636);
+            ClientSize = new Size(617, 382);
+            Controls.Add(additionalSettingsLabel);
             Controls.Add(hierarchyCheckBox);
             Controls.Add(deletePathCheckBox);
             Controls.Add(configurationComboBox);
@@ -196,6 +222,7 @@
             Controls.Add(backupPathLabel);
             Controls.Add(bucketNameLabel);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
             Name = "CreateTaskForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Create Task - S3AutomateBackup";
@@ -219,5 +246,6 @@
         private ComboBox configurationComboBox;
         private CheckBox deletePathCheckBox;
         private CheckBox hierarchyCheckBox;
+        private Label additionalSettingsLabel;
     }
 }

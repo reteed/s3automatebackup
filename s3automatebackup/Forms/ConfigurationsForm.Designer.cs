@@ -40,18 +40,20 @@
             // 
             // configurationsListView
             // 
-            configurationsListView.Location = new Point(49, 80);
+            configurationsListView.Location = new Point(34, 48);
+            configurationsListView.Margin = new Padding(2, 2, 2, 2);
             configurationsListView.Name = "configurationsListView";
-            configurationsListView.Size = new Size(898, 569);
+            configurationsListView.Size = new Size(630, 343);
             configurationsListView.TabIndex = 0;
             configurationsListView.UseCompatibleStateImageBehavior = false;
             configurationsListView.MouseClick += listViewConfigurations_MouseClick;
             // 
             // createConfigurationButton
             // 
-            createConfigurationButton.Location = new Point(835, 22);
+            createConfigurationButton.Location = new Point(584, 11);
+            createConfigurationButton.Margin = new Padding(2, 2, 2, 2);
             createConfigurationButton.Name = "createConfigurationButton";
-            createConfigurationButton.Size = new Size(112, 34);
+            createConfigurationButton.Size = new Size(80, 30);
             createConfigurationButton.TabIndex = 1;
             createConfigurationButton.Text = "Create";
             createConfigurationButton.UseVisualStyleBackColor = true;
@@ -62,30 +64,31 @@
             listViewContextMenuStrip.ImageScalingSize = new Size(24, 24);
             listViewContextMenuStrip.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, deleteToolStripMenuItem });
             listViewContextMenuStrip.Name = "contextMenuStrip1";
-            listViewContextMenuStrip.Size = new Size(135, 68);
+            listViewContextMenuStrip.Size = new Size(108, 48);
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(134, 32);
+            editToolStripMenuItem.Size = new Size(107, 22);
             editToolStripMenuItem.Text = "Edit";
             editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(134, 32);
+            deleteToolStripMenuItem.Size = new Size(107, 22);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // ConfigurationsForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1002, 712);
+            ClientSize = new Size(701, 427);
             Controls.Add(createConfigurationButton);
             Controls.Add(configurationsListView);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2, 2, 2, 2);
             Name = "ConfigurationsForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Configurations - S3AutomateBackup";

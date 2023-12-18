@@ -40,9 +40,10 @@
             // 
             // createTaskButton
             // 
-            createTaskButton.Location = new Point(835, 22);
+            createTaskButton.Location = new Point(588, 11);
+            createTaskButton.Margin = new Padding(2);
             createTaskButton.Name = "createTaskButton";
-            createTaskButton.Size = new Size(112, 34);
+            createTaskButton.Size = new Size(80, 30);
             createTaskButton.TabIndex = 0;
             createTaskButton.Text = "Create";
             createTaskButton.UseVisualStyleBackColor = true;
@@ -50,9 +51,10 @@
             // 
             // scheduledTaskslistView
             // 
-            scheduledTaskslistView.Location = new Point(49, 80);
+            scheduledTaskslistView.Location = new Point(38, 50);
+            scheduledTaskslistView.Margin = new Padding(2);
             scheduledTaskslistView.Name = "scheduledTaskslistView";
-            scheduledTaskslistView.Size = new Size(898, 569);
+            scheduledTaskslistView.Size = new Size(630, 340);
             scheduledTaskslistView.TabIndex = 1;
             scheduledTaskslistView.UseCompatibleStateImageBehavior = false;
             scheduledTaskslistView.MouseClick += scheduledTaskslistView_MouseClick;
@@ -62,30 +64,31 @@
             listViewContextMenuStrip.ImageScalingSize = new Size(24, 24);
             listViewContextMenuStrip.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, deleteToolStripMenuItem });
             listViewContextMenuStrip.Name = "listViewContextMenuStrip";
-            listViewContextMenuStrip.Size = new Size(135, 68);
+            listViewContextMenuStrip.Size = new Size(108, 48);
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(134, 32);
+            editToolStripMenuItem.Size = new Size(107, 22);
             editToolStripMenuItem.Text = "Edit";
             editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(134, 32);
+            deleteToolStripMenuItem.Size = new Size(107, 22);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // TasksForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1002, 712);
+            ClientSize = new Size(701, 427);
             Controls.Add(scheduledTaskslistView);
             Controls.Add(createTaskButton);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
             Name = "TasksForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Tasks - S3AutomateBackup";
