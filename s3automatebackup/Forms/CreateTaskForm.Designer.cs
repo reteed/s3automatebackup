@@ -61,7 +61,7 @@
             // 
             backupPathLabel.AutoSize = true;
             backupPathLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            backupPathLabel.Location = new Point(45, 79);
+            backupPathLabel.Location = new Point(42, 79);
             backupPathLabel.Margin = new Padding(2, 0, 2, 0);
             backupPathLabel.Name = "backupPathLabel";
             backupPathLabel.Size = new Size(139, 15);
@@ -100,7 +100,7 @@
             // 
             // backupFolderTextBox
             // 
-            backupFolderTextBox.Location = new Point(195, 79);
+            backupFolderTextBox.Location = new Point(191, 76);
             backupFolderTextBox.Margin = new Padding(2);
             backupFolderTextBox.Name = "backupFolderTextBox";
             backupFolderTextBox.Size = new Size(229, 23);
@@ -172,7 +172,7 @@
             // 
             deletePathCheckBox.AutoSize = true;
             deletePathCheckBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deletePathCheckBox.Location = new Point(75, 216);
+            deletePathCheckBox.Location = new Point(72, 212);
             deletePathCheckBox.Margin = new Padding(2);
             deletePathCheckBox.Name = "deletePathCheckBox";
             deletePathCheckBox.Size = new Size(230, 19);
@@ -183,7 +183,7 @@
             // hierarchyCheckBox
             // 
             hierarchyCheckBox.AutoSize = true;
-            hierarchyCheckBox.Location = new Point(75, 239);
+            hierarchyCheckBox.Location = new Point(72, 235);
             hierarchyCheckBox.Margin = new Padding(2);
             hierarchyCheckBox.Name = "hierarchyCheckBox";
             hierarchyCheckBox.Size = new Size(249, 19);
@@ -195,7 +195,7 @@
             // 
             additionalSettingsLabel.AutoSize = true;
             additionalSettingsLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            additionalSettingsLabel.Location = new Point(45, 189);
+            additionalSettingsLabel.Location = new Point(42, 185);
             additionalSettingsLabel.Name = "additionalSettingsLabel";
             additionalSettingsLabel.Size = new Size(113, 15);
             additionalSettingsLabel.TabIndex = 15;
