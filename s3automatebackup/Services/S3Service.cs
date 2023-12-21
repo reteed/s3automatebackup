@@ -60,18 +60,99 @@ namespace s3automatebackup.Services
                 ServiceURL = _serviceUrl,
                 ForcePathStyle = true
             };
+
             using AmazonS3Client client = new(_accessKey, _secretKey, config);
-            using TransferUtility transferUtility = new(client);
+            FileInfo fileInfo = new FileInfo(localFilePath);
+            long maxSingleUploadSize = 5 * 1024 * 1024 * 1024L; // 5 GB
+
             try
             {
-                await transferUtility.UploadAsync(localFilePath, _bucketName, s3Key);
-                Console.WriteLine($"Successfully uploaded {localFilePath} to {_bucketName}/{s3Key}.");
+                // Check if file size is larger than 5 GB
+                if (fileInfo.Length > maxSingleUploadSize)
+                {
+                    // Execute multi upload for the file.
+                    await CustomMultiPartUploadAsync(client, localFilePath, s3Key);
+                }
+                else
+                {
+                    // Execute normal upload for smaller files
+                    using TransferUtility transferUtility = new(client);
+                    await transferUtility.UploadAsync(localFilePath, _bucketName, s3Key);
+                    Console.WriteLine($"Successfully uploaded {localFilePath} to {_bucketName}/{s3Key}.");
+                }
                 return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
                 return false;
+            }
+        }
+
+        private async Task CustomMultiPartUploadAsync(AmazonS3Client client, string localFilePath, string s3Key)
+        {
+            const int chunkSize = 5 * 1024 * 1024; // Chunk size is 5 MB
+            List<PartETag> partETags = new List<PartETag>();
+            string uploadId = null;
+
+            try
+            {
+                // Initialize the multi-part upload
+                var initiateResponse = await client.InitiateMultipartUploadAsync(new InitiateMultipartUploadRequest
+                {
+                    BucketName = _bucketName,
+                    Key = s3Key
+                });
+                uploadId = initiateResponse.UploadId;
+
+                // Upload the parts
+                using (FileStream fileStream = new FileStream(localFilePath, FileMode.Open, FileAccess.Read))
+                {
+                    int partNumber = 1;
+                    for (long filePosition = 0; filePosition < fileStream.Length; filePosition += chunkSize, partNumber++)
+                    {
+                        var currentPartSize = Math.Min(chunkSize, fileStream.Length - filePosition);
+                        var buffer = new byte[currentPartSize];
+                        await fileStream.ReadAsync(buffer, 0, (int)currentPartSize);
+
+                        var uploadPartResponse = await client.UploadPartAsync(new UploadPartRequest
+                        {
+                            BucketName = _bucketName,
+                            Key = s3Key,
+                            UploadId = uploadId,
+                            PartNumber = partNumber,
+                            InputStream = new MemoryStream(buffer)
+                        });
+
+                        partETags.Add(new PartETag { PartNumber = partNumber, ETag = uploadPartResponse.ETag });
+                    }
+                }
+
+                // Complete the multi-part upload
+                await client.CompleteMultipartUploadAsync(new CompleteMultipartUploadRequest
+                {
+                    BucketName = _bucketName,
+                    Key = s3Key,
+                    UploadId = uploadId,
+                    PartETags = partETags
+                });
+                Console.WriteLine($"Successfully completed multi-part upload for {localFilePath} to {_bucketName}/{s3Key}.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred during the multi-part upload: {ex.Message}");
+                if (uploadId != null)
+                {
+                    // Abort the multi-part upload
+                    await client.AbortMultipartUploadAsync(new AbortMultipartUploadRequest
+                    {
+                        BucketName = _bucketName,
+                        Key = s3Key,
+                        UploadId = uploadId
+                    });
+                    Console.WriteLine($"Aborted multi-part upload for {localFilePath} due to an error.");
+                }
+                throw;
             }
         }
 
