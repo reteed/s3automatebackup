@@ -38,6 +38,9 @@
             versionsTreeView = new TreeView();
             versionsContextMenuStrip = new ContextMenuStrip(components);
             restoreToolStripMenuItem = new ToolStripMenuItem();
+            downloadToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
+            removeBucketContent = new Button();
             versionsContextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -85,7 +88,7 @@
             // 
             // refreshButton
             // 
-            refreshButton.Location = new Point(588, 11);
+            refreshButton.Location = new Point(640, 10);
             refreshButton.Margin = new Padding(2);
             refreshButton.Name = "refreshButton";
             refreshButton.Size = new Size(80, 30);
@@ -99,29 +102,54 @@
             versionsTreeView.Location = new Point(38, 50);
             versionsTreeView.Margin = new Padding(2);
             versionsTreeView.Name = "versionsTreeView";
-            versionsTreeView.Size = new Size(630, 343);
+            versionsTreeView.Size = new Size(682, 363);
             versionsTreeView.TabIndex = 5;
             versionsTreeView.NodeMouseClick += versionsTreeView_NodeMouseClick;
             // 
             // versionsContextMenuStrip
             // 
             versionsContextMenuStrip.ImageScalingSize = new Size(24, 24);
-            versionsContextMenuStrip.Items.AddRange(new ToolStripItem[] { restoreToolStripMenuItem });
+            versionsContextMenuStrip.Items.AddRange(new ToolStripItem[] { restoreToolStripMenuItem, downloadToolStripMenuItem, deleteToolStripMenuItem });
             versionsContextMenuStrip.Name = "versionsContextMenuStrip";
-            versionsContextMenuStrip.Size = new Size(114, 26);
+            versionsContextMenuStrip.Size = new Size(129, 70);
             // 
             // restoreToolStripMenuItem
             // 
             restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            restoreToolStripMenuItem.Size = new Size(113, 22);
+            restoreToolStripMenuItem.Size = new Size(128, 22);
             restoreToolStripMenuItem.Text = "Restore";
             restoreToolStripMenuItem.Click += restoreToolStripMenuItem_Click;
+            // 
+            // downloadToolStripMenuItem
+            // 
+            downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
+            downloadToolStripMenuItem.Size = new Size(128, 22);
+            downloadToolStripMenuItem.Text = "Download";
+            downloadToolStripMenuItem.Click += downloadToolStripMenuItem_Click;
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(128, 22);
+            deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
+            // 
+            // removeBucketContent
+            // 
+            removeBucketContent.Location = new Point(569, 429);
+            removeBucketContent.Name = "removeBucketContent";
+            removeBucketContent.Size = new Size(151, 36);
+            removeBucketContent.TabIndex = 6;
+            removeBucketContent.Text = "Remove bucket content";
+            removeBucketContent.UseVisualStyleBackColor = true;
+            removeBucketContent.Click += removeBucketContent_Click;
             // 
             // VersionsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(701, 427);
+            ClientSize = new Size(751, 477);
+            Controls.Add(removeBucketContent);
             Controls.Add(versionsTreeView);
             Controls.Add(refreshButton);
             Controls.Add(bucketComboBox);
@@ -148,5 +176,8 @@
         private TreeView versionsTreeView;
         private ContextMenuStrip versionsContextMenuStrip;
         private ToolStripMenuItem restoreToolStripMenuItem;
+        private Button removeBucketContent;
+        private ToolStripMenuItem downloadToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

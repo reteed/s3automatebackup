@@ -105,7 +105,14 @@ namespace s3automatebackup.Forms
                 {
                     if (editForm.ShowDialog() == DialogResult.OK)
                     {
-                        // Replace the old configuration object with the updated one
+                        // Dispose of the old task's timer to prevent double execution
+                        if (selectedTask.Timer != null)
+                        {
+                            selectedTask.Timer.Dispose();
+                            selectedTask.Timer = null; // Clear the old timer
+                        }
+
+                        // Update task in the list and reschedule it
                         int index = tasks.IndexOf(selectedTask);
                         if (index != -1)
                         {
@@ -113,7 +120,7 @@ namespace s3automatebackup.Forms
                         }
                         storageService.SaveTasks(tasks);
                         PopulateListView(tasks);
-                        RescheduleAllTasks();
+                        RescheduleAllTasks(); // This will create a new timer with the updated time
                     }
                 }
             }

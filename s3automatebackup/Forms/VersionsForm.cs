@@ -26,6 +26,11 @@ namespace s3automatebackup.Forms
             PopulateConfigurations();
         }
 
+        private void S3Service_OnDeletionCompleted()
+        {
+            MessageBox.Show("All objects and versions have been successfully deleted from the bucket.", "Deletion Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void configurationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (configurationComboBox.SelectedIndex != -1)
@@ -111,6 +116,7 @@ namespace s3automatebackup.Forms
             bucketComboBox.DataSource = new BindingSource(buckets, null);
             bucketComboBox.SelectedIndex = -1;
             bucketComboBox.SelectedIndexChanged += bucketComboBox_SelectedIndexChanged;
+            s3Service.OnDeletionCompleted += S3Service_OnDeletionCompleted;
         }
 
         private async void GetObjectsFromBucket(S3Service s3Service, string bucketName)
@@ -148,6 +154,81 @@ namespace s3automatebackup.Forms
                 {
                     versionsTreeView.Nodes.Clear();
                     GetObjectsFromBucket(s3Service, selectedBucket);
+                }
+            }
+        }
+
+        private async void removeBucketContent_Click(object sender, EventArgs e)
+        {
+            if (bucketComboBox.SelectedIndex != -1)
+            {
+                string selectedBucket = (string)bucketComboBox.SelectedValue;
+                if (selectedBucket != null)
+                {
+                    // Confirm the deletion
+                    DialogResult result = MessageBox.Show(
+                        $"Are you sure you want to delete all objects and versions from the bucket '{selectedBucket}'?",
+                        "Confirm Deletion",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        // Call the S3Service to delete all objects and versions
+                        await s3Service.DeleteAllObjectsAndVersions(selectedBucket);
+                    }
+                }
+            }
+        }
+
+        private async void downloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode selectedNode = versionsTreeView.SelectedNode;
+            if (selectedNode != null && selectedNode.Tag is S3ObjectVersion s3ObjectVersion)
+            {
+                // Retrieve the S3Object and version details
+                S3Object s3Object = allObjects.FindLast(s3 => s3.Key == selectedNode.Parent.Text);
+                string versionId = s3ObjectVersion.VersionId;
+
+                // Get the user's Downloads folder
+                string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+
+                // Create the full download path for the file in the Downloads folder
+                string downloadFilePath = Path.Combine(downloadsPath, s3Object.Key);
+
+                try
+                {
+                    // Download the version
+                    await s3Service.DownloadVersion(s3Object.Key, versionId, downloadFilePath);
+                    MessageBox.Show($"Version {versionId} of {s3Object.Key} downloaded successfully to {downloadsPath}.",
+                                    "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred during download: {ex.Message}", "Download Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private async void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode selectedNode = versionsTreeView.SelectedNode;
+            if (selectedNode != null && selectedNode.Tag is S3ObjectVersion s3ObjectVersion)
+            {
+                // Retrieve the S3Object and version details
+                S3Object s3Object = allObjects.FindLast(s3 => s3.Key == selectedNode.Parent.Text);
+                string versionId = s3ObjectVersion.VersionId;
+
+                // Confirm deletion
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete version {versionId} of {s3Object.Key}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    // Remove the version
+                    await s3Service.DeleteVersion(s3Object.Key, versionId);
+                    MessageBox.Show($"Version {versionId} of {s3Object.Key} deleted successfully.");
+
+                    // Remove the node from the TreeView
+                    versionsTreeView.Nodes.Remove(selectedNode);
                 }
             }
         }

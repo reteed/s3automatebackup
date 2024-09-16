@@ -31,17 +31,14 @@ namespace s3automatebackup.Services
             if (task.Timer != null)
             {
                 task.Timer.Dispose();
-                _timers.Remove(task.Timer);
+                _timers.Remove(task.Timer); // Remove the old timer
+                task.Timer = null; // Explicitly clear the reference
             }
 
             DateTime scheduledTime = task.ScheduledTime;
             DateTime currentTime = DateTime.Now;
 
-            Configuration config = task.Configuration;
-            S3Service s3Service = new(config.Server, config.AccessKey, config.SecretKey, task.BucketName);
-
-
-            // Check if the scheduled time has passed and get next occurrence if needed.
+            // Schedule the next occurrence based on time logic
             if (currentTime > scheduledTime)
             {
                 scheduledTime = GetNextOccurrence(task.PeriodKey, scheduledTime);
@@ -49,7 +46,7 @@ namespace s3automatebackup.Services
 
             TimeSpan timeToGo = scheduledTime - currentTime;
 
-            // If the time to go is negative, set it to zero to execute immediately.
+            // Adjust for immediate execution if timeToGo is negative
             if (timeToGo < TimeSpan.Zero)
             {
                 timeToGo = TimeSpan.Zero;
@@ -110,8 +107,14 @@ namespace s3automatebackup.Services
             // Check if the path is a directory or a file
             if (File.Exists(task.BackupPath))
             {
-                // It's a file; process this single file
-                bool processed = await ProcessFile(task.BackupPath, s3Service, task.Hierarchy);
+                // It's a file; process this single file without hierarchy
+                bool processed = await ProcessFile(
+                    task.BackupPath,
+                    s3Service,
+                    task.Hierarchy ? Path.GetDirectoryName(task.BackupPath) : null, // Pass the root directory if hierarchy is true
+                    task.Hierarchy
+                );
+
                 // Delete backed up file from local disk.
                 if (task.DeletePath && processed)
                 {
@@ -125,7 +128,14 @@ namespace s3automatebackup.Services
                 string[] localFiles = Directory.GetFiles(task.BackupPath, "*.*", SearchOption.AllDirectories);
                 foreach (string localFilePath in localFiles)
                 {
-                    bool processed = await ProcessFile(localFilePath, s3Service, task.Hierarchy);
+                    // Pass task.BackupPath as the root directory only if hierarchy is true
+                    bool processed = await ProcessFile(
+                        localFilePath,
+                        s3Service,
+                        task.Hierarchy ? task.BackupPath : null,  // Pass the root directory if hierarchy is true
+                        task.Hierarchy
+                    );
+
                     // Delete backed up files from local disk.
                     if (task.DeletePath && processed)
                     {
@@ -140,15 +150,18 @@ namespace s3automatebackup.Services
             }
         }
 
-        private async Task<bool> ProcessFile(string localFilePath, S3Service s3Service, bool hierarchy)
+        private async Task<bool> ProcessFile(string localFilePath, S3Service s3Service, string rootDirectory, bool hierarchy)
         {
             string fileName;
+
             if (hierarchy)
             {
-                fileName = GetRelativePath(localFilePath, Path.GetDirectoryName(localFilePath));
+                // Get the relative path from the root directory to maintain the full hierarchy
+                fileName = GetRelativePath(localFilePath, rootDirectory);
             }
             else
             {
+                // Just use the file name if hierarchy is not needed
                 fileName = Path.GetFileName(localFilePath);
             }
 
@@ -158,14 +171,7 @@ namespace s3automatebackup.Services
             {
                 // File doesn't exist in the bucket, upload it
                 bool uploaded = await s3Service.UploadFileAsync(localFilePath, fileName);
-                if (uploaded)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return uploaded;
             }
             else
             {
@@ -176,17 +182,11 @@ namespace s3automatebackup.Services
                 {
                     // If the local file is newer, upload it to update the one in the bucket
                     bool uploaded = await s3Service.UploadFileAsync(localFilePath, fileName);
-                    if (uploaded)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return uploaded;
                 }
                 else
                 {
+                    // No need to upload if the file in S3 is newer or the same
                     return false;
                 }
             }
@@ -194,17 +194,17 @@ namespace s3automatebackup.Services
 
         private string GetRelativePath(string fullPath, string basePath)
         {
-            string lastDirectoryName = Path.GetFileName(basePath);
-
+            // Ensure base path ends with a directory separator for proper comparison
             if (!basePath.EndsWith(Path.DirectorySeparatorChar.ToString()))
             {
                 basePath += Path.DirectorySeparatorChar;
             }
 
+            // If fullPath starts with the basePath, strip it off to get the relative path
             if (fullPath.StartsWith(basePath, StringComparison.OrdinalIgnoreCase))
             {
                 string relativePath = fullPath.Substring(basePath.Length);
-                return Path.Combine(lastDirectoryName, relativePath).Replace(Path.DirectorySeparatorChar, '/');
+                return relativePath.Replace(Path.DirectorySeparatorChar, '/'); // S3 uses '/' as a path separator
             }
             return fullPath.Replace(Path.DirectorySeparatorChar, '/');
         }
