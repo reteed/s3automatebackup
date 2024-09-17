@@ -60,20 +60,31 @@ namespace s3automatebackup.Forms
 
         private void versionsTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            // Check for right-click
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right) // Check if it was a right-click
             {
-                // Select the clicked node
+                // Select the node that was right-clicked
                 versionsTreeView.SelectedNode = e.Node;
 
-                // Check if it's a version node
-                if (e.Node.Tag is not null)
+                if (e.Node.Tag is S3ObjectVersion)
                 {
-                    // Show the context menu
-                    versionsContextMenuStrip.Show(versionsTreeView, e.Location);
+                    // Enable "Download" or other version-related options if it's a version node
+                    restoreToolStripMenuItem.Enabled = true;
+                    downloadToolStripMenuItem.Enabled = true;
+                    deleteToolStripMenuItem.Enabled = true;
                 }
+                else
+                {
+                    // Disable the "Download" option or any other version-related options if it's not a version node
+                    restoreToolStripMenuItem.Enabled = false;
+                    downloadToolStripMenuItem.Enabled = false;
+                    deleteToolStripMenuItem.Enabled = false;
+                }
+
+                // Show the context menu at the location of the right-click
+                versionsContextMenuStrip.Show(versionsTreeView, e.Location);
             }
         }
+
 
         private void restoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -123,20 +134,63 @@ namespace s3automatebackup.Forms
         {
             s3Service._bucketName = bucketName;
             allObjects = await s3Service.ListAllObjects(bucketName);
+
+            Dictionary<string, TreeNode> folderNodes = new Dictionary<string, TreeNode>();
+
             foreach (var obj in allObjects)
             {
-                TreeNode fileNode = new TreeNode(obj.Key);
-                fileNode.Tag = "File"; // Assign a simple string tag to indicate this is a file node
+                string[] parts = obj.Key.Split('/');
+                TreeNode currentNode = null;
 
-                var versions = await s3Service.GetObjectVersions(obj.Key);
-                foreach (var version in versions)
+                // Iterate through each part of the key and create folders as necessary
+                for (int i = 0; i < parts.Length; i++)
                 {
-                    TreeNode versionNode = new TreeNode($"{version.VersionId} - {version.LastModified}");
-                    versionNode.Tag = version; // Storing the version info for easy access later
-                    fileNode.Nodes.Add(versionNode);
-                }
+                    string part = parts[i];
+                    string path = string.Join("/", parts.Take(i + 1));
 
-                versionsTreeView.Nodes.Add(fileNode);
+                    if (i == parts.Length - 1)
+                    {
+                        // It's a file, so add it under the current node
+                        TreeNode fileNode = new TreeNode(part) { Tag = "File" };
+                        if (currentNode != null)
+                        {
+                            currentNode.Nodes.Add(fileNode);
+                        }
+                        else
+                        {
+                            versionsTreeView.Nodes.Add(fileNode);
+                        }
+
+                        // Add file versions if available
+                        var versions = await s3Service.GetObjectVersions(obj.Key);
+                        foreach (var version in versions)
+                        {
+                            TreeNode versionNode = new TreeNode($"{version.VersionId} - {version.LastModified}");
+                            versionNode.Tag = version; // Storing the version info for easy access later
+                            fileNode.Nodes.Add(versionNode);
+                        }
+                    }
+                    else
+                    {
+                        // It's a folder, so create the folder node if it doesn't exist
+                        if (!folderNodes.ContainsKey(path))
+                        {
+                            TreeNode folderNode = new TreeNode(part) { Tag = "Folder" };
+                            folderNodes[path] = folderNode;
+
+                            if (currentNode != null)
+                            {
+                                currentNode.Nodes.Add(folderNode);
+                            }
+                            else
+                            {
+                                versionsTreeView.Nodes.Add(folderNode);
+                            }
+                        }
+
+                        currentNode = folderNodes[path];
+                    }
+                }
             }
         }
 
@@ -177,6 +231,8 @@ namespace s3automatebackup.Forms
                         // Call the S3Service to delete all objects and versions
                         await s3Service.DeleteAllObjectsAndVersions(selectedBucket);
                     }
+                    versionsTreeView.Nodes.Clear();
+                    GetObjectsFromBucket(s3Service, selectedBucket);
                 }
             }
         }
@@ -186,26 +242,46 @@ namespace s3automatebackup.Forms
             TreeNode selectedNode = versionsTreeView.SelectedNode;
             if (selectedNode != null && selectedNode.Tag is S3ObjectVersion s3ObjectVersion)
             {
-                // Retrieve the S3Object and version details
-                S3Object s3Object = allObjects.FindLast(s3 => s3.Key == selectedNode.Parent.Text);
+                // Retrieve the full path of the S3 object
+                TreeNode fileNode = selectedNode.Parent; // The file node is the parent of the version node
+                string s3Key = string.Empty;
+
+                // Traverse back up the tree to get the full path of the object key
+                while (fileNode != null)
+                {
+                    s3Key = fileNode.Text + "/" + s3Key;
+                    fileNode = fileNode.Parent;
+                }
+                s3Key = s3Key.TrimEnd('/'); // Remove the trailing slash if any
+
+                // Find the matching S3 object using the full key
+                S3Object s3Object = allObjects.FindLast(s3 => s3.Key == s3Key);
                 string versionId = s3ObjectVersion.VersionId;
 
-                // Get the user's Downloads folder
-                string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-
-                // Create the full download path for the file in the Downloads folder
-                string downloadFilePath = Path.Combine(downloadsPath, s3Object.Key);
-
-                try
+                // Open a SaveFileDialog to allow the user to select the location
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    // Download the version
-                    await s3Service.DownloadVersion(s3Object.Key, versionId, downloadFilePath);
-                    MessageBox.Show($"Version {versionId} of {s3Object.Key} downloaded successfully to {downloadsPath}.",
-                                    "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An error occurred during download: {ex.Message}", "Download Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    saveFileDialog.FileName = Path.GetFileName(s3Key); // Default file name
+                    saveFileDialog.Filter = "All files (*.*)|*.*"; // Option to show all files
+                    saveFileDialog.Title = "Save File As";
+
+                    // Show the dialog and check if the user confirmed
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedFilePath = saveFileDialog.FileName;
+
+                        try
+                        {
+                            // Download the version to the user-selected file path
+                            await s3Service.DownloadVersion(s3Key, versionId, selectedFilePath);
+                            MessageBox.Show($"Version {versionId} of {s3Key} downloaded successfully to {selectedFilePath}.",
+                                            "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"An error occurred during download: {ex.Message}", "Download Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
         }

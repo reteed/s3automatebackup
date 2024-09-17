@@ -104,6 +104,9 @@ namespace s3automatebackup.Services
 
             s3Service.EnsureVersioningEnabled();
 
+            // Remove old files and versions if needed
+            await RemoveOldFilesAndVersions(task, s3Service);
+
             // Check if the path is a directory or a file
             if (File.Exists(task.BackupPath))
             {
@@ -111,11 +114,11 @@ namespace s3automatebackup.Services
                 bool processed = await ProcessFile(
                     task.BackupPath,
                     s3Service,
-                    task.Hierarchy ? Path.GetDirectoryName(task.BackupPath) : null, // Pass the root directory if hierarchy is true
+                    task.Hierarchy ? Path.GetDirectoryName(task.BackupPath) : null,
                     task.Hierarchy
                 );
 
-                // Delete backed up file from local disk.
+                // Delete backed up file from local disk if required
                 if (task.DeletePath && processed)
                 {
                     File.Delete(task.BackupPath);
@@ -128,15 +131,14 @@ namespace s3automatebackup.Services
                 string[] localFiles = Directory.GetFiles(task.BackupPath, "*.*", SearchOption.AllDirectories);
                 foreach (string localFilePath in localFiles)
                 {
-                    // Pass task.BackupPath as the root directory only if hierarchy is true
                     bool processed = await ProcessFile(
                         localFilePath,
                         s3Service,
-                        task.Hierarchy ? task.BackupPath : null,  // Pass the root directory if hierarchy is true
+                        task.Hierarchy ? task.BackupPath : null,
                         task.Hierarchy
                     );
 
-                    // Delete backed up files from local disk.
+                    // Delete backed up files from local disk if required
                     if (task.DeletePath && processed)
                     {
                         File.Delete(localFilePath);
@@ -188,6 +190,27 @@ namespace s3automatebackup.Services
                 {
                     // No need to upload if the file in S3 is newer or the same
                     return false;
+                }
+            }
+        }
+
+        private async Task RemoveOldFilesAndVersions(BackupTask task, S3Service s3Service)
+        {
+            if (task.RemoveOldFiles && task.OldFilesDays > 0)
+            {
+                var files = await s3Service.ListAllObjects(task.BucketName);
+                foreach (var file in files)
+                {
+                    if (file.LastModified.AddDays(task.OldFilesDays) < DateTime.Now)
+                    {
+                        // Get all versions of the file
+                        var versions = await s3Service.GetObjectVersions(file.Key);
+                        foreach (var version in versions)
+                        {
+                            await s3Service.DeleteVersion(file.Key, version.VersionId);
+                        }
+                        Console.WriteLine($"Deleted all versions of {file.Key} older than {task.OldFilesDays} days.");
+                    }
                 }
             }
         }

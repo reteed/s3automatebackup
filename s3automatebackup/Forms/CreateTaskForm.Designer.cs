@@ -33,7 +33,6 @@
             backupPathLabel = new Label();
             scheduledTimeLabel = new Label();
             periodLabel = new Label();
-            bucketNameTextBox = new TextBox();
             backupFolderTextBox = new TextBox();
             scheduledDateAndTimeDateTimePicker = new DateTimePicker();
             periodComboBox = new ComboBox();
@@ -44,6 +43,11 @@
             deletePathCheckBox = new CheckBox();
             hierarchyCheckBox = new CheckBox();
             additionalSettingsLabel = new Label();
+            removeOldFilesCheckbox = new CheckBox();
+            daysInputTextBox = new TextBox();
+            labelOldFiles = new Label();
+            bucketComboBox = new ComboBox();
+            browsePathButton = new Button();
             SuspendLayout();
             // 
             // bucketNameLabel
@@ -90,14 +94,6 @@
             periodLabel.TabIndex = 3;
             periodLabel.Text = "Period:";
             // 
-            // bucketNameTextBox
-            // 
-            bucketNameTextBox.Location = new Point(394, 33);
-            bucketNameTextBox.Margin = new Padding(2);
-            bucketNameTextBox.Name = "bucketNameTextBox";
-            bucketNameTextBox.Size = new Size(152, 23);
-            bucketNameTextBox.TabIndex = 4;
-            // 
             // backupFolderTextBox
             // 
             backupFolderTextBox.Location = new Point(191, 76);
@@ -128,7 +124,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(154, 311);
+            cancelButton.Location = new Point(155, 324);
             cancelButton.Margin = new Padding(2);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(80, 30);
@@ -139,7 +135,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(393, 311);
+            saveButton.Location = new Point(394, 324);
             saveButton.Margin = new Padding(2);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(80, 30);
@@ -167,6 +163,7 @@
             configurationComboBox.Name = "configurationComboBox";
             configurationComboBox.Size = new Size(129, 23);
             configurationComboBox.TabIndex = 11;
+            configurationComboBox.SelectedIndexChanged += configurationComboBox_SelectedIndexChanged;
             // 
             // deletePathCheckBox
             // 
@@ -201,11 +198,60 @@
             additionalSettingsLabel.TabIndex = 15;
             additionalSettingsLabel.Text = "Additional settings:";
             // 
+            // removeOldFilesCheckbox
+            // 
+            removeOldFilesCheckbox.AutoSize = true;
+            removeOldFilesCheckbox.Location = new Point(71, 266);
+            removeOldFilesCheckbox.Name = "removeOldFilesCheckbox";
+            removeOldFilesCheckbox.Size = new Size(150, 19);
+            removeOldFilesCheckbox.TabIndex = 16;
+            removeOldFilesCheckbox.Text = "Remove files older than";
+            removeOldFilesCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // daysInputTextBox
+            // 
+            daysInputTextBox.Location = new Point(227, 264);
+            daysInputTextBox.Name = "daysInputTextBox";
+            daysInputTextBox.Size = new Size(67, 23);
+            daysInputTextBox.TabIndex = 17;
+            // 
+            // labelOldFiles
+            // 
+            labelOldFiles.AutoSize = true;
+            labelOldFiles.Location = new Point(306, 270);
+            labelOldFiles.Name = "labelOldFiles";
+            labelOldFiles.Size = new Size(34, 15);
+            labelOldFiles.TabIndex = 18;
+            labelOldFiles.Text = "days.";
+            // 
+            // bucketComboBox
+            // 
+            bucketComboBox.FormattingEnabled = true;
+            bucketComboBox.Location = new Point(395, 33);
+            bucketComboBox.Name = "bucketComboBox";
+            bucketComboBox.Size = new Size(132, 23);
+            bucketComboBox.TabIndex = 19;
+            // 
+            // browsePathButton
+            // 
+            browsePathButton.Location = new Point(425, 76);
+            browsePathButton.Name = "browsePathButton";
+            browsePathButton.Size = new Size(75, 23);
+            browsePathButton.TabIndex = 20;
+            browsePathButton.Text = "Browse";
+            browsePathButton.UseVisualStyleBackColor = true;
+            browsePathButton.Click += browsePathButton_Click;
+            // 
             // CreateTaskForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(617, 382);
+            Controls.Add(browsePathButton);
+            Controls.Add(bucketComboBox);
+            Controls.Add(labelOldFiles);
+            Controls.Add(daysInputTextBox);
+            Controls.Add(removeOldFilesCheckbox);
             Controls.Add(additionalSettingsLabel);
             Controls.Add(hierarchyCheckBox);
             Controls.Add(deletePathCheckBox);
@@ -216,7 +262,6 @@
             Controls.Add(periodComboBox);
             Controls.Add(scheduledDateAndTimeDateTimePicker);
             Controls.Add(backupFolderTextBox);
-            Controls.Add(bucketNameTextBox);
             Controls.Add(periodLabel);
             Controls.Add(scheduledTimeLabel);
             Controls.Add(backupPathLabel);
@@ -226,6 +271,7 @@
             Name = "CreateTaskForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Create Task - S3AutomateBackup";
+            FormClosing += CreateTaskForm_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -236,7 +282,6 @@
         private Label backupPathLabel;
         private Label scheduledTimeLabel;
         private Label periodLabel;
-        private TextBox bucketNameTextBox;
         private TextBox backupFolderTextBox;
         private DateTimePicker scheduledDateAndTimeDateTimePicker;
         private ComboBox periodComboBox;
@@ -247,5 +292,10 @@
         private CheckBox deletePathCheckBox;
         private CheckBox hierarchyCheckBox;
         private Label additionalSettingsLabel;
+        private CheckBox removeOldFilesCheckbox;
+        private TextBox daysInputTextBox;
+        private Label labelOldFiles;
+        private ComboBox bucketComboBox;
+        private Button browsePathButton;
     }
 }

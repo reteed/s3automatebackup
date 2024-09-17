@@ -17,5 +17,7 @@ namespace s3automatebackup.Models
         public bool DeletePath { get; set; }
         public bool Hierarchy { get; set; }
         public System.Threading.Timer Timer { get; set; }
+        public bool RemoveOldFiles { get; set; }
+        public int OldFilesDays { get; set; }
     }
 }
