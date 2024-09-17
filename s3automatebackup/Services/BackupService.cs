@@ -10,6 +10,8 @@ namespace s3automatebackup.Services
         private StorageService _storageService;
         private List<System.Threading.Timer> _timers = new();
         private bool _disposed = false;
+        private SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1); // Allow 1 task at a time
+
 
         public BackupService()
         {
@@ -25,16 +27,8 @@ namespace s3automatebackup.Services
             }
         }
 
-        private void ScheduleTask(BackupTask task)
+        private async void ScheduleTask(BackupTask task)
         {
-            // Dispose of existing timer for this task, if any
-            if (task.Timer != null)
-            {
-                task.Timer.Dispose();
-                _timers.Remove(task.Timer); // Remove the old timer
-                task.Timer = null; // Explicitly clear the reference
-            }
-
             DateTime scheduledTime = task.ScheduledTime;
             DateTime currentTime = DateTime.Now;
 
@@ -52,9 +46,25 @@ namespace s3automatebackup.Services
                 timeToGo = TimeSpan.Zero;
             }
 
-            // Set the timer reference in the task
-            task.Timer = new System.Threading.Timer(ExecuteTaskCallback, task, timeToGo, Timeout.InfiniteTimeSpan);
-            _timers.Add(task.Timer);
+            await Task.Delay(timeToGo); // Delay the task execution
+
+            // Execute the task with SemaphoreSlim to prevent conflicts
+            await _semaphoreSlim.WaitAsync();
+            try
+            {
+                await ExecuteTask(task); // Make sure this method is fully async
+            }
+            finally
+            {
+                _semaphoreSlim.Release(); // Ensure the semaphore is released
+            }
+
+            // Calculate the next occurrence and reschedule
+            DateTime nextOccurrence = GetNextOccurrence(task.PeriodKey, task.ScheduledTime);
+            task.ScheduledTime = nextOccurrence;
+
+            // Reschedule the task for the next period
+            ScheduleTask(task);
         }
 
         private void ExecuteTaskCallback(object taskObject)
@@ -97,7 +107,7 @@ namespace s3automatebackup.Services
             }
         }
 
-        private async void ExecuteTask(BackupTask task)
+        private async Task ExecuteTask(BackupTask task)
         {
             Configuration config = task.Configuration;
             S3Service s3Service = new(config.Server, config.AccessKey, config.SecretKey, task.BucketName);
@@ -118,7 +128,7 @@ namespace s3automatebackup.Services
                     task.Hierarchy
                 );
 
-                // Delete backed up file from local disk if required
+                // Delete backed-up file from local disk if required
                 if (task.DeletePath && processed)
                 {
                     File.Delete(task.BackupPath);
@@ -138,7 +148,7 @@ namespace s3automatebackup.Services
                         task.Hierarchy
                     );
 
-                    // Delete backed up files from local disk if required
+                    // Delete backed-up files from local disk if required
                     if (task.DeletePath && processed)
                     {
                         File.Delete(localFilePath);
