@@ -55,4 +55,4 @@ For questions, feature requests, or support, please fill an issue in our GitHub 
 <img height="350px" width="500px" src="https://images.reteed.com/s3automatebackup/create-task.png" alt="Create Task" />
 
 ### Versions Viewer
-<img height="350px" width="500px" src="https://images.reteed.com/s3automatebackup/versions.png" alt="Versions Viewer" />
+<img height="350px" width="500px" src="https://images.reteed.com/s3automatebackup/versions-viewer.png" alt="Versions Viewer" />
