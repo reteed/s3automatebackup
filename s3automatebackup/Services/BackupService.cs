@@ -1,7 +1,9 @@
-﻿using s3automatebackup.Models;
+﻿using Amazon.S3.Model;
+using s3automatebackup.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace s3automatebackup.Services
 {
@@ -117,10 +119,12 @@ namespace s3automatebackup.Services
             // Remove old files and versions if needed
             await RemoveOldFilesAndVersions(task, s3Service);
 
-            // Check if the path is a directory or a file
+            // List all files in the S3 bucket before starting the backup
+            var s3Files = await s3Service.ListAllObjects(task.BucketName);
+
             if (File.Exists(task.BackupPath))
             {
-                // It's a file; process this single file without hierarchy
+                // It's a file; process this single file
                 bool processed = await ProcessFile(
                     task.BackupPath,
                     s3Service,
@@ -133,6 +137,10 @@ namespace s3automatebackup.Services
                 {
                     File.Delete(task.BackupPath);
                 }
+
+                // Remove any S3 files that no longer exist locally
+                await RemoveDeletedLocalFiles(s3Files, new[] { task.BackupPath }, s3Service, task);
+
                 Console.WriteLine($"Backup task for {task.BucketName} executed.");
             }
             else if (Directory.Exists(task.BackupPath))
@@ -154,6 +162,10 @@ namespace s3automatebackup.Services
                         File.Delete(localFilePath);
                     }
                 }
+
+                // Remove any S3 files that no longer exist locally
+                await RemoveDeletedLocalFiles(s3Files, localFiles, s3Service, task);
+
                 Console.WriteLine($"Backup task for {task.BucketName} executed.");
             }
             else
@@ -211,16 +223,46 @@ namespace s3automatebackup.Services
                 var files = await s3Service.ListAllObjects(task.BucketName);
                 foreach (var file in files)
                 {
-                    if (file.LastModified.AddDays(task.OldFilesDays) < DateTime.Now)
+                    // Get all versions of the file
+                    var versions = await s3Service.GetObjectVersions(file.Key);
+
+                    // Ensure at least one version (the latest) remains
+                    S3ObjectVersion latestVersion = versions.OrderByDescending(v => v.LastModified).FirstOrDefault();
+
+                    foreach (var version in versions)
                     {
-                        // Get all versions of the file
-                        var versions = await s3Service.GetObjectVersions(file.Key);
-                        foreach (var version in versions)
+                        // Skip the latest version
+                        if (version.VersionId == latestVersion.VersionId)
+                        {
+                            continue;
+                        }
+
+                        // Delete only versions older than the specified number of days
+                        if (version.LastModified.AddDays(task.OldFilesDays) < DateTime.Now)
                         {
                             await s3Service.DeleteVersion(file.Key, version.VersionId);
+                            Console.WriteLine($"Deleted version {version.VersionId} of {file.Key} older than {task.OldFilesDays} days.");
                         }
-                        Console.WriteLine($"Deleted all versions of {file.Key} older than {task.OldFilesDays} days.");
                     }
+                }
+            }
+        }
+
+        private async Task RemoveDeletedLocalFiles(List<S3Object> s3Files, string[] localFiles, S3Service s3Service, BackupTask task)
+        {
+            var localFileNames = new HashSet<string>(localFiles.Select(f => GetRelativePath(f, task.BackupPath)));
+
+            foreach (var s3File in s3Files)
+            {
+                if (!localFileNames.Contains(s3File.Key))
+                {
+                    // The file exists in S3 but not locally, so delete it
+                    var versions = await s3Service.GetObjectVersions(s3File.Key);
+                    foreach (var version in versions)
+                    {
+                        await s3Service.DeleteVersion(s3File.Key, version.VersionId);
+                    }
+                    Console.WriteLine($"Deleted {s3File.Key} and all its versions from S3 because it no longer exists locally.");
                 }
             }
         }
