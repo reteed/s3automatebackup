@@ -154,8 +154,10 @@
             Controls.Add(nameLabel);
             Controls.Add(cancelButton);
             Controls.Add(saveButton);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "CreateConfigurationForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Create Configuration - S3AutomateBackup";

@@ -18,6 +18,7 @@ namespace s3automatebackup.Forms
         private List<Configuration> Configurations = new();
         private StorageService storageService = new();
         bool ByPassDateCheck = false;
+        private string privateKey = string.Empty;
 
         public CreateTaskForm()
         {
@@ -56,6 +57,7 @@ namespace s3automatebackup.Forms
                 hierarchyCheckBox.Checked = task.Hierarchy;
                 removeOldFilesCheckbox.Checked = task.RemoveOldFiles;
                 daysInputTextBox.Text = task.OldFilesDays.ToString();
+                encryptBackupCheckbox.Checked = task.EncryptBackup;
             }
         }
 
@@ -173,6 +175,12 @@ namespace s3automatebackup.Forms
                     Task.RemoveOldFiles = false;
                 }
 
+                Task.EncryptBackup = encryptBackupCheckbox.Checked;
+                if (!string.IsNullOrWhiteSpace(privateKey))
+                {
+                    Task.PrivateKey = privateKey;
+                }
+
                 // Fix the retrieval of the selected configuration ID
                 int selectedConfigId = ((KeyValuePair<int, string>)configurationComboBox.SelectedItem).Key;
                 Configuration selectedConfig = Configurations.FirstOrDefault(c => c.Id == selectedConfigId);
@@ -270,6 +278,32 @@ namespace s3automatebackup.Forms
                 }
             }
             // If the user clicks Cancel, do nothing
+        }
+
+        private void encryptBackupCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (encryptBackupCheckbox.Checked)
+            {
+                // Open the PrivateKeyForm
+                using (PrivateKeyForm privateKeyForm = new PrivateKeyForm())
+                {
+                    if (privateKeyForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Store the private key in the task configuration
+                        privateKey = privateKeyForm.PrivateKey;
+                    }
+                    else
+                    {
+                        // If the user cancels, uncheck the checkbox
+                        encryptBackupCheckbox.Checked = false;
+                        MessageBox.Show("Encryption cancelled. Task will not be encrypted.");
+                    }
+                }
+            }
+            else
+            {
+                Task.PrivateKey = null; // Clear the private key if encryption is disabled
+            }
         }
     }
 }

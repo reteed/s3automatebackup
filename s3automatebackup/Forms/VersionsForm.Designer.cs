@@ -88,6 +88,7 @@
             // 
             // refreshButton
             // 
+            refreshButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             refreshButton.Location = new Point(640, 10);
             refreshButton.Margin = new Padding(2);
             refreshButton.Name = "refreshButton";
@@ -99,6 +100,7 @@
             // 
             // versionsTreeView
             // 
+            versionsTreeView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             versionsTreeView.Location = new Point(38, 50);
             versionsTreeView.Margin = new Padding(2);
             versionsTreeView.Name = "versionsTreeView";
@@ -136,6 +138,7 @@
             // 
             // removeBucketContent
             // 
+            removeBucketContent.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             removeBucketContent.Location = new Point(569, 429);
             removeBucketContent.Name = "removeBucketContent";
             removeBucketContent.Size = new Size(151, 36);

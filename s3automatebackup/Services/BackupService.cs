@@ -2,6 +2,8 @@
 using s3automatebackup.Models;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -129,7 +131,8 @@ namespace s3automatebackup.Services
                     task.BackupPath,
                     s3Service,
                     task.Hierarchy ? Path.GetDirectoryName(task.BackupPath) : null,
-                    task.Hierarchy
+                    task.Hierarchy,
+                    task
                 );
 
                 // Delete backed-up file from local disk if required
@@ -153,7 +156,8 @@ namespace s3automatebackup.Services
                         localFilePath,
                         s3Service,
                         task.Hierarchy ? task.BackupPath : null,
-                        task.Hierarchy
+                        task.Hierarchy,
+                        task
                     );
 
                     // Delete backed-up files from local disk if required
@@ -174,7 +178,7 @@ namespace s3automatebackup.Services
             }
         }
 
-        private async Task<bool> ProcessFile(string localFilePath, S3Service s3Service, string rootDirectory, bool hierarchy)
+        private async Task<bool> ProcessFile(string localFilePath, S3Service s3Service, string rootDirectory, bool hierarchy, BackupTask task)
         {
             string fileName;
 
@@ -189,13 +193,27 @@ namespace s3automatebackup.Services
                 fileName = Path.GetFileName(localFilePath);
             }
 
+            // Check if encryption is required
+            string fileToUpload = localFilePath; // By default, use the original file
+            if (task.EncryptBackup && !string.IsNullOrEmpty(task.PrivateKey))
+            {
+                // Encrypt the file and store it temporarily
+                string encryptedFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".enc");
+
+                bool encrypted = EncryptFile(localFilePath, encryptedFilePath, task.PrivateKey);
+                if (encrypted)
+                {
+                    fileToUpload = encryptedFilePath;
+                }
+            }
+
             DateTime? fileExistsInS3 = await s3Service.DoesFileExist(fileName);
 
+            bool result = false;
             if (fileExistsInS3 == null)
             {
                 // File doesn't exist in the bucket, upload it
-                bool uploaded = await s3Service.UploadFileAsync(localFilePath, fileName);
-                return uploaded;
+                result = await s3Service.UploadFileAsync(fileToUpload, fileName, isEncrypted: task.EncryptBackup);
             }
             else
             {
@@ -204,15 +222,49 @@ namespace s3automatebackup.Services
 
                 if (localLastModified > fileExistsInS3)
                 {
-                    // If the local file is newer, upload it to update the one in the bucket
-                    bool uploaded = await s3Service.UploadFileAsync(localFilePath, fileName);
-                    return uploaded;
+                    result = await s3Service.UploadFileAsync(fileToUpload, fileName, isEncrypted: task.EncryptBackup);
                 }
-                else
+            }
+
+            // Clean up the temporary encrypted file if used
+            if (fileToUpload != localFilePath && File.Exists(fileToUpload))
+            {
+                File.Delete(fileToUpload);
+            }
+
+            return result;
+        }
+
+        private bool EncryptFile(string inputFilePath, string outputFilePath, string encryptionKey)
+        {
+            try
+            {
+                using (FileStream inputFileStream = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read))
+                using (FileStream outputFileStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write))
+                using (Aes aes = Aes.Create())
                 {
-                    // No need to upload if the file in S3 is newer or the same
-                    return false;
+                    // Derive key and IV from the encryption key using a salt (e.g., PBKDF2)
+                    var key = new Rfc2898DeriveBytes(encryptionKey, Encoding.UTF8.GetBytes("S3EncryptSalt"), 10000);
+                    aes.Key = key.GetBytes(32);  // AES-256
+                    aes.IV = key.GetBytes(16);   // AES block size is 16 bytes
+
+                    using (CryptoStream cryptoStream = new CryptoStream(outputFileStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        byte[] buffer = new byte[4096];
+                        int bytesRead;
+                        while ((bytesRead = inputFileStream.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            cryptoStream.Write(buffer, 0, bytesRead);
+                        }
+                    }
                 }
+
+                return true; // Encryption successful
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Encryption failed: {ex.Message}");
+                return false; // Encryption failed
             }
         }
 

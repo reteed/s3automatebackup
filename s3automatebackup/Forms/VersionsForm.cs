@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -265,17 +266,53 @@ namespace s3automatebackup.Forms
                     saveFileDialog.Filter = "All files (*.*)|*.*"; // Option to show all files
                     saveFileDialog.Title = "Save File As";
 
-                    // Show the dialog and check if the user confirmed
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string selectedFilePath = saveFileDialog.FileName;
 
                         try
                         {
-                            // Download the version to the user-selected file path
-                            await s3Service.DownloadVersion(s3Key, versionId, selectedFilePath);
-                            MessageBox.Show($"Version {versionId} of {s3Key} downloaded successfully to {selectedFilePath}.",
-                                            "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // Download the version to a temporary location first
+                            string tempFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+
+                            await s3Service.DownloadVersion(s3Key, versionId, tempFilePath);
+
+                            // Check if the file has the .enc extension
+                            bool isEncrypted = s3Key.EndsWith(".enc");
+
+                            if (isEncrypted)
+                            {
+                                // Ask for the private key using the PrivateKeyForm
+                                using (PrivateKeyForm privateKeyForm = new PrivateKeyForm())
+                                {
+                                    if (privateKeyForm.ShowDialog() == DialogResult.OK)
+                                    {
+                                        string privateKey = privateKeyForm.PrivateKey;
+
+                                        // Decrypt the file
+                                        bool decrypted = DecryptFile(tempFilePath, selectedFilePath.Replace(".enc", ""), privateKey);
+
+                                        if (decrypted)
+                                        {
+                                            MessageBox.Show($"Successfully downloaded and decrypted the file to {selectedFilePath.Replace(".enc", "")}.", "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Decryption failed. Please check the private key and try again.", "Decryption Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Decryption cancelled.", "Operation Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                // If the file is not encrypted, just move it to the selected location
+                                File.Move(tempFilePath, selectedFilePath);
+                                MessageBox.Show($"File downloaded successfully to {selectedFilePath}.", "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -283,6 +320,39 @@ namespace s3automatebackup.Forms
                         }
                     }
                 }
+            }
+        }
+
+        private bool DecryptFile(string inputFilePath, string outputFilePath, string decryptionKey)
+        {
+            try
+            {
+                using (FileStream inputFileStream = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read))
+                using (FileStream outputFileStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write))
+                using (Aes aes = Aes.Create())
+                {
+                    // Derive key and IV from the decryption key using a salt (e.g., PBKDF2)
+                    var key = new Rfc2898DeriveBytes(decryptionKey, Encoding.UTF8.GetBytes("S3EncryptSalt"), 10000);
+                    aes.Key = key.GetBytes(32);  // AES-256
+                    aes.IV = key.GetBytes(16);   // AES block size is 16 bytes
+
+                    using (CryptoStream cryptoStream = new CryptoStream(inputFileStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                    {
+                        byte[] buffer = new byte[4096];
+                        int bytesRead;
+                        while ((bytesRead = cryptoStream.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            outputFileStream.Write(buffer, 0, bytesRead);
+                        }
+                    }
+                }
+
+                return true; // Decryption successful
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Decryption failed: {ex.Message}");
+                return false; // Decryption failed
             }
         }
 

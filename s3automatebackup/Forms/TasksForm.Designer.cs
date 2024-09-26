@@ -40,6 +40,7 @@
             // 
             // createTaskButton
             // 
+            createTaskButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             createTaskButton.Location = new Point(588, 11);
             createTaskButton.Margin = new Padding(2);
             createTaskButton.Name = "createTaskButton";
@@ -51,6 +52,7 @@
             // 
             // scheduledTaskslistView
             // 
+            scheduledTaskslistView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             scheduledTaskslistView.Location = new Point(38, 50);
             scheduledTaskslistView.Margin = new Padding(2);
             scheduledTaskslistView.Name = "scheduledTaskslistView";

@@ -40,8 +40,9 @@
             // 
             // configurationsListView
             // 
+            configurationsListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             configurationsListView.Location = new Point(34, 48);
-            configurationsListView.Margin = new Padding(2, 2, 2, 2);
+            configurationsListView.Margin = new Padding(2);
             configurationsListView.Name = "configurationsListView";
             configurationsListView.Size = new Size(630, 343);
             configurationsListView.TabIndex = 0;
@@ -50,8 +51,9 @@
             // 
             // createConfigurationButton
             // 
+            createConfigurationButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             createConfigurationButton.Location = new Point(584, 11);
-            createConfigurationButton.Margin = new Padding(2, 2, 2, 2);
+            createConfigurationButton.Margin = new Padding(2);
             createConfigurationButton.Name = "createConfigurationButton";
             createConfigurationButton.Size = new Size(80, 30);
             createConfigurationButton.TabIndex = 1;
@@ -88,7 +90,7 @@
             Controls.Add(createConfigurationButton);
             Controls.Add(configurationsListView);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "ConfigurationsForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Configurations - S3AutomateBackup";

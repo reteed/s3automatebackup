@@ -53,7 +53,7 @@ namespace s3automatebackup.Services
             }
         }
 
-        public async Task<bool> UploadFileAsync(string localFilePath, string s3Key)
+        public async Task<bool> UploadFileAsync(string localFilePath, string s3Key, bool isEncrypted = false)
         {
             // Check if the file is locked
             if (IsFileLocked(localFilePath))
@@ -72,21 +72,32 @@ namespace s3automatebackup.Services
             FileInfo fileInfo = new FileInfo(localFilePath);
             long maxSingleUploadSize = 5 * 1024 * 1024 * 1024L; // 5 GB
 
+            // Modify the key to add .enc extension if the file is encrypted
+            if (isEncrypted)
+            {
+                s3Key += ".enc";
+            }
+
             try
             {
-                // Check if file size is larger than 5 GB
+                PutObjectRequest request = new PutObjectRequest
+                {
+                    BucketName = _bucketName,
+                    Key = s3Key,
+                    FilePath = localFilePath
+                };
+
+                // Check if file size is larger than 5 GB for multi-part upload
                 if (fileInfo.Length > maxSingleUploadSize)
                 {
-                    // Execute multi upload for the file.
-                    await CustomMultiPartUploadAsync(client, localFilePath, s3Key);
+                    await CustomMultiPartUploadAsync(client, localFilePath, s3Key); // For large files
                 }
                 else
                 {
-                    // Execute normal upload for smaller files
-                    using TransferUtility transferUtility = new(client);
-                    await transferUtility.UploadAsync(localFilePath, _bucketName, s3Key);
-                    Console.WriteLine($"Successfully uploaded {localFilePath} to {_bucketName}/{s3Key}.");
+                    await client.PutObjectAsync(request); // For smaller files
                 }
+
+                Console.WriteLine($"Successfully uploaded {localFilePath} to {_bucketName}/{s3Key}.");
                 return true;
             }
             catch (Exception ex)
@@ -408,6 +419,34 @@ namespace s3automatebackup.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while deleting: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<GetObjectMetadataResponse> GetFileMetadataAsync(string keyName, string versionId = null)
+        {
+            AmazonS3Config config = new()
+            {
+                ServiceURL = _serviceUrl,
+                ForcePathStyle = true
+            };
+
+            using AmazonS3Client client = new(_accessKey, _secretKey, config);
+
+            try
+            {
+                GetObjectMetadataRequest request = new GetObjectMetadataRequest
+                {
+                    BucketName = _bucketName,
+                    Key = keyName,
+                    VersionId = versionId
+                };
+
+                return await client.GetObjectMetadataAsync(request);
+            }
+            catch (AmazonS3Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 throw;
             }
         }

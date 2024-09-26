@@ -48,13 +48,15 @@
             labelOldFiles = new Label();
             bucketComboBox = new ComboBox();
             browsePathButton = new Button();
+            encryptBackupCheckbox = new CheckBox();
             SuspendLayout();
             // 
             // bucketNameLabel
             // 
+            bucketNameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             bucketNameLabel.AutoSize = true;
             bucketNameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            bucketNameLabel.Location = new Point(306, 33);
+            bucketNameLabel.Location = new Point(332, 36);
             bucketNameLabel.Margin = new Padding(2, 0, 2, 0);
             bucketNameLabel.Name = "bucketNameLabel";
             bucketNameLabel.Size = new Size(84, 15);
@@ -65,7 +67,7 @@
             // 
             backupPathLabel.AutoSize = true;
             backupPathLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            backupPathLabel.Location = new Point(42, 79);
+            backupPathLabel.Location = new Point(68, 82);
             backupPathLabel.Margin = new Padding(2, 0, 2, 0);
             backupPathLabel.Name = "backupPathLabel";
             backupPathLabel.Size = new Size(139, 15);
@@ -76,7 +78,7 @@
             // 
             scheduledTimeLabel.AutoSize = true;
             scheduledTimeLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            scheduledTimeLabel.Location = new Point(42, 130);
+            scheduledTimeLabel.Location = new Point(68, 133);
             scheduledTimeLabel.Margin = new Padding(2, 0, 2, 0);
             scheduledTimeLabel.Name = "scheduledTimeLabel";
             scheduledTimeLabel.Size = new Size(142, 15);
@@ -85,9 +87,10 @@
             // 
             // periodLabel
             // 
+            periodLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             periodLabel.AutoSize = true;
             periodLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            periodLabel.Location = new Point(394, 130);
+            periodLabel.Location = new Point(420, 133);
             periodLabel.Margin = new Padding(2, 0, 2, 0);
             periodLabel.Name = "periodLabel";
             periodLabel.Size = new Size(46, 15);
@@ -96,7 +99,8 @@
             // 
             // backupFolderTextBox
             // 
-            backupFolderTextBox.Location = new Point(191, 76);
+            backupFolderTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            backupFolderTextBox.Location = new Point(217, 79);
             backupFolderTextBox.Margin = new Padding(2);
             backupFolderTextBox.Name = "backupFolderTextBox";
             backupFolderTextBox.Size = new Size(229, 23);
@@ -104,9 +108,10 @@
             // 
             // scheduledDateAndTimeDateTimePicker
             // 
+            scheduledDateAndTimeDateTimePicker.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             scheduledDateAndTimeDateTimePicker.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             scheduledDateAndTimeDateTimePicker.Format = DateTimePickerFormat.Custom;
-            scheduledDateAndTimeDateTimePicker.Location = new Point(191, 130);
+            scheduledDateAndTimeDateTimePicker.Location = new Point(217, 133);
             scheduledDateAndTimeDateTimePicker.Margin = new Padding(2);
             scheduledDateAndTimeDateTimePicker.Name = "scheduledDateAndTimeDateTimePicker";
             scheduledDateAndTimeDateTimePicker.Size = new Size(180, 23);
@@ -115,8 +120,9 @@
             // 
             // periodComboBox
             // 
+            periodComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             periodComboBox.FormattingEnabled = true;
-            periodComboBox.Location = new Point(444, 130);
+            periodComboBox.Location = new Point(470, 133);
             periodComboBox.Margin = new Padding(2);
             periodComboBox.Name = "periodComboBox";
             periodComboBox.Size = new Size(129, 23);
@@ -124,7 +130,8 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(155, 324);
+            cancelButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            cancelButton.Location = new Point(181, 363);
             cancelButton.Margin = new Padding(2);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(80, 30);
@@ -135,7 +142,8 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(394, 324);
+            saveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            saveButton.Location = new Point(420, 363);
             saveButton.Margin = new Padding(2);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(80, 30);
@@ -148,7 +156,7 @@
             // 
             configurationLabel.AutoSize = true;
             configurationLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            configurationLabel.Location = new Point(45, 33);
+            configurationLabel.Location = new Point(71, 36);
             configurationLabel.Margin = new Padding(2, 0, 2, 0);
             configurationLabel.Name = "configurationLabel";
             configurationLabel.Size = new Size(86, 15);
@@ -158,7 +166,7 @@
             // configurationComboBox
             // 
             configurationComboBox.FormattingEnabled = true;
-            configurationComboBox.Location = new Point(135, 33);
+            configurationComboBox.Location = new Point(161, 36);
             configurationComboBox.Margin = new Padding(2);
             configurationComboBox.Name = "configurationComboBox";
             configurationComboBox.Size = new Size(129, 23);
@@ -167,9 +175,10 @@
             // 
             // deletePathCheckBox
             // 
+            deletePathCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             deletePathCheckBox.AutoSize = true;
             deletePathCheckBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deletePathCheckBox.Location = new Point(72, 212);
+            deletePathCheckBox.Location = new Point(98, 215);
             deletePathCheckBox.Margin = new Padding(2);
             deletePathCheckBox.Name = "deletePathCheckBox";
             deletePathCheckBox.Size = new Size(230, 19);
@@ -179,8 +188,9 @@
             // 
             // hierarchyCheckBox
             // 
+            hierarchyCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             hierarchyCheckBox.AutoSize = true;
-            hierarchyCheckBox.Location = new Point(72, 235);
+            hierarchyCheckBox.Location = new Point(98, 238);
             hierarchyCheckBox.Margin = new Padding(2);
             hierarchyCheckBox.Name = "hierarchyCheckBox";
             hierarchyCheckBox.Size = new Size(249, 19);
@@ -190,9 +200,10 @@
             // 
             // additionalSettingsLabel
             // 
+            additionalSettingsLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             additionalSettingsLabel.AutoSize = true;
             additionalSettingsLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            additionalSettingsLabel.Location = new Point(42, 185);
+            additionalSettingsLabel.Location = new Point(68, 188);
             additionalSettingsLabel.Name = "additionalSettingsLabel";
             additionalSettingsLabel.Size = new Size(113, 15);
             additionalSettingsLabel.TabIndex = 15;
@@ -200,8 +211,9 @@
             // 
             // removeOldFilesCheckbox
             // 
+            removeOldFilesCheckbox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             removeOldFilesCheckbox.AutoSize = true;
-            removeOldFilesCheckbox.Location = new Point(71, 266);
+            removeOldFilesCheckbox.Location = new Point(97, 269);
             removeOldFilesCheckbox.Name = "removeOldFilesCheckbox";
             removeOldFilesCheckbox.Size = new Size(150, 19);
             removeOldFilesCheckbox.TabIndex = 16;
@@ -210,15 +222,17 @@
             // 
             // daysInputTextBox
             // 
-            daysInputTextBox.Location = new Point(227, 264);
+            daysInputTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            daysInputTextBox.Location = new Point(253, 267);
             daysInputTextBox.Name = "daysInputTextBox";
             daysInputTextBox.Size = new Size(67, 23);
             daysInputTextBox.TabIndex = 17;
             // 
             // labelOldFiles
             // 
+            labelOldFiles.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelOldFiles.AutoSize = true;
-            labelOldFiles.Location = new Point(306, 270);
+            labelOldFiles.Location = new Point(332, 273);
             labelOldFiles.Name = "labelOldFiles";
             labelOldFiles.Size = new Size(34, 15);
             labelOldFiles.TabIndex = 18;
@@ -226,15 +240,17 @@
             // 
             // bucketComboBox
             // 
+            bucketComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             bucketComboBox.FormattingEnabled = true;
-            bucketComboBox.Location = new Point(395, 33);
+            bucketComboBox.Location = new Point(421, 36);
             bucketComboBox.Name = "bucketComboBox";
             bucketComboBox.Size = new Size(132, 23);
             bucketComboBox.TabIndex = 19;
             // 
             // browsePathButton
             // 
-            browsePathButton.Location = new Point(425, 76);
+            browsePathButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            browsePathButton.Location = new Point(451, 79);
             browsePathButton.Name = "browsePathButton";
             browsePathButton.Size = new Size(75, 23);
             browsePathButton.TabIndex = 20;
@@ -242,11 +258,24 @@
             browsePathButton.UseVisualStyleBackColor = true;
             browsePathButton.Click += browsePathButton_Click;
             // 
+            // encryptBackupCheckbox
+            // 
+            encryptBackupCheckbox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            encryptBackupCheckbox.AutoSize = true;
+            encryptBackupCheckbox.Location = new Point(98, 304);
+            encryptBackupCheckbox.Name = "encryptBackupCheckbox";
+            encryptBackupCheckbox.Size = new Size(111, 19);
+            encryptBackupCheckbox.TabIndex = 21;
+            encryptBackupCheckbox.Text = "Encrypt Backup.";
+            encryptBackupCheckbox.UseVisualStyleBackColor = true;
+            encryptBackupCheckbox.CheckedChanged += encryptBackupCheckbox_CheckedChanged;
+            // 
             // CreateTaskForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(617, 382);
+            ClientSize = new Size(660, 437);
+            Controls.Add(encryptBackupCheckbox);
             Controls.Add(browsePathButton);
             Controls.Add(bucketComboBox);
             Controls.Add(labelOldFiles);
@@ -266,8 +295,10 @@
             Controls.Add(scheduledTimeLabel);
             Controls.Add(backupPathLabel);
             Controls.Add(bucketNameLabel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "CreateTaskForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Create Task - S3AutomateBackup";
@@ -297,5 +328,6 @@
         private Label labelOldFiles;
         private ComboBox bucketComboBox;
         private Button browsePathButton;
+        private CheckBox encryptBackupCheckbox;
     }
 }

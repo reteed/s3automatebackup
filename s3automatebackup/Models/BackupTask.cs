@@ -19,5 +19,7 @@ namespace s3automatebackup.Models
         public System.Threading.Timer Timer { get; set; }
         public bool RemoveOldFiles { get; set; }
         public int OldFilesDays { get; set; }
+        public bool EncryptBackup { get; set; }
+        public string PrivateKey { get; set; }
     }
 }
