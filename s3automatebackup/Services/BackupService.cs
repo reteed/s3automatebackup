@@ -15,6 +15,7 @@ namespace s3automatebackup.Services
         private List<System.Threading.Timer> _timers = new();
         private bool _disposed = false;
         private SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1); // Allow 1 task at a time
+        public static event Action TasksUpdated;
 
 
         public BackupService()
@@ -31,7 +32,7 @@ namespace s3automatebackup.Services
             }
         }
 
-        private async void ScheduleTask(BackupTask task)
+        private async Task ScheduleTask(BackupTask task)
         {
             DateTime scheduledTime = task.ScheduledTime;
             DateTime currentTime = DateTime.Now;
@@ -64,8 +65,14 @@ namespace s3automatebackup.Services
             }
 
             // Calculate the next occurrence and reschedule
-            DateTime nextOccurrence = GetNextOccurrence(task.PeriodKey, task.ScheduledTime);
+            DateTime nextOccurrence = GetNextOccurrence(task.PeriodKey, DateTime.Now); // Use current time for accuracy
             task.ScheduledTime = nextOccurrence;
+
+            // Save the updated task with the new scheduled time
+            SaveUpdatedTask(task);
+
+            // Notify subscribers that tasks have been updated
+            NotifyTasksUpdated();
 
             // Reschedule the task for the next period
             ScheduleTask(task);
@@ -302,20 +309,36 @@ namespace s3automatebackup.Services
 
         private async Task RemoveDeletedLocalFiles(List<S3Object> s3Files, string[] localFiles, S3Service s3Service, BackupTask task)
         {
-            var localFileNames = new HashSet<string>(localFiles.Select(f => GetRelativePath(f, task.BackupPath)));
-
-            foreach (var s3File in s3Files)
+            // If the task involves a single file, do nothing
+            if (File.Exists(task.BackupPath))
             {
-                if (!localFileNames.Contains(s3File.Key))
+                Console.WriteLine($"The task is for a single file: {task.BackupPath}. No S3 files will be deleted.");
+                return;
+            }
+
+            // If the task involves a directory
+            if (Directory.Exists(task.BackupPath))
+            {
+                // Convert local file paths to relative names for comparison with S3
+                HashSet<string> localFileNames = new HashSet<string>(localFiles.Select(f => GetRelativePath(f, task.BackupPath)));
+
+                // Iterate through S3 files and delete those that don't exist locally
+                foreach (var s3File in s3Files)
                 {
-                    // The file exists in S3 but not locally, so delete it
-                    var versions = await s3Service.GetObjectVersions(s3File.Key);
-                    foreach (var version in versions)
+                    if (!localFileNames.Contains(s3File.Key))
                     {
-                        await s3Service.DeleteVersion(s3File.Key, version.VersionId);
+                        var versions = await s3Service.GetObjectVersions(s3File.Key);
+                        foreach (var version in versions)
+                        {
+                            await s3Service.DeleteVersion(s3File.Key, version.VersionId);
+                        }
+                        Console.WriteLine($"Deleted {s3File.Key} and all its versions from S3 because it no longer exists locally.");
                     }
-                    Console.WriteLine($"Deleted {s3File.Key} and all its versions from S3 because it no longer exists locally.");
                 }
+            }
+            else
+            {
+                Console.WriteLine($"The backup path {task.BackupPath} does not exist.");
             }
         }
 
@@ -334,6 +357,28 @@ namespace s3automatebackup.Services
                 return relativePath.Replace(Path.DirectorySeparatorChar, '/'); // S3 uses '/' as a path separator
             }
             return fullPath.Replace(Path.DirectorySeparatorChar, '/');
+        }
+
+        private void SaveUpdatedTask(BackupTask task)
+        {
+            // Load the existing tasks
+            List<BackupTask> tasks = _storageService.LoadTasks();
+
+            // Find and update the specific task
+            int index = tasks.FindIndex(t => t.Id == task.Id);
+            if (index != -1)
+            {
+                tasks[index] = task; // Update with the new scheduled time
+            }
+
+            // Save the updated task list back to storage
+            _storageService.SaveTasks(tasks);
+        }
+
+        // Call this method after updating the task list
+        private void NotifyTasksUpdated()
+        {
+            TasksUpdated?.Invoke(); // Invoke the event if there are any subscribers
         }
     }
 }

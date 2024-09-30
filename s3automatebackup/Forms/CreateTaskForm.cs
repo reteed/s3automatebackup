@@ -302,7 +302,7 @@ namespace s3automatebackup.Forms
             }
             else
             {
-                Task.PrivateKey = null; // Clear the private key if encryption is disabled
+                privateKey = null; // Clear the private key if encryption is disabled
             }
         }
     }

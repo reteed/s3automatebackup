@@ -11,21 +11,286 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace s3automatebackup.Forms
 {
-    public partial class VersionsForm : Form
+    public partial class MainForm : Form
     {
         private StorageService storageService = new();
+        List<Configuration> configurations = new();
+        private System.Windows.Forms.Timer clickTimer = new System.Windows.Forms.Timer();
+        private bool isDoubleClick = false;
+        List<BackupTask> tasks = new();
         private S3Service s3Service;
         List<S3Object> allObjects;
         Configuration configuration = new();
 
-        public VersionsForm()
+        public MainForm()
         {
             InitializeComponent();
+            #region Configurations Initialization
+            configurationsListView.View = View.Details;
+            configurationsListView.Columns.Add("Name", 150, HorizontalAlignment.Left);
+            configurationsListView.Columns.Add("Server", 300, HorizontalAlignment.Left);
+            configurationsListView.Columns.Add("Access Key", 350, HorizontalAlignment.Left); // Be cautious with sensitive data
+            configurations = storageService.LoadConfigurations();
+            PopulateListView(configurations);
+            clickTimer.Interval = SystemInformation.DoubleClickTime;
+            clickTimer.Tick += ClickTimer_Tick;
+            #endregion
+            #region Tasks Initialization
+            scheduledTaskslistView.View = View.Details;
+            scheduledTaskslistView.Columns.Add("Bucket Name", 150, HorizontalAlignment.Left);
+            scheduledTaskslistView.Columns.Add("Backup Folder", 300, HorizontalAlignment.Left);
+            scheduledTaskslistView.Columns.Add("Scheduled Time", 350, HorizontalAlignment.Left); // Be cautious with sensitive data
+            tasks = storageService.LoadTasks();
+            PopulateListViewTasks(tasks);
+            // Subscribe to the static event in BackupService
+            BackupService.TasksUpdated += RefreshTaskList;
+            #endregion
+            #region Versions Initialization
             PopulateConfigurations();
+            #endregion
+
         }
+
+        #region Configurations
+
+        private void createConfigurationButton_Click(object sender, EventArgs e)
+        {
+            using (CreateConfigurationForm createConfigurationForm = new CreateConfigurationForm())
+            {
+                if (createConfigurationForm.ShowDialog() == DialogResult.OK)
+                {
+                    Configuration newConfiguration = createConfigurationForm.Configuration;
+                    newConfiguration.Id = configurations.Count + 1;
+                    configurations.Add(newConfiguration);
+                    storageService.SaveConfigurations(configurations);
+                    PopulateListView(configurations);
+                }
+            }
+        }
+
+        private void listViewConfigurations_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && configurationsListView.FocusedItem != null && configurationsListView.FocusedItem.Bounds.Contains(e.Location))
+            {
+                // Start the timer to check if it's a single or double click
+                clickTimer.Start();
+            }
+            if (e.Button == MouseButtons.Right && configurationsListView.FocusedItem != null && configurationsListView.FocusedItem.Bounds.Contains(e.Location))
+            {
+                listViewContextMenuStrip.Show(Cursor.Position);
+            }
+        }
+        private void listViewConfigurations_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && configurationsListView.FocusedItem != null && configurationsListView.FocusedItem.Bounds.Contains(e.Location))
+            {
+                isDoubleClick = true; // Indicate that a double click has occurred
+                clickTimer.Stop(); // Stop the timer
+                EditConfiguration(); // Execute double click action
+            }
+        }
+
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (configurationsListView.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = configurationsListView.SelectedItems[0];
+                Configuration selectedConfiguration = selectedItem.Tag as Configuration;
+                if (MessageBox.Show("Are you sure you want to delete this configuration?", "Delete Configuration", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    List<BackupTask> backupTasks = storageService.LoadTasks();
+                    BackupTask backupTask = backupTasks.FirstOrDefault(bt => bt.Configuration.Id == selectedConfiguration.Id);
+                    if (backupTask != null)
+                    {
+                        MessageBox.Show("You cannot delete configurations that have associated tasks. Please remove the tasks containing this configuration first.", "Configuration In Use", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        configurationsListView.Items.Remove(selectedItem);
+                        configurations.Remove(selectedConfiguration);
+                        storageService.SaveConfigurations(configurations);
+                        PopulateListView(configurations);
+                    }
+                }
+            }
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditConfiguration();
+        }
+
+        private void PopulateListView(List<Configuration> configurations)
+        {
+            configurationsListView.Items.Clear();
+
+            foreach (Configuration configuration in configurations)
+            {
+                ListViewItem item = new ListViewItem(configuration.Name);
+                item.SubItems.Add(configuration.Server);
+                item.SubItems.Add(configuration.AccessKey);
+                item.Tag = configuration;
+                configurationsListView.Items.Add(item);
+            }
+        }
+
+        private void ClickTimer_Tick(object sender, EventArgs e)
+        {
+            clickTimer.Stop(); // Detenemos el temporizador
+            if (!isDoubleClick)
+            {
+                // Si no es doble clic, mostramos el menú contextual
+                listViewContextMenuStrip.Show(Cursor.Position);
+            }
+            isDoubleClick = false; // Reiniciamos la bandera
+        }
+
+        private void EditConfiguration()
+        {
+            if (configurationsListView.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = configurationsListView.SelectedItems[0];
+                Configuration selectedConfig = (Configuration)selectedItem.Tag;
+
+                using (CreateConfigurationForm editForm = new CreateConfigurationForm(selectedConfig))
+                {
+                    if (editForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Replace the old configuration object with the updated one
+                        int index = configurations.IndexOf(selectedConfig);
+                        if (index != -1)
+                        {
+                            configurations[index] = editForm.Configuration;
+                        }
+
+                        storageService.SaveConfigurations(configurations);
+                        PopulateListView(configurations);
+                    }
+                }
+            }
+        }
+        #endregion
+        #region Tasks
+        private void PopulateListViewTasks(List<BackupTask> tasks)
+        {
+            scheduledTaskslistView.Items.Clear();
+
+            foreach (BackupTask task in tasks)
+            {
+                ListViewItem item = new ListViewItem(task.BucketName);
+                item.SubItems.Add(task.BackupPath);
+                item.SubItems.Add(task.ScheduledTime.ToString());
+                item.Tag = task;
+                scheduledTaskslistView.Items.Add(item);
+            }
+        }
+
+        private void createTaskButton_Click(object sender, EventArgs e)
+        {
+            List<Configuration> configurations = storageService.LoadConfigurations();
+            if (configurations.Count > 0)
+            {
+                using (CreateTaskForm createTaskForm = new CreateTaskForm())
+                {
+                    if (createTaskForm.ShowDialog() == DialogResult.OK)
+                    {
+                        BackupTask newTask = createTaskForm.Task;
+                        newTask.Id = tasks.Count + 1;
+                        tasks.Add(newTask);
+                        storageService.SaveTasks(tasks);
+                        PopulateListViewTasks(tasks);
+                        RescheduleAllTasks();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("You haven't created any configuration you must do it before creating a backup task.", "Missing Configurations", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void scheduledTaskslistView_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (scheduledTaskslistView.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    listViewContextMenuStrip.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void deleteTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (scheduledTaskslistView.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = scheduledTaskslistView.SelectedItems[0];
+                BackupTask selectedTask = selectedItem.Tag as BackupTask;
+                if (MessageBox.Show("Are you sure you want to delete this task?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    scheduledTaskslistView.Items.Remove(selectedItem);
+                    tasks.Remove(selectedTask);
+                    storageService.SaveTasks(tasks);
+                    PopulateListViewTasks(tasks);
+                    RescheduleAllTasks();
+                }
+            }
+        }
+
+        private void editTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (scheduledTaskslistView.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = scheduledTaskslistView.SelectedItems[0];
+                BackupTask selectedTask = (BackupTask)selectedItem.Tag;
+
+                using (CreateTaskForm editForm = new CreateTaskForm(selectedTask))
+                {
+                    if (editForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Dispose of the old task's timer to prevent double execution
+                        if (selectedTask.Timer != null)
+                        {
+                            selectedTask.Timer.Dispose();
+                            selectedTask.Timer = null; // Clear the old timer
+                        }
+
+                        // Update task in the list and reschedule it
+                        int index = tasks.IndexOf(selectedTask);
+                        if (index != -1)
+                        {
+                            tasks[index] = editForm.Task;
+                        }
+                        storageService.SaveTasks(tasks);
+                        PopulateListViewTasks(tasks);
+                        RescheduleAllTasks(); // This will create a new timer with the updated time
+                    }
+                }
+            }
+        }
+
+        private void RescheduleAllTasks()
+        {
+            BackupService backupService = new BackupService();
+            backupService.ScheduleTasks();
+
+            // Refresh the task list in the UI
+            tasks = storageService.LoadTasks();
+            PopulateListViewTasks(tasks);
+        }
+
+        public void RefreshTaskList()
+        {
+            tasks = storageService.LoadTasks();  // Reload tasks from storage
+            PopulateListViewTasks(tasks);        // Repopulate the task list in the UI
+        }
+        #endregion
+        #region Versions
 
         private void S3Service_OnDeletionCompleted()
         {
@@ -71,14 +336,14 @@ namespace s3automatebackup.Forms
                     // Enable "Download" or other version-related options if it's a version node
                     restoreToolStripMenuItem.Enabled = true;
                     downloadToolStripMenuItem.Enabled = true;
-                    deleteToolStripMenuItem.Enabled = true;
+                    deleteVersionToolStripMenuItem.Enabled = true;
                 }
                 else
                 {
                     // Disable the "Download" option or any other version-related options if it's not a version node
                     restoreToolStripMenuItem.Enabled = false;
                     downloadToolStripMenuItem.Enabled = false;
-                    deleteToolStripMenuItem.Enabled = false;
+                    deleteVersionToolStripMenuItem.Enabled = false;
                 }
 
                 // Show the context menu at the location of the right-click
@@ -356,27 +621,82 @@ namespace s3automatebackup.Forms
             }
         }
 
-        private async void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void deleteVersionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Get the selected node from the TreeView
             TreeNode selectedNode = versionsTreeView.SelectedNode;
+
+            // Check if the selectedNode is valid and contains an S3ObjectVersion in its Tag property
             if (selectedNode != null && selectedNode.Tag is S3ObjectVersion s3ObjectVersion)
             {
-                // Retrieve the S3Object and version details
-                S3Object s3Object = allObjects.FindLast(s3 => s3.Key == selectedNode.Parent.Text);
+                // Rebuild the search key using the directory and the extracted file name
+                string searchKey = s3ObjectVersion.Key;  // Ensure S3 uses forward slashes
+
+                Console.WriteLine($"Search Key: '{searchKey}'");
+
+                // Print all keys in the S3 object list for debugging
+                Console.WriteLine("Keys in allObjects:");
+                foreach (var obj in allObjects)
+                {
+                    Console.WriteLine($"S3Object: '{obj.Key}'");
+                }
+
+                // Search for the S3Object in allObjects using case-insensitive comparison
+                S3Object s3Object = allObjects.FindLast(s3 =>
+                    string.Equals(s3.Key.Trim(), searchKey.Trim(), StringComparison.OrdinalIgnoreCase)
+                );
+
+                // Check if the S3Object is found
+                if (s3Object == null)
+                {
+                    MessageBox.Show("The selected S3 object could not be found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 string versionId = s3ObjectVersion.VersionId;
 
                 // Confirm deletion
-                DialogResult result = MessageBox.Show($"Are you sure you want to delete version {versionId} of {s3Object.Key}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete version {versionId} of {s3Object.Key}?",
+                                                       "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
                 if (result == DialogResult.Yes)
                 {
-                    // Remove the version
+                    // Remove the version from S3
                     await s3Service.DeleteVersion(s3Object.Key, versionId);
-                    MessageBox.Show($"Version {versionId} of {s3Object.Key} deleted successfully.");
+                    MessageBox.Show($"Version {versionId} of {s3Object.Key} deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Remove the node from the TreeView
-                    versionsTreeView.Nodes.Remove(selectedNode);
+                    // Now remove empty parent nodes (folders) recursively
+                    TreeNode parentNode = selectedNode.Parent;
+
+                    if(parentNode != null)
+                    {
+                        while (parentNode.Nodes.Count > 0) // Keep removing parent nodes as long as they have no children
+                        {
+                            if(parentNode.Parent != null)
+                            {
+                                TreeNode grandParentNode = parentNode.Parent; // Move up to the grandparent
+                                parentNode.Remove();
+                                parentNode = grandParentNode; // Continue up the tree
+                            }
+                            else
+                            {
+                                parentNode.Nodes.Clear();
+                                parentNode.Remove();
+                            }
+
+                        }
+                        parentNode.Remove();
+                    }
+
+                    // Remove the node representing the version from the TreeView
+                    selectedNode.Remove();
                 }
             }
+            else
+            {
+                MessageBox.Show("Please select a valid version to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+        #endregion
     }
 }

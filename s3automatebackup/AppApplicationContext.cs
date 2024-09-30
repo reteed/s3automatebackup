@@ -10,18 +10,20 @@ namespace s3automatebackup
     public class AppApplicationContext : ApplicationContext
     {
         NotifyIcon notifyIcon = new NotifyIcon();
+        MainForm mainForm = new();
+
         public AppApplicationContext()
         {
+            // Configure the context menu (right click)
             notifyIcon.ContextMenuStrip = new ContextMenuStrip()
             {
                 Items =
                 {
-                    new ToolStripMenuItem("Tasks", null, new EventHandler(ShowTasks), "Tasks"),
-                    new ToolStripMenuItem("Configurations", null, new EventHandler(ShowConfigurations), "Configurations"),
-                    new ToolStripMenuItem("Versions", null, new EventHandler(ShowVersions), "Versions"),
+                    new ToolStripMenuItem("Open", null, new EventHandler(ShowMainForm), "Open"),
                     new ToolStripMenuItem("Exit", null, new EventHandler(Exit), "Exit")
                 }
             };
+
             string iconPath = Path.Combine(Application.StartupPath, "cloud.ico");
             if (File.Exists(iconPath))
             {
@@ -33,50 +35,36 @@ namespace s3automatebackup
             }
 
             notifyIcon.Visible = true;
+
+            // Assign the click event
+            notifyIcon.MouseClick += NotifyIcon_MouseClick;
         }
-        private void ShowTasks(object sender, EventArgs e)
+
+        // Handle the left-click on the tray icon
+        private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            TasksForm tasksForm = new();
-            // If we are already showing the window, merely focus it.
-            if (tasksForm.Visible)
+            if (e.Button == MouseButtons.Left)
             {
-                tasksForm.Activate();
+                ShowMainForm(null, null); // Call method to show MainForm
+            }
+        }
+
+        private void ShowMainForm(object sender, EventArgs e)
+        {
+            // Show the MainForm when left-clicked
+            if (mainForm.Visible)
+            {
+                mainForm.Activate();
             }
             else
             {
-                tasksForm.Show();
+                mainForm = new();
+                mainForm.Show();
             }
         }
-        private void ShowConfigurations(object sender, EventArgs e)
-        {
-            ConfigurationsForm configurationForm = new();
-            // If we are already showing the window, merely focus it.
-            if (configurationForm.Visible)
-            {
-                configurationForm.Activate();
-            }
-            else
-            {
-                configurationForm.Show();
-            }
-        }
-        private void ShowVersions(object sender, EventArgs e)
-        {
-            VersionsForm versionsForm = new();
-            // If we are already showing the window, merely focus it.
-            if (versionsForm.Visible)
-            {
-                versionsForm.Activate();
-            }
-            else
-            {
-                versionsForm.Show();
-            }
-        }
+
         private void Exit(object sender, EventArgs e)
         {
-            // We must manually tidy up and remove the icon before we exit.
-            // Otherwise it will be left behind until the user mouses over.
             notifyIcon.Visible = false;
             Application.Exit();
         }
