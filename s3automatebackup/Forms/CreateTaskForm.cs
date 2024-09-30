@@ -57,7 +57,9 @@ namespace s3automatebackup.Forms
                 hierarchyCheckBox.Checked = task.Hierarchy;
                 removeOldFilesCheckbox.Checked = task.RemoveOldFiles;
                 daysInputTextBox.Text = task.OldFilesDays.ToString();
+                encryptBackupCheckbox.CheckedChanged -= encryptBackupCheckbox_CheckedChanged;
                 encryptBackupCheckbox.Checked = task.EncryptBackup;
+                encryptBackupCheckbox.CheckedChanged += encryptBackupCheckbox_CheckedChanged;
             }
         }
 

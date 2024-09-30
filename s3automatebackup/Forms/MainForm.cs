@@ -670,7 +670,7 @@ namespace s3automatebackup.Forms
 
                     if(parentNode != null)
                     {
-                        while (parentNode.Nodes.Count > 0) // Keep removing parent nodes as long as they have no children
+                        while (parentNode.Nodes.Count > 0 && parentNode.Nodes.Count < 2) // Keep removing parent nodes as long as they have no children
                         {
                             if(parentNode.Parent != null)
                             {
@@ -685,7 +685,10 @@ namespace s3automatebackup.Forms
                             }
 
                         }
-                        parentNode.Remove();
+                        if (parentNode.Nodes.Count < 2)
+                        {
+                            parentNode.Remove();
+                        }
                     }
 
                     // Remove the node representing the version from the TreeView

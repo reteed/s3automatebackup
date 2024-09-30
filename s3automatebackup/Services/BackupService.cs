@@ -325,7 +325,11 @@ namespace s3automatebackup.Services
                 // Iterate through S3 files and delete those that don't exist locally
                 foreach (var s3File in s3Files)
                 {
-                    if (!localFileNames.Contains(s3File.Key))
+                    // Remove the ".enc" extension from the S3 file key to compare with local files
+                    string localFileName = s3File.Key.EndsWith(".enc") ? s3File.Key.Substring(0, s3File.Key.Length - 4) : s3File.Key;
+
+                    // Check if the local file exists (without the .enc extension)
+                    if (!localFileNames.Contains(localFileName))
                     {
                         var versions = await s3Service.GetObjectVersions(s3File.Key);
                         foreach (var version in versions)
