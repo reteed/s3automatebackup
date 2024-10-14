@@ -45,19 +45,23 @@
             bucketLabel = new Label();
             configurationComboBox = new ComboBox();
             configurationLabel = new Label();
-            listViewContextMenuStrip = new ContextMenuStrip(components);
-            editToolStripMenuItem = new ToolStripMenuItem();
+            tasksContextMenuStrip = new ContextMenuStrip(components);
+            editTaskStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             versionsContextMenuStrip = new ContextMenuStrip(components);
             restoreToolStripMenuItem = new ToolStripMenuItem();
             downloadToolStripMenuItem = new ToolStripMenuItem();
             deleteVersionToolStripMenuItem = new ToolStripMenuItem();
+            configurationsContextMenuStrip = new ContextMenuStrip(components);
+            editConfigurationToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             mainTabControl.SuspendLayout();
             configurationsTabPage.SuspendLayout();
             tasksTabPage.SuspendLayout();
             versionsTabPage.SuspendLayout();
-            listViewContextMenuStrip.SuspendLayout();
+            tasksContextMenuStrip.SuspendLayout();
             versionsContextMenuStrip.SuspendLayout();
+            configurationsContextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // mainTabControl
@@ -130,6 +134,7 @@
             scheduledTaskslistView.TabIndex = 3;
             scheduledTaskslistView.UseCompatibleStateImageBehavior = false;
             scheduledTaskslistView.MouseClick += scheduledTaskslistView_MouseClick;
+            scheduledTaskslistView.MouseDoubleClick += scheduledTaskslistView_MouseDoubleClick;
             // 
             // createTaskButton
             // 
@@ -235,19 +240,19 @@
             configurationLabel.TabIndex = 7;
             configurationLabel.Text = "Configuration:";
             // 
-            // listViewContextMenuStrip
+            // tasksContextMenuStrip
             // 
-            listViewContextMenuStrip.ImageScalingSize = new Size(24, 24);
-            listViewContextMenuStrip.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, deleteToolStripMenuItem });
-            listViewContextMenuStrip.Name = "contextMenuStrip1";
-            listViewContextMenuStrip.Size = new Size(108, 48);
+            tasksContextMenuStrip.ImageScalingSize = new Size(24, 24);
+            tasksContextMenuStrip.Items.AddRange(new ToolStripItem[] { editTaskStripMenuItem, deleteToolStripMenuItem });
+            tasksContextMenuStrip.Name = "contextMenuStrip1";
+            tasksContextMenuStrip.Size = new Size(108, 48);
             // 
-            // editToolStripMenuItem
+            // editTaskStripMenuItem
             // 
-            editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(107, 22);
-            editToolStripMenuItem.Text = "Edit";
-            editToolStripMenuItem.Click += editTaskToolStripMenuItem_Click;
+            editTaskStripMenuItem.Name = "editTaskStripMenuItem";
+            editTaskStripMenuItem.Size = new Size(107, 22);
+            editTaskStripMenuItem.Text = "Edit";
+            editTaskStripMenuItem.Click += editTaskToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
@@ -284,6 +289,26 @@
             deleteVersionToolStripMenuItem.Text = "Delete";
             deleteVersionToolStripMenuItem.Click += deleteVersionToolStripMenuItem_Click;
             // 
+            // configurationsContextMenuStrip
+            // 
+            configurationsContextMenuStrip.Items.AddRange(new ToolStripItem[] { editConfigurationToolStripMenuItem, deleteToolStripMenuItem1 });
+            configurationsContextMenuStrip.Name = "editConfigurationContextMenuStrip";
+            configurationsContextMenuStrip.Size = new Size(108, 48);
+            // 
+            // editConfigurationToolStripMenuItem
+            // 
+            editConfigurationToolStripMenuItem.Name = "editConfigurationToolStripMenuItem";
+            editConfigurationToolStripMenuItem.Size = new Size(107, 22);
+            editConfigurationToolStripMenuItem.Text = "Edit";
+            editConfigurationToolStripMenuItem.Click += editConfigurationToolStripMenuItem_Click;
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            deleteToolStripMenuItem1.Size = new Size(107, 22);
+            deleteToolStripMenuItem1.Text = "Delete";
+            deleteToolStripMenuItem1.Click += deleteConfigurationToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -299,8 +324,9 @@
             tasksTabPage.ResumeLayout(false);
             versionsTabPage.ResumeLayout(false);
             versionsTabPage.PerformLayout();
-            listViewContextMenuStrip.ResumeLayout(false);
+            tasksContextMenuStrip.ResumeLayout(false);
             versionsContextMenuStrip.ResumeLayout(false);
+            configurationsContextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -312,8 +338,8 @@
         private TabPage versionsTabPage;
         private Button createConfigurationButton;
         private ListView configurationsListView;
-        private ContextMenuStrip listViewContextMenuStrip;
-        private ToolStripMenuItem editToolStripMenuItem;
+        private ContextMenuStrip tasksContextMenuStrip;
+        private ToolStripMenuItem editTaskStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
         private Button removeBucketContent;
         private TreeView versionsTreeView;
@@ -328,5 +354,8 @@
         private ToolStripMenuItem deleteVersionToolStripMenuItem;
         private ListView scheduledTaskslistView;
         private Button createTaskButton;
+        private ContextMenuStrip configurationsContextMenuStrip;
+        private ToolStripMenuItem editConfigurationToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem1;
     }
 }

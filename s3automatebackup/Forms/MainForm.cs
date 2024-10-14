@@ -19,7 +19,6 @@ namespace s3automatebackup.Forms
     {
         private StorageService storageService = new();
         List<Configuration> configurations = new();
-        private System.Windows.Forms.Timer clickTimer = new System.Windows.Forms.Timer();
         private bool isDoubleClick = false;
         List<BackupTask> tasks = new();
         private S3Service s3Service;
@@ -36,8 +35,6 @@ namespace s3automatebackup.Forms
             configurationsListView.Columns.Add("Access Key", 350, HorizontalAlignment.Left); // Be cautious with sensitive data
             configurations = storageService.LoadConfigurations();
             PopulateListView(configurations);
-            clickTimer.Interval = SystemInformation.DoubleClickTime;
-            clickTimer.Tick += ClickTimer_Tick;
             #endregion
             #region Tasks Initialization
             scheduledTaskslistView.View = View.Details;
@@ -74,14 +71,9 @@ namespace s3automatebackup.Forms
 
         private void listViewConfigurations_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && configurationsListView.FocusedItem != null && configurationsListView.FocusedItem.Bounds.Contains(e.Location))
-            {
-                // Start the timer to check if it's a single or double click
-                clickTimer.Start();
-            }
             if (e.Button == MouseButtons.Right && configurationsListView.FocusedItem != null && configurationsListView.FocusedItem.Bounds.Contains(e.Location))
             {
-                listViewContextMenuStrip.Show(Cursor.Position);
+                configurationsContextMenuStrip.Show(Cursor.Position);
             }
         }
         private void listViewConfigurations_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -89,13 +81,12 @@ namespace s3automatebackup.Forms
             if (e.Button == MouseButtons.Left && configurationsListView.FocusedItem != null && configurationsListView.FocusedItem.Bounds.Contains(e.Location))
             {
                 isDoubleClick = true; // Indicate that a double click has occurred
-                clickTimer.Stop(); // Stop the timer
                 EditConfiguration(); // Execute double click action
             }
         }
 
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void deleteConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (configurationsListView.SelectedItems.Count > 0)
             {
@@ -120,7 +111,7 @@ namespace s3automatebackup.Forms
             }
         }
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        private void editConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EditConfiguration();
         }
@@ -137,17 +128,6 @@ namespace s3automatebackup.Forms
                 item.Tag = configuration;
                 configurationsListView.Items.Add(item);
             }
-        }
-
-        private void ClickTimer_Tick(object sender, EventArgs e)
-        {
-            clickTimer.Stop(); // Detenemos el temporizador
-            if (!isDoubleClick)
-            {
-                // Si no es doble clic, mostramos el menú contextual
-                listViewContextMenuStrip.Show(Cursor.Position);
-            }
-            isDoubleClick = false; // Reiniciamos la bandera
         }
 
         private void EditConfiguration()
@@ -220,7 +200,7 @@ namespace s3automatebackup.Forms
             {
                 if (scheduledTaskslistView.FocusedItem.Bounds.Contains(e.Location) == true)
                 {
-                    listViewContextMenuStrip.Show(Cursor.Position);
+                    tasksContextMenuStrip.Show(Cursor.Position);
                 }
             }
         }
@@ -243,6 +223,38 @@ namespace s3automatebackup.Forms
         }
 
         private void editTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (scheduledTaskslistView.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = scheduledTaskslistView.SelectedItems[0];
+                BackupTask selectedTask = (BackupTask)selectedItem.Tag;
+
+                using (CreateTaskForm editForm = new CreateTaskForm(selectedTask))
+                {
+                    if (editForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Dispose of the old task's timer to prevent double execution
+                        if (selectedTask.Timer != null)
+                        {
+                            selectedTask.Timer.Dispose();
+                            selectedTask.Timer = null; // Clear the old timer
+                        }
+
+                        // Update task in the list and reschedule it
+                        int index = tasks.IndexOf(selectedTask);
+                        if (index != -1)
+                        {
+                            tasks[index] = editForm.Task;
+                        }
+                        storageService.SaveTasks(tasks);
+                        PopulateListViewTasks(tasks);
+                        RescheduleAllTasks(); // This will create a new timer with the updated time
+                    }
+                }
+            }
+        }
+
+        private void scheduledTaskslistView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (scheduledTaskslistView.SelectedItems.Count > 0)
             {
@@ -668,11 +680,11 @@ namespace s3automatebackup.Forms
                     // Now remove empty parent nodes (folders) recursively
                     TreeNode parentNode = selectedNode.Parent;
 
-                    if(parentNode != null)
+                    if (parentNode != null)
                     {
                         while (parentNode.Nodes.Count > 0 && parentNode.Nodes.Count < 2) // Keep removing parent nodes as long as they have no children
                         {
-                            if(parentNode.Parent != null)
+                            if (parentNode.Parent != null)
                             {
                                 TreeNode grandParentNode = parentNode.Parent; // Move up to the grandparent
                                 parentNode.Remove();
