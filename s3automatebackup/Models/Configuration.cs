@@ -13,5 +13,12 @@ namespace s3automatebackup.Models
         public string Server { get; set; }
         public string AccessKey { get; set; }
         public string SecretKey { get; set; }
+        public string SuccessEmail { get; set; }
+        public string FailureEmail { get; set; }
+        public string SmtpHost { get; set; }
+        public string SmtpPort { get; set; }
+        public string SmtpUsername { get; set; }
+        public string SmtpPassword { get; set; }
+        public bool EnableSsl { get; set; }
     }
 }

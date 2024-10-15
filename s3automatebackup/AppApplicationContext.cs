@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace s3automatebackup
     {
         NotifyIcon notifyIcon = new NotifyIcon();
         MainForm mainForm = new();
+        ResourceManager resourceManager = new("s3automatebackup.AppApplicationContextResources", typeof(AppApplicationContext).Assembly);
 
         public AppApplicationContext()
         {
@@ -19,8 +21,8 @@ namespace s3automatebackup
             {
                 Items =
                 {
-                    new ToolStripMenuItem("Open", null, new EventHandler(ShowMainForm), "Open"),
-                    new ToolStripMenuItem("Exit", null, new EventHandler(Exit), "Exit")
+                    new ToolStripMenuItem(resourceManager.GetString("Open"), null, new EventHandler(ShowMainForm), resourceManager.GetString("Open")),
+                    new ToolStripMenuItem(resourceManager.GetString("Exit"), null, new EventHandler(Exit), resourceManager.GetString("Exit"))
                 }
             };
 

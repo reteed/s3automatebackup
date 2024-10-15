@@ -37,56 +37,39 @@
             // 
             // privateKeyTextBox
             // 
-            privateKeyTextBox.Location = new Point(228, 41);
+            resources.ApplyResources(privateKeyTextBox, "privateKeyTextBox");
             privateKeyTextBox.Name = "privateKeyTextBox";
-            privateKeyTextBox.PasswordChar = '*';
-            privateKeyTextBox.Size = new Size(258, 23);
-            privateKeyTextBox.TabIndex = 0;
             // 
             // privateKeyLabel
             // 
-            privateKeyLabel.AutoSize = true;
-            privateKeyLabel.Location = new Point(61, 45);
+            resources.ApplyResources(privateKeyLabel, "privateKeyLabel");
             privateKeyLabel.Name = "privateKeyLabel";
-            privateKeyLabel.Size = new Size(145, 15);
-            privateKeyLabel.TabIndex = 1;
-            privateKeyLabel.Text = "Private key for encryption:";
             // 
             // acceptButton
             // 
-            acceptButton.Location = new Point(322, 118);
+            resources.ApplyResources(acceptButton, "acceptButton");
             acceptButton.Name = "acceptButton";
-            acceptButton.Size = new Size(89, 32);
-            acceptButton.TabIndex = 2;
-            acceptButton.Text = "Accept";
             acceptButton.UseVisualStyleBackColor = true;
             acceptButton.Click += acceptButton_Click;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(144, 118);
+            resources.ApplyResources(cancelButton, "cancelButton");
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(89, 32);
-            cancelButton.TabIndex = 3;
-            cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
             cancelButton.Click += cancelButton_Click;
             // 
             // PrivateKeyForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(554, 181);
             Controls.Add(cancelButton);
             Controls.Add(acceptButton);
             Controls.Add(privateKeyLabel);
             Controls.Add(privateKeyTextBox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "PrivateKeyForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Private Key";
             ResumeLayout(false);
             PerformLayout();
         }

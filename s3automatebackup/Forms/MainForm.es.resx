@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mainTabControl.Anchor" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="createConfigurationButton.Anchor" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="configurationsTabPage.Text" xml:space="preserve">
+    <value>Configuraciones</value>
+  </data>
+  <data name="scheduledTaskslistView.Anchor" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="createTaskButton.Text" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="tasksTabPage.Text" xml:space="preserve">
+    <value>Tareas</value>
+  </data>
+  <data name="removeBucketContent.Anchor" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="refreshButton.Text" xml:space="preserve">
+    <value>Refrescar</value>
+  </data>
+  <data name="bucketLabel.Text" xml:space="preserve">
+    <value>Bucket:</value>
+  </data>
+  <data name="configurationComboBox.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="configurationLabel.Text" xml:space="preserve">
+    <value>Configuración:</value>
+  </data>
+  <data name="versionsTabPage.TabIndex" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="versionsTabPage.Text" xml:space="preserve">
+    <value>Versiones</value>
+  </data>
+  <data name="editTaskStripMenuItem.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="editTaskStripMenuItem.Text" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="restoreToolStripMenuItem.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="restoreToolStripMenuItem.Text" xml:space="preserve">
+    <value>Restaurar</value>
+  </data>
+  <data name="downloadToolStripMenuItem.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="downloadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="deleteVersionToolStripMenuItem.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="deleteVersionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="versionsContextMenuStrip.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="editConfigurationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="deleteToolStripMenuItem1.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="deleteToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="configurationsContextMenuStrip.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="$this.StartPosition" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mailSettingsTabPage.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mailSettingsTabPage.Text" xml:space="preserve">
+    <value>Ajustes de correo</value>
+  </data>
+  <data name="DeleteConfigurationConfirm" xml:space="preserve">
+    <value>¿Está seguro de que desea eliminar esta configuración?</value>
+  </data>
+  <data name="ConfigurationInUse" xml:space="preserve">
+    <value>No puede eliminar configuraciones que tienen tareas asociadas. Elimine primero las tareas que contienen esta configuración.</value>
+  </data>
+  <data name="DeleteTaskConfirm" xml:space="preserve">
+    <value>¿Está seguro de que desea eliminar esta tarea?</value>
+  </data>
+  <data name="MissingConfigurations" xml:space="preserve">
+    <value>No ha creado ninguna configuración, debe hacerlo antes de crear una tarea de respaldo.</value>
+  </data>
+  <data name="DeletionCompleted" xml:space="preserve">
+    <value>Todos los objetos y versiones se han eliminado correctamente del bucket.</value>
+  </data>
+  <data name="ConfirmDeletion" xml:space="preserve">
+    <value>Confirmar eliminación</value>
+  </data>
+  <data name="DownloadCompleted" xml:space="preserve">
+    <value>Archivo descargado y descifrado con éxito en</value>
+  </data>
+  <data name="DecryptionFailed" xml:space="preserve">
+    <value>Falló el descifrado. Por favor, verifique la clave privada e intente de nuevo.</value>
+  </data>
+  <data name="DecryptionCancelled" xml:space="preserve">
+    <value>Descifrado cancelado.</value>
+  </data>
+  <data name="OperationCancelled" xml:space="preserve">
+    <value>Operación Cancelada</value>
+  </data>
+  <data name="DownloadFailed" xml:space="preserve">
+    <value>Ocurrió un error durante la descarga:</value>
+  </data>
+  <data name="SelectValidVersion" xml:space="preserve">
+    <value>Por favor, seleccione una versión válida para eliminar.</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="DeleteAllObjects" xml:space="preserve">
+    <value>¿Está seguro de que desea eliminar todos los objetos y versiones del bucket</value>
+  </data>
+  <data name="AllFiles" xml:space="preserve">
+    <value>Todos los archivos (*.*)|*.*</value>
+  </data>
+  <data name="SaveFileAs" xml:space="preserve">
+    <value>Guardar archivo como</value>
+  </data>
+  <data name="ConfirmDeletionVersion" xml:space="preserve">
+    <value>¿Está seguro de que desea eliminar la versión {0} de {1}?</value>
+  </data>
+  <data name="VersionDeletedSuccess" xml:space="preserve">
+    <value>La versión {0} de {1} se eliminó correctamente.</value>
+  </data>
+</root>

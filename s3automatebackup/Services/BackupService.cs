@@ -2,10 +2,14 @@
 using s3automatebackup.Models;
 using System;
 using System.Collections.Generic;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using s3automatebackup.Forms;
+using System.Resources;
 
 namespace s3automatebackup.Services
 {
@@ -16,6 +20,7 @@ namespace s3automatebackup.Services
         private bool _disposed = false;
         private SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1); // Allow 1 task at a time
         public static event Action TasksUpdated;
+        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Services.BackupService", typeof(BackupService).Assembly);
 
 
         public BackupService()
@@ -120,6 +125,8 @@ namespace s3automatebackup.Services
 
         private async Task ExecuteTask(BackupTask task)
         {
+            bool success = false;
+            string failureReason = string.Empty; // To hold the exception message in case of failure
             Configuration config = task.Configuration;
             S3Service s3Service = new(config.Server, config.AccessKey, config.SecretKey, task.BucketName);
 
@@ -128,60 +135,107 @@ namespace s3automatebackup.Services
             // Remove old files and versions if needed
             await RemoveOldFilesAndVersions(task, s3Service);
 
-            // List all files in the S3 bucket before starting the backup
-            var s3Files = await s3Service.ListAllObjects(task.BucketName);
-
-            if (File.Exists(task.BackupPath))
+            try
             {
-                // It's a file; process this single file
-                bool processed = await ProcessFile(
-                    task.BackupPath,
-                    s3Service,
-                    task.Hierarchy ? Path.GetDirectoryName(task.BackupPath) : null,
-                    task.Hierarchy,
-                    task
-                );
+                // List all files in the S3 bucket before starting the backup
+                var s3Files = await s3Service.ListAllObjects(task.BucketName);
 
-                // Delete backed-up file from local disk if required
-                if (task.DeletePath && processed)
+                if (File.Exists(task.BackupPath))
                 {
-                    File.Delete(task.BackupPath);
-                }
-
-                // Remove any S3 files that no longer exist locally
-                await RemoveDeletedLocalFiles(s3Files, new[] { task.BackupPath }, s3Service, task);
-
-                Console.WriteLine($"Backup task for {task.BucketName} executed.");
-            }
-            else if (Directory.Exists(task.BackupPath))
-            {
-                // It's a directory; process all files in the directory
-                string[] localFiles = Directory.GetFiles(task.BackupPath, "*.*", SearchOption.AllDirectories);
-                foreach (string localFilePath in localFiles)
-                {
+                    // It's a file; process this single file
                     bool processed = await ProcessFile(
-                        localFilePath,
+                        task.BackupPath,
                         s3Service,
-                        task.Hierarchy ? task.BackupPath : null,
+                        task.Hierarchy ? Path.GetDirectoryName(task.BackupPath) : null,
                         task.Hierarchy,
                         task
                     );
 
-                    // Delete backed-up files from local disk if required
+                    // Delete backed-up file from local disk if required
                     if (task.DeletePath && processed)
                     {
-                        File.Delete(localFilePath);
+                        File.Delete(task.BackupPath);
                     }
+
+                    // Remove any S3 files that no longer exist locally
+                    await RemoveDeletedLocalFiles(s3Files, new[] { task.BackupPath }, s3Service, task);
+
+                    Console.WriteLine($"Backup task for {task.BucketName} executed.");
+                    success = true;
                 }
+                else if (Directory.Exists(task.BackupPath))
+                {
+                    // It's a directory; process all files in the directory
+                    string[] localFiles = Directory.GetFiles(task.BackupPath, "*.*", SearchOption.AllDirectories);
+                    foreach (string localFilePath in localFiles)
+                    {
+                        bool processed = await ProcessFile(
+                            localFilePath,
+                            s3Service,
+                            task.Hierarchy ? task.BackupPath : null,
+                            task.Hierarchy,
+                            task
+                        );
 
-                // Remove any S3 files that no longer exist locally
-                await RemoveDeletedLocalFiles(s3Files, localFiles, s3Service, task);
+                        // Delete backed-up files from local disk if required
+                        if (task.DeletePath && processed)
+                        {
+                            File.Delete(localFilePath);
+                        }
+                    }
 
-                Console.WriteLine($"Backup task for {task.BucketName} executed.");
+                    // Remove any S3 files that no longer exist locally
+                    await RemoveDeletedLocalFiles(s3Files, localFiles, s3Service, task);
+
+                    Console.WriteLine($"Backup task for {task.BucketName} executed.");
+                    success = true;
+                }
+                else
+                {
+                    Console.WriteLine($"The path does not exist: {task.BackupPath}");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine($"The path does not exist: {task.BackupPath}");
+                Console.WriteLine($"Backup task failed: {ex.Message}");
+                failureReason = ex.ToString(); // Capture the full exception details
+                success = false; // Mark as failed
+            }
+            finally
+            {
+                // Send success or failure email
+                if (success)
+                {
+                    // For an email sent to the user
+                    string successEmailBody = resourceManager.GetString("BackupSuccessMessage");
+
+                    SendBackupNotificationEmail(
+                        config.SuccessEmail,
+                        resourceManager.GetString("BackupSuccessSubject"),
+                        successEmailBody,
+                        config.SmtpHost,
+                        int.Parse(config.SmtpPort),
+                        config.SmtpUsername,
+                        config.SmtpPassword,
+                        config.EnableSsl
+                    );
+                }
+                else
+                {
+                    string failureSubject = string.Format(resourceManager.GetString("BackupFailed"), config.Name);
+                    string failureBody = string.Format(resourceManager.GetString("BackupFailedBody"), config.Name, task.BucketName, failureReason);
+
+                    SendBackupNotificationEmail(
+                        config.FailureEmail,
+                        failureSubject,
+                        failureBody,
+                        config.SmtpHost,
+                        int.Parse(config.SmtpPort),
+                        config.SmtpUsername,
+                        config.SmtpPassword,
+                        config.EnableSsl
+                    );
+                }
             }
         }
 
@@ -383,6 +437,52 @@ namespace s3automatebackup.Services
         private void NotifyTasksUpdated()
         {
             TasksUpdated?.Invoke(); // Invoke the event if there are any subscribers
+        }
+
+        public void SendBackupNotificationEmail(string toEmail, string subject, string body, string smtpHost, int smtpPort, string smtpUser, string smtpPassword, bool enableSsl)
+        {
+            try
+            {
+                MailMessage mailMessage = new MailMessage
+                {
+                    From = new MailAddress(smtpUser),
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = true // Optional, set to false if plain text
+                };
+
+                // Split the email addresses by the semicolon (;) 
+                string[] emailAddresses = toEmail.Split(';');
+
+                // Add the first email address to the "To" field
+                if (emailAddresses.Length > 0 && !string.IsNullOrWhiteSpace(emailAddresses[0]))
+                {
+                    mailMessage.To.Add(emailAddresses[0].Trim()); // Add the first email as the primary recipient
+                }
+
+                // Add all other email addresses to the BCC field
+                for (int i = 1; i < emailAddresses.Length; i++)
+                {
+                    if (!string.IsNullOrWhiteSpace(emailAddresses[i]))
+                    {
+                        mailMessage.Bcc.Add(emailAddresses[i].Trim()); // Add subsequent emails as BCC
+                    }
+                }
+
+                SmtpClient smtpClient = new SmtpClient(smtpHost, smtpPort)
+                {
+                    Credentials = new NetworkCredential(smtpUser, smtpPassword),
+                    EnableSsl = enableSsl,
+                    Timeout = 30000
+                };
+
+                smtpClient.Send(mailMessage);
+                Console.WriteLine("Backup notification email sent successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to send backup notification email: {ex.Message}");
+            }
         }
     }
 }

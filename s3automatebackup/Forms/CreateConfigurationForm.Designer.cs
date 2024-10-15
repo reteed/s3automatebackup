@@ -39,111 +39,167 @@
             serverTextBox = new TextBox();
             accessKeyTextBox = new TextBox();
             secretKeyTextBox = new TextBox();
+            smtpHostLabel = new Label();
+            smtpHostTextBox = new TextBox();
+            smtpPortLabel = new Label();
+            smtpPortTextBox = new TextBox();
+            smtpUsernameLabel = new Label();
+            smtpUsernameTextBox = new TextBox();
+            smtpPasswordLabel = new Label();
+            smtpPasswordTextBox = new TextBox();
+            enableSslCheckBox = new CheckBox();
+            successEmailLabel = new Label();
+            successEmailTextBox = new TextBox();
+            failureEmailLabel = new Label();
+            failureEmailTextBox = new TextBox();
+            sendTestEmailButton = new Button();
             SuspendLayout();
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(357, 200);
-            saveButton.Margin = new Padding(2);
+            resources.ApplyResources(saveButton, "saveButton");
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(80, 30);
-            saveButton.TabIndex = 0;
-            saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += saveButton_Click;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(126, 200);
-            cancelButton.Margin = new Padding(2);
+            resources.ApplyResources(cancelButton, "cancelButton");
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(80, 30);
-            cancelButton.TabIndex = 1;
-            cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
             cancelButton.Click += cancelButton_Click;
             // 
             // nameLabel
             // 
-            nameLabel.AutoSize = true;
-            nameLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            nameLabel.Location = new Point(36, 42);
-            nameLabel.Margin = new Padding(2, 0, 2, 0);
+            resources.ApplyResources(nameLabel, "nameLabel");
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(43, 15);
-            nameLabel.TabIndex = 2;
-            nameLabel.Text = "Name:";
             // 
             // serverLabel
             // 
-            serverLabel.AutoSize = true;
-            serverLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            serverLabel.Location = new Point(202, 42);
-            serverLabel.Margin = new Padding(2, 0, 2, 0);
+            resources.ApplyResources(serverLabel, "serverLabel");
             serverLabel.Name = "serverLabel";
-            serverLabel.Size = new Size(89, 15);
-            serverLabel.TabIndex = 3;
-            serverLabel.Text = "Server or URL:";
             // 
             // accessKeyLabel
             // 
-            accessKeyLabel.AutoSize = true;
-            accessKeyLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            accessKeyLabel.Location = new Point(104, 92);
-            accessKeyLabel.Margin = new Padding(2, 0, 2, 0);
+            resources.ApplyResources(accessKeyLabel, "accessKeyLabel");
             accessKeyLabel.Name = "accessKeyLabel";
-            accessKeyLabel.Size = new Size(71, 15);
-            accessKeyLabel.TabIndex = 4;
-            accessKeyLabel.Text = "Access Key:";
             // 
             // secretKeyLabel
             // 
-            secretKeyLabel.AutoSize = true;
-            secretKeyLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            secretKeyLabel.Location = new Point(104, 127);
-            secretKeyLabel.Margin = new Padding(2, 0, 2, 0);
+            resources.ApplyResources(secretKeyLabel, "secretKeyLabel");
             secretKeyLabel.Name = "secretKeyLabel";
-            secretKeyLabel.Size = new Size(71, 15);
-            secretKeyLabel.TabIndex = 5;
-            secretKeyLabel.Text = "Secret Key:";
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(83, 42);
-            nameTextBox.Margin = new Padding(2);
+            resources.ApplyResources(nameTextBox, "nameTextBox");
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(106, 23);
-            nameTextBox.TabIndex = 6;
             // 
             // serverTextBox
             // 
-            serverTextBox.Location = new Point(295, 42);
-            serverTextBox.Margin = new Padding(2);
+            resources.ApplyResources(serverTextBox, "serverTextBox");
             serverTextBox.Name = "serverTextBox";
-            serverTextBox.Size = new Size(227, 23);
-            serverTextBox.TabIndex = 7;
             // 
             // accessKeyTextBox
             // 
-            accessKeyTextBox.Location = new Point(180, 92);
-            accessKeyTextBox.Margin = new Padding(2);
+            resources.ApplyResources(accessKeyTextBox, "accessKeyTextBox");
             accessKeyTextBox.Name = "accessKeyTextBox";
-            accessKeyTextBox.Size = new Size(271, 23);
-            accessKeyTextBox.TabIndex = 8;
             // 
             // secretKeyTextBox
             // 
-            secretKeyTextBox.Location = new Point(180, 127);
-            secretKeyTextBox.Margin = new Padding(2);
+            resources.ApplyResources(secretKeyTextBox, "secretKeyTextBox");
             secretKeyTextBox.Name = "secretKeyTextBox";
-            secretKeyTextBox.Size = new Size(271, 23);
-            secretKeyTextBox.TabIndex = 9;
+            // 
+            // smtpHostLabel
+            // 
+            resources.ApplyResources(smtpHostLabel, "smtpHostLabel");
+            smtpHostLabel.Name = "smtpHostLabel";
+            // 
+            // smtpHostTextBox
+            // 
+            resources.ApplyResources(smtpHostTextBox, "smtpHostTextBox");
+            smtpHostTextBox.Name = "smtpHostTextBox";
+            // 
+            // smtpPortLabel
+            // 
+            resources.ApplyResources(smtpPortLabel, "smtpPortLabel");
+            smtpPortLabel.Name = "smtpPortLabel";
+            // 
+            // smtpPortTextBox
+            // 
+            resources.ApplyResources(smtpPortTextBox, "smtpPortTextBox");
+            smtpPortTextBox.Name = "smtpPortTextBox";
+            // 
+            // smtpUsernameLabel
+            // 
+            resources.ApplyResources(smtpUsernameLabel, "smtpUsernameLabel");
+            smtpUsernameLabel.Name = "smtpUsernameLabel";
+            // 
+            // smtpUsernameTextBox
+            // 
+            resources.ApplyResources(smtpUsernameTextBox, "smtpUsernameTextBox");
+            smtpUsernameTextBox.Name = "smtpUsernameTextBox";
+            // 
+            // smtpPasswordLabel
+            // 
+            resources.ApplyResources(smtpPasswordLabel, "smtpPasswordLabel");
+            smtpPasswordLabel.Name = "smtpPasswordLabel";
+            // 
+            // smtpPasswordTextBox
+            // 
+            resources.ApplyResources(smtpPasswordTextBox, "smtpPasswordTextBox");
+            smtpPasswordTextBox.Name = "smtpPasswordTextBox";
+            // 
+            // enableSslCheckBox
+            // 
+            resources.ApplyResources(enableSslCheckBox, "enableSslCheckBox");
+            enableSslCheckBox.Name = "enableSslCheckBox";
+            enableSslCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // successEmailLabel
+            // 
+            resources.ApplyResources(successEmailLabel, "successEmailLabel");
+            successEmailLabel.Name = "successEmailLabel";
+            // 
+            // successEmailTextBox
+            // 
+            resources.ApplyResources(successEmailTextBox, "successEmailTextBox");
+            successEmailTextBox.Name = "successEmailTextBox";
+            // 
+            // failureEmailLabel
+            // 
+            resources.ApplyResources(failureEmailLabel, "failureEmailLabel");
+            failureEmailLabel.Name = "failureEmailLabel";
+            // 
+            // failureEmailTextBox
+            // 
+            resources.ApplyResources(failureEmailTextBox, "failureEmailTextBox");
+            failureEmailTextBox.Name = "failureEmailTextBox";
+            // 
+            // sendTestEmailButton
+            // 
+            resources.ApplyResources(sendTestEmailButton, "sendTestEmailButton");
+            sendTestEmailButton.Name = "sendTestEmailButton";
+            sendTestEmailButton.UseVisualStyleBackColor = true;
+            sendTestEmailButton.Click += sendTestEmailButton_Click;
             // 
             // CreateConfigurationForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(560, 270);
+            Controls.Add(sendTestEmailButton);
+            Controls.Add(failureEmailTextBox);
+            Controls.Add(failureEmailLabel);
+            Controls.Add(successEmailTextBox);
+            Controls.Add(successEmailLabel);
+            Controls.Add(enableSslCheckBox);
+            Controls.Add(smtpPasswordTextBox);
+            Controls.Add(smtpPasswordLabel);
+            Controls.Add(smtpUsernameTextBox);
+            Controls.Add(smtpUsernameLabel);
+            Controls.Add(smtpPortTextBox);
+            Controls.Add(smtpPortLabel);
+            Controls.Add(smtpHostTextBox);
+            Controls.Add(smtpHostLabel);
             Controls.Add(secretKeyTextBox);
             Controls.Add(accessKeyTextBox);
             Controls.Add(serverTextBox);
@@ -155,12 +211,8 @@
             Controls.Add(cancelButton);
             Controls.Add(saveButton);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2);
             MaximizeBox = false;
             Name = "CreateConfigurationForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Create Configuration - S3AutomateBackup";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -177,5 +229,19 @@
         private TextBox serverTextBox;
         private TextBox accessKeyTextBox;
         private TextBox secretKeyTextBox;
+        private Label smtpHostLabel;
+        private TextBox smtpHostTextBox;
+        private Label smtpPortLabel;
+        private TextBox smtpPortTextBox;
+        private Label smtpUsernameLabel;
+        private TextBox smtpUsernameTextBox;
+        private Label smtpPasswordLabel;
+        private TextBox smtpPasswordTextBox;
+        private CheckBox enableSslCheckBox;
+        private Label successEmailLabel;
+        private TextBox successEmailTextBox;
+        private Label failureEmailLabel;
+        private TextBox failureEmailTextBox;
+        private Button sendTestEmailButton;
     }
 }

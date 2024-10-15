@@ -66,48 +66,32 @@
             // 
             // mainTabControl
             // 
-            mainTabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(mainTabControl, "mainTabControl");
             mainTabControl.Controls.Add(configurationsTabPage);
             mainTabControl.Controls.Add(tasksTabPage);
             mainTabControl.Controls.Add(versionsTabPage);
-            mainTabControl.Location = new Point(-2, 1);
             mainTabControl.Name = "mainTabControl";
             mainTabControl.SelectedIndex = 0;
-            mainTabControl.Size = new Size(802, 450);
-            mainTabControl.TabIndex = 0;
             // 
             // configurationsTabPage
             // 
             configurationsTabPage.Controls.Add(createConfigurationButton);
             configurationsTabPage.Controls.Add(configurationsListView);
-            configurationsTabPage.Location = new Point(4, 24);
+            resources.ApplyResources(configurationsTabPage, "configurationsTabPage");
             configurationsTabPage.Name = "configurationsTabPage";
-            configurationsTabPage.Padding = new Padding(3);
-            configurationsTabPage.Size = new Size(794, 422);
-            configurationsTabPage.TabIndex = 0;
-            configurationsTabPage.Text = "Configurations";
             configurationsTabPage.UseVisualStyleBackColor = true;
             // 
             // createConfigurationButton
             // 
-            createConfigurationButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            createConfigurationButton.Location = new Point(667, 15);
-            createConfigurationButton.Margin = new Padding(2);
+            resources.ApplyResources(createConfigurationButton, "createConfigurationButton");
             createConfigurationButton.Name = "createConfigurationButton";
-            createConfigurationButton.Size = new Size(80, 30);
-            createConfigurationButton.TabIndex = 3;
-            createConfigurationButton.Text = "Create";
             createConfigurationButton.UseVisualStyleBackColor = true;
             createConfigurationButton.Click += createConfigurationButton_Click;
             // 
             // configurationsListView
             // 
-            configurationsListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            configurationsListView.Location = new Point(47, 58);
-            configurationsListView.Margin = new Padding(2);
+            resources.ApplyResources(configurationsListView, "configurationsListView");
             configurationsListView.Name = "configurationsListView";
-            configurationsListView.Size = new Size(700, 343);
-            configurationsListView.TabIndex = 2;
             configurationsListView.UseCompatibleStateImageBehavior = false;
             configurationsListView.MouseDoubleClick += listViewConfigurations_MouseDoubleClick;
             configurationsListView.MouseUp += listViewConfigurations_MouseUp;
@@ -116,35 +100,22 @@
             // 
             tasksTabPage.Controls.Add(scheduledTaskslistView);
             tasksTabPage.Controls.Add(createTaskButton);
-            tasksTabPage.Location = new Point(4, 24);
+            resources.ApplyResources(tasksTabPage, "tasksTabPage");
             tasksTabPage.Name = "tasksTabPage";
-            tasksTabPage.Padding = new Padding(3);
-            tasksTabPage.Size = new Size(794, 422);
-            tasksTabPage.TabIndex = 1;
-            tasksTabPage.Text = "Tasks";
             tasksTabPage.UseVisualStyleBackColor = true;
             // 
             // scheduledTaskslistView
             // 
-            scheduledTaskslistView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            scheduledTaskslistView.Location = new Point(47, 61);
-            scheduledTaskslistView.Margin = new Padding(2);
+            resources.ApplyResources(scheduledTaskslistView, "scheduledTaskslistView");
             scheduledTaskslistView.Name = "scheduledTaskslistView";
-            scheduledTaskslistView.Size = new Size(700, 340);
-            scheduledTaskslistView.TabIndex = 3;
             scheduledTaskslistView.UseCompatibleStateImageBehavior = false;
             scheduledTaskslistView.MouseClick += scheduledTaskslistView_MouseClick;
             scheduledTaskslistView.MouseDoubleClick += scheduledTaskslistView_MouseDoubleClick;
             // 
             // createTaskButton
             // 
-            createTaskButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            createTaskButton.Location = new Point(667, 17);
-            createTaskButton.Margin = new Padding(2);
+            resources.ApplyResources(createTaskButton, "createTaskButton");
             createTaskButton.Name = "createTaskButton";
-            createTaskButton.Size = new Size(80, 30);
-            createTaskButton.TabIndex = 2;
-            createTaskButton.Text = "Create";
             createTaskButton.UseVisualStyleBackColor = true;
             createTaskButton.Click += createTaskButton_Click;
             // 
@@ -157,108 +128,71 @@
             versionsTabPage.Controls.Add(bucketLabel);
             versionsTabPage.Controls.Add(configurationComboBox);
             versionsTabPage.Controls.Add(configurationLabel);
-            versionsTabPage.Location = new Point(4, 24);
+            resources.ApplyResources(versionsTabPage, "versionsTabPage");
             versionsTabPage.Name = "versionsTabPage";
-            versionsTabPage.Padding = new Padding(3);
-            versionsTabPage.Size = new Size(794, 422);
-            versionsTabPage.TabIndex = 2;
-            versionsTabPage.Text = "Versions";
             versionsTabPage.UseVisualStyleBackColor = true;
             // 
             // removeBucketContent
             // 
-            removeBucketContent.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            removeBucketContent.Location = new Point(596, 378);
+            resources.ApplyResources(removeBucketContent, "removeBucketContent");
             removeBucketContent.Name = "removeBucketContent";
-            removeBucketContent.Size = new Size(151, 36);
-            removeBucketContent.TabIndex = 13;
-            removeBucketContent.Text = "Remove bucket content";
             removeBucketContent.UseVisualStyleBackColor = true;
             removeBucketContent.Click += removeBucketContent_Click;
             // 
             // versionsTreeView
             // 
-            versionsTreeView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            versionsTreeView.Location = new Point(47, 48);
-            versionsTreeView.Margin = new Padding(2);
+            resources.ApplyResources(versionsTreeView, "versionsTreeView");
             versionsTreeView.Name = "versionsTreeView";
-            versionsTreeView.Size = new Size(700, 320);
-            versionsTreeView.TabIndex = 12;
             versionsTreeView.NodeMouseClick += versionsTreeView_NodeMouseClick;
             // 
             // refreshButton
             // 
-            refreshButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            refreshButton.Location = new Point(649, 8);
-            refreshButton.Margin = new Padding(2);
+            resources.ApplyResources(refreshButton, "refreshButton");
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(80, 30);
-            refreshButton.TabIndex = 11;
-            refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
             refreshButton.Click += refreshButton_Click;
             // 
             // bucketComboBox
             // 
             bucketComboBox.FormattingEnabled = true;
-            bucketComboBox.Location = new Point(416, 13);
-            bucketComboBox.Margin = new Padding(2);
+            resources.ApplyResources(bucketComboBox, "bucketComboBox");
             bucketComboBox.Name = "bucketComboBox";
-            bucketComboBox.Size = new Size(129, 23);
-            bucketComboBox.TabIndex = 10;
             bucketComboBox.SelectedIndexChanged += bucketComboBox_SelectedIndexChanged;
             // 
             // bucketLabel
             // 
-            bucketLabel.AutoSize = true;
-            bucketLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
-            bucketLabel.Location = new Point(343, 13);
-            bucketLabel.Margin = new Padding(2, 0, 2, 0);
+            resources.ApplyResources(bucketLabel, "bucketLabel");
             bucketLabel.Name = "bucketLabel";
-            bucketLabel.Size = new Size(69, 21);
-            bucketLabel.TabIndex = 9;
-            bucketLabel.Text = "Bucket:";
             // 
             // configurationComboBox
             // 
             configurationComboBox.FormattingEnabled = true;
-            configurationComboBox.Location = new Point(176, 11);
-            configurationComboBox.Margin = new Padding(2);
+            resources.ApplyResources(configurationComboBox, "configurationComboBox");
             configurationComboBox.Name = "configurationComboBox";
-            configurationComboBox.Size = new Size(129, 23);
-            configurationComboBox.TabIndex = 8;
             configurationComboBox.SelectedIndexChanged += configurationComboBox_SelectedIndexChanged;
             // 
             // configurationLabel
             // 
-            configurationLabel.AutoSize = true;
-            configurationLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
-            configurationLabel.Location = new Point(47, 13);
-            configurationLabel.Margin = new Padding(2, 0, 2, 0);
+            resources.ApplyResources(configurationLabel, "configurationLabel");
             configurationLabel.Name = "configurationLabel";
-            configurationLabel.Size = new Size(125, 21);
-            configurationLabel.TabIndex = 7;
-            configurationLabel.Text = "Configuration:";
             // 
             // tasksContextMenuStrip
             // 
             tasksContextMenuStrip.ImageScalingSize = new Size(24, 24);
             tasksContextMenuStrip.Items.AddRange(new ToolStripItem[] { editTaskStripMenuItem, deleteToolStripMenuItem });
             tasksContextMenuStrip.Name = "contextMenuStrip1";
-            tasksContextMenuStrip.Size = new Size(108, 48);
+            resources.ApplyResources(tasksContextMenuStrip, "tasksContextMenuStrip");
             // 
             // editTaskStripMenuItem
             // 
             editTaskStripMenuItem.Name = "editTaskStripMenuItem";
-            editTaskStripMenuItem.Size = new Size(107, 22);
-            editTaskStripMenuItem.Text = "Edit";
+            resources.ApplyResources(editTaskStripMenuItem, "editTaskStripMenuItem");
             editTaskStripMenuItem.Click += editTaskToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(107, 22);
-            deleteToolStripMenuItem.Text = "Delete";
+            resources.ApplyResources(deleteToolStripMenuItem, "deleteToolStripMenuItem");
             deleteToolStripMenuItem.Click += deleteTaskToolStripMenuItem_Click;
             // 
             // versionsContextMenuStrip
@@ -266,59 +200,50 @@
             versionsContextMenuStrip.ImageScalingSize = new Size(24, 24);
             versionsContextMenuStrip.Items.AddRange(new ToolStripItem[] { restoreToolStripMenuItem, downloadToolStripMenuItem, deleteVersionToolStripMenuItem });
             versionsContextMenuStrip.Name = "versionsContextMenuStrip";
-            versionsContextMenuStrip.Size = new Size(129, 70);
+            resources.ApplyResources(versionsContextMenuStrip, "versionsContextMenuStrip");
             // 
             // restoreToolStripMenuItem
             // 
             restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            restoreToolStripMenuItem.Size = new Size(128, 22);
-            restoreToolStripMenuItem.Text = "Restore";
+            resources.ApplyResources(restoreToolStripMenuItem, "restoreToolStripMenuItem");
             restoreToolStripMenuItem.Click += restoreToolStripMenuItem_Click;
             // 
             // downloadToolStripMenuItem
             // 
             downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
-            downloadToolStripMenuItem.Size = new Size(128, 22);
-            downloadToolStripMenuItem.Text = "Download";
+            resources.ApplyResources(downloadToolStripMenuItem, "downloadToolStripMenuItem");
             downloadToolStripMenuItem.Click += downloadToolStripMenuItem_Click;
             // 
             // deleteVersionToolStripMenuItem
             // 
             deleteVersionToolStripMenuItem.Name = "deleteVersionToolStripMenuItem";
-            deleteVersionToolStripMenuItem.Size = new Size(128, 22);
-            deleteVersionToolStripMenuItem.Text = "Delete";
+            resources.ApplyResources(deleteVersionToolStripMenuItem, "deleteVersionToolStripMenuItem");
             deleteVersionToolStripMenuItem.Click += deleteVersionToolStripMenuItem_Click;
             // 
             // configurationsContextMenuStrip
             // 
             configurationsContextMenuStrip.Items.AddRange(new ToolStripItem[] { editConfigurationToolStripMenuItem, deleteToolStripMenuItem1 });
             configurationsContextMenuStrip.Name = "editConfigurationContextMenuStrip";
-            configurationsContextMenuStrip.Size = new Size(108, 48);
+            resources.ApplyResources(configurationsContextMenuStrip, "configurationsContextMenuStrip");
             // 
             // editConfigurationToolStripMenuItem
             // 
             editConfigurationToolStripMenuItem.Name = "editConfigurationToolStripMenuItem";
-            editConfigurationToolStripMenuItem.Size = new Size(107, 22);
-            editConfigurationToolStripMenuItem.Text = "Edit";
+            resources.ApplyResources(editConfigurationToolStripMenuItem, "editConfigurationToolStripMenuItem");
             editConfigurationToolStripMenuItem.Click += editConfigurationToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem1
             // 
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(107, 22);
-            deleteToolStripMenuItem1.Text = "Delete";
+            resources.ApplyResources(deleteToolStripMenuItem1, "deleteToolStripMenuItem1");
             deleteToolStripMenuItem1.Click += deleteConfigurationToolStripMenuItem_Click;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
             Controls.Add(mainTabControl);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "S3AutomateBackup";
             mainTabControl.ResumeLayout(false);
             configurationsTabPage.ResumeLayout(false);
             tasksTabPage.ResumeLayout(false);

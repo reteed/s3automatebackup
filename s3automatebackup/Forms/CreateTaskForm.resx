@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,7 +117,625 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bucketNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bucketNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bucketNameLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="bucketNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 36</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bucketNameLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="bucketNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 15</value>
+  </data>
+  <data name="bucketNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="bucketNameLabel.Text" xml:space="preserve">
+    <value>Bucket name:</value>
+  </data>
+  <data name="&gt;&gt;bucketNameLabel.Name" xml:space="preserve">
+    <value>bucketNameLabel</value>
+  </data>
+  <data name="&gt;&gt;bucketNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bucketNameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bucketNameLabel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="backupPathLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="backupPathLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="backupPathLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 82</value>
+  </data>
+  <data name="backupPathLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="backupPathLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 15</value>
+  </data>
+  <data name="backupPathLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="backupPathLabel.Text" xml:space="preserve">
+    <value>Backup folder/file path:</value>
+  </data>
+  <data name="&gt;&gt;backupPathLabel.Name" xml:space="preserve">
+    <value>backupPathLabel</value>
+  </data>
+  <data name="&gt;&gt;backupPathLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;backupPathLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;backupPathLabel.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="scheduledTimeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="scheduledTimeLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="scheduledTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 133</value>
+  </data>
+  <data name="scheduledTimeLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="scheduledTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 15</value>
+  </data>
+  <data name="scheduledTimeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="scheduledTimeLabel.Text" xml:space="preserve">
+    <value>Sheduled date and time:</value>
+  </data>
+  <data name="&gt;&gt;scheduledTimeLabel.Name" xml:space="preserve">
+    <value>scheduledTimeLabel</value>
+  </data>
+  <data name="&gt;&gt;scheduledTimeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scheduledTimeLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;scheduledTimeLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="periodLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="periodLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="periodLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="periodLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 133</value>
+  </data>
+  <data name="periodLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="periodLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 15</value>
+  </data>
+  <data name="periodLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="periodLabel.Text" xml:space="preserve">
+    <value>Period:</value>
+  </data>
+  <data name="&gt;&gt;periodLabel.Name" xml:space="preserve">
+    <value>periodLabel</value>
+  </data>
+  <data name="&gt;&gt;periodLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;periodLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;periodLabel.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="backupFolderTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="backupFolderTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>217, 79</value>
+  </data>
+  <data name="backupFolderTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="backupFolderTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 23</value>
+  </data>
+  <data name="backupFolderTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;backupFolderTextBox.Name" xml:space="preserve">
+    <value>backupFolderTextBox</value>
+  </data>
+  <data name="&gt;&gt;backupFolderTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;backupFolderTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;backupFolderTextBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="scheduledDateAndTimeDateTimePicker.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="scheduledDateAndTimeDateTimePicker.CustomFormat" xml:space="preserve">
+    <value>dd/MM/yyyy HH:mm:ss</value>
+  </data>
+  <data name="scheduledDateAndTimeDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>217, 133</value>
+  </data>
+  <data name="scheduledDateAndTimeDateTimePicker.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="scheduledDateAndTimeDateTimePicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 23</value>
+  </data>
+  <data name="scheduledDateAndTimeDateTimePicker.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;scheduledDateAndTimeDateTimePicker.Name" xml:space="preserve">
+    <value>scheduledDateAndTimeDateTimePicker</value>
+  </data>
+  <data name="&gt;&gt;scheduledDateAndTimeDateTimePicker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scheduledDateAndTimeDateTimePicker.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;scheduledDateAndTimeDateTimePicker.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="periodComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="periodComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>470, 133</value>
+  </data>
+  <data name="periodComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="periodComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 23</value>
+  </data>
+  <data name="periodComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;periodComboBox.Name" xml:space="preserve">
+    <value>periodComboBox</value>
+  </data>
+  <data name="&gt;&gt;periodComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;periodComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;periodComboBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>181, 363</value>
+  </data>
+  <data name="cancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 30</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 363</value>
+  </data>
+  <data name="saveButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 30</value>
+  </data>
+  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
+    <value>saveButton</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="configurationLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="configurationLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="configurationLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 36</value>
+  </data>
+  <data name="configurationLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="configurationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 15</value>
+  </data>
+  <data name="configurationLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="configurationLabel.Text" xml:space="preserve">
+    <value>Configuration:</value>
+  </data>
+  <data name="&gt;&gt;configurationLabel.Name" xml:space="preserve">
+    <value>configurationLabel</value>
+  </data>
+  <data name="&gt;&gt;configurationLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;configurationLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;configurationLabel.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="configurationComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 36</value>
+  </data>
+  <data name="configurationComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="configurationComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 23</value>
+  </data>
+  <data name="configurationComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;configurationComboBox.Name" xml:space="preserve">
+    <value>configurationComboBox</value>
+  </data>
+  <data name="&gt;&gt;configurationComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;configurationComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;configurationComboBox.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="deletePathCheckBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="deletePathCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="deletePathCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="deletePathCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 215</value>
+  </data>
+  <data name="deletePathCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="deletePathCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 19</value>
+  </data>
+  <data name="deletePathCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="deletePathCheckBox.Text" xml:space="preserve">
+    <value>Delete backed up file/s from local disk.</value>
+  </data>
+  <data name="&gt;&gt;deletePathCheckBox.Name" xml:space="preserve">
+    <value>deletePathCheckBox</value>
+  </data>
+  <data name="&gt;&gt;deletePathCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;deletePathCheckBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;deletePathCheckBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="hierarchyCheckBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="hierarchyCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="hierarchyCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 238</value>
+  </data>
+  <data name="hierarchyCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="hierarchyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 19</value>
+  </data>
+  <data name="hierarchyCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="hierarchyCheckBox.Text" xml:space="preserve">
+    <value>Back up file/s keeping directory hierarchy?</value>
+  </data>
+  <data name="&gt;&gt;hierarchyCheckBox.Name" xml:space="preserve">
+    <value>hierarchyCheckBox</value>
+  </data>
+  <data name="&gt;&gt;hierarchyCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hierarchyCheckBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;hierarchyCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="additionalSettingsLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="additionalSettingsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="additionalSettingsLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="additionalSettingsLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 188</value>
+  </data>
+  <data name="additionalSettingsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 15</value>
+  </data>
+  <data name="additionalSettingsLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="additionalSettingsLabel.Text" xml:space="preserve">
+    <value>Additional settings:</value>
+  </data>
+  <data name="&gt;&gt;additionalSettingsLabel.Name" xml:space="preserve">
+    <value>additionalSettingsLabel</value>
+  </data>
+  <data name="&gt;&gt;additionalSettingsLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;additionalSettingsLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;additionalSettingsLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="removeOldFilesCheckbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="removeOldFilesCheckbox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="removeOldFilesCheckbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 269</value>
+  </data>
+  <data name="removeOldFilesCheckbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 19</value>
+  </data>
+  <data name="removeOldFilesCheckbox.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="removeOldFilesCheckbox.Text" xml:space="preserve">
+    <value>Remove files older than</value>
+  </data>
+  <data name="&gt;&gt;removeOldFilesCheckbox.Name" xml:space="preserve">
+    <value>removeOldFilesCheckbox</value>
+  </data>
+  <data name="&gt;&gt;removeOldFilesCheckbox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;removeOldFilesCheckbox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;removeOldFilesCheckbox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="daysInputTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="daysInputTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 267</value>
+  </data>
+  <data name="daysInputTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 23</value>
+  </data>
+  <data name="daysInputTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;daysInputTextBox.Name" xml:space="preserve">
+    <value>daysInputTextBox</value>
+  </data>
+  <data name="&gt;&gt;daysInputTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;daysInputTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;daysInputTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="labelOldFiles.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="labelOldFiles.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelOldFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 273</value>
+  </data>
+  <data name="labelOldFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 15</value>
+  </data>
+  <data name="labelOldFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="labelOldFiles.Text" xml:space="preserve">
+    <value>days.</value>
+  </data>
+  <data name="&gt;&gt;labelOldFiles.Name" xml:space="preserve">
+    <value>labelOldFiles</value>
+  </data>
+  <data name="&gt;&gt;labelOldFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelOldFiles.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelOldFiles.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="bucketComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="bucketComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>421, 36</value>
+  </data>
+  <data name="bucketComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 23</value>
+  </data>
+  <data name="bucketComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;bucketComboBox.Name" xml:space="preserve">
+    <value>bucketComboBox</value>
+  </data>
+  <data name="&gt;&gt;bucketComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bucketComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bucketComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="browsePathButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="browsePathButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>451, 79</value>
+  </data>
+  <data name="browsePathButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="browsePathButton.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="browsePathButton.Text" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="&gt;&gt;browsePathButton.Name" xml:space="preserve">
+    <value>browsePathButton</value>
+  </data>
+  <data name="&gt;&gt;browsePathButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;browsePathButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;browsePathButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="encryptBackupCheckbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="encryptBackupCheckbox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="encryptBackupCheckbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 304</value>
+  </data>
+  <data name="encryptBackupCheckbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 19</value>
+  </data>
+  <data name="encryptBackupCheckbox.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="encryptBackupCheckbox.Text" xml:space="preserve">
+    <value>Encrypt Backup.</value>
+  </data>
+  <data name="&gt;&gt;encryptBackupCheckbox.Name" xml:space="preserve">
+    <value>encryptBackupCheckbox</value>
+  </data>
+  <data name="&gt;&gt;encryptBackupCheckbox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;encryptBackupCheckbox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;encryptBackupCheckbox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>660, 437</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAMMOAADDDgAAAAAAAAAA
@@ -193,5 +811,50 @@
         H8OH/D/hj///4Yf//+GH///xw+f/8cAH///gB///8A//x/wf/wf+H8AH/h+AD/4fwD//D/Q//w/4f/+D
         8H//wAD//8AB///wB////B////////////8=
 </value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Create Task - S3AutomateBackup</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>CreateTaskForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MissingBucket" xml:space="preserve">
+    <value>Please select a bucket.</value>
+  </data>
+  <data name="InvalidDateSelection" xml:space="preserve">
+    <value>Please select a date and time in the future.</value>
+  </data>
+  <data name="RequiredFieldsMissing" xml:space="preserve">
+    <value>Please fill in all the required fields before proceeding.</value>
+  </data>
+  <data name="SelectPathType" xml:space="preserve">
+    <value>Do you want to select a folder? Click 'No' to select a file.</value>
+  </data>
+  <data name="EncryptionCancelled" xml:space="preserve">
+    <value>Encryption cancelled. Task will not be encrypted.</value>
+  </data>
+  <data name="SelectFolderTitle" xml:space="preserve">
+    <value>Select the backup folder</value>
+  </data>
+  <data name="SelectFileTitle" xml:space="preserve">
+    <value>Select the backup file</value>
+  </data>
+  <data name="AllFilesFilter" xml:space="preserve">
+    <value>All files (*.*)|*.*</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="QuestionTitle" xml:space="preserve">
+    <value>Select Path Type</value>
   </data>
 </root>

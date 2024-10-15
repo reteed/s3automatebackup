@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ namespace s3automatebackup.Forms
     public partial class PrivateKeyForm : Form
     {
         public string PrivateKey { get; private set; }
+        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Forms.PrivateKeyForm", typeof(PrivateKeyForm).Assembly);
 
         public PrivateKeyForm()
         {
@@ -29,7 +31,7 @@ namespace s3automatebackup.Forms
             }
             else
             {
-                MessageBox.Show("Please enter a valid private key.");
+                MessageBox.Show(resourceManager.GetString("EnterValidPrivateKey"), resourceManager.GetString("Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

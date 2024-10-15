@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace s3automatebackup.Forms
 {
     public partial class MainForm : Form
     {
+        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Forms.MainForm", typeof(MainForm).Assembly);
         private StorageService storageService = new();
         List<Configuration> configurations = new();
         private bool isDoubleClick = false;
@@ -92,13 +94,13 @@ namespace s3automatebackup.Forms
             {
                 ListViewItem selectedItem = configurationsListView.SelectedItems[0];
                 Configuration selectedConfiguration = selectedItem.Tag as Configuration;
-                if (MessageBox.Show("Are you sure you want to delete this configuration?", "Delete Configuration", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(resourceManager.GetString("DeleteConfigurationConfirm"), resourceManager.GetString("Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     List<BackupTask> backupTasks = storageService.LoadTasks();
                     BackupTask backupTask = backupTasks.FirstOrDefault(bt => bt.Configuration.Id == selectedConfiguration.Id);
                     if (backupTask != null)
                     {
-                        MessageBox.Show("You cannot delete configurations that have associated tasks. Please remove the tasks containing this configuration first.", "Configuration In Use", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(resourceManager.GetString("ConfigurationInUse"), resourceManager.GetString("Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
@@ -190,7 +192,7 @@ namespace s3automatebackup.Forms
             }
             else
             {
-                MessageBox.Show("You haven't created any configuration you must do it before creating a backup task.", "Missing Configurations", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(resourceManager.GetString("MissingConfigurations"), resourceManager.GetString("Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -211,7 +213,7 @@ namespace s3automatebackup.Forms
             {
                 ListViewItem selectedItem = scheduledTaskslistView.SelectedItems[0];
                 BackupTask selectedTask = selectedItem.Tag as BackupTask;
-                if (MessageBox.Show("Are you sure you want to delete this task?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(resourceManager.GetString("DeleteTaskConfirm"), resourceManager.GetString("Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     scheduledTaskslistView.Items.Remove(selectedItem);
                     tasks.Remove(selectedTask);
@@ -306,7 +308,7 @@ namespace s3automatebackup.Forms
 
         private void S3Service_OnDeletionCompleted()
         {
-            MessageBox.Show("All objects and versions have been successfully deleted from the bucket.", "Deletion Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(resourceManager.GetString("DeletionCompleted"), resourceManager.GetString("Success"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void configurationComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -381,20 +383,23 @@ namespace s3automatebackup.Forms
         private void PopulateConfigurations()
         {
             List<Configuration> configurations = storageService.LoadConfigurations();
-            Dictionary<int, string> configurationDictionary = new();
-            foreach (Configuration configuration in configurations)
+            if(configurations.Count > 0)
             {
-                configurationDictionary.Add(configuration.Id, configuration.Name);
+                Dictionary<int, string> configurationDictionary = new();
+                foreach (Configuration configuration in configurations)
+                {
+                    configurationDictionary.Add(configuration.Id, configuration.Name);
+                }
+
+                configurationComboBox.SelectedIndexChanged -= configurationComboBox_SelectedIndexChanged;
+
+                configurationComboBox.DataSource = new BindingSource(configurationDictionary, null);
+                configurationComboBox.DisplayMember = "Value"; // Display the configuration name
+                configurationComboBox.ValueMember = "Key"; // Use the configuration ID as the underlying value
+
+                configurationComboBox.SelectedIndex = -1;
+                configurationComboBox.SelectedIndexChanged += configurationComboBox_SelectedIndexChanged;
             }
-
-            configurationComboBox.SelectedIndexChanged -= configurationComboBox_SelectedIndexChanged;
-
-            configurationComboBox.DataSource = new BindingSource(configurationDictionary, null);
-            configurationComboBox.DisplayMember = "Value"; // Display the configuration name
-            configurationComboBox.ValueMember = "Key"; // Use the configuration ID as the underlying value
-
-            configurationComboBox.SelectedIndex = -1;
-            configurationComboBox.SelectedIndexChanged += configurationComboBox_SelectedIndexChanged;
         }
 
         private async void PopulateBuckets(Configuration configuration)
@@ -499,8 +504,8 @@ namespace s3automatebackup.Forms
                 {
                     // Confirm the deletion
                     DialogResult result = MessageBox.Show(
-                        $"Are you sure you want to delete all objects and versions from the bucket '{selectedBucket}'?",
-                        "Confirm Deletion",
+                        resourceManager.GetString("DeleteAllObjects") + $" {selectedBucket}?",
+                        resourceManager.GetString("ConfirmDeletion"),
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning);
 
@@ -540,8 +545,8 @@ namespace s3automatebackup.Forms
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.FileName = Path.GetFileName(s3Key); // Default file name
-                    saveFileDialog.Filter = "All files (*.*)|*.*"; // Option to show all files
-                    saveFileDialog.Title = "Save File As";
+                    saveFileDialog.Filter = resourceManager.GetString("AllFiles"); // Option to show all files
+                    saveFileDialog.Title = resourceManager.GetString("SaveFileAs");
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -571,16 +576,16 @@ namespace s3automatebackup.Forms
 
                                         if (decrypted)
                                         {
-                                            MessageBox.Show($"Successfully downloaded and decrypted the file to {selectedFilePath.Replace(".enc", "")}.", "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            MessageBox.Show(resourceManager.GetString("DownloadCompleted") + $" {selectedFilePath.Replace(".enc", "")}.", resourceManager.GetString("Success"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Decryption failed. Please check the private key and try again.", "Decryption Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            MessageBox.Show(resourceManager.GetString("DecryptionFailed"), resourceManager.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Decryption cancelled.", "Operation Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        MessageBox.Show(resourceManager.GetString("DecryptionCancelled"), resourceManager.GetString("OperationCancelled"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     }
                                 }
                             }
@@ -588,12 +593,12 @@ namespace s3automatebackup.Forms
                             {
                                 // If the file is not encrypted, just move it to the selected location
                                 File.Move(tempFilePath, selectedFilePath);
-                                MessageBox.Show($"File downloaded successfully to {selectedFilePath}.", "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show(resourceManager.GetString("DownloadCompleted") + $" {selectedFilePath}.", resourceManager.GetString("Success"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show($"An error occurred during download: {ex.Message}", "Download Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(resourceManager.GetString("DownloadFailed") + $" {ex.Message}", resourceManager.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -661,22 +666,30 @@ namespace s3automatebackup.Forms
                 // Check if the S3Object is found
                 if (s3Object == null)
                 {
-                    MessageBox.Show("The selected S3 object could not be found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(resourceManager.GetString("SelectValidVersion"), resourceManager.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 string versionId = s3ObjectVersion.VersionId;
 
                 // Confirm deletion
-                DialogResult result = MessageBox.Show($"Are you sure you want to delete version {versionId} of {s3Object.Key}?",
-                                                       "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show(
+                    string.Format(resourceManager.GetString("ConfirmDeletionVersion"), versionId, s3Object.Key),
+                    resourceManager.GetString("ConfirmDeletion"),
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
                 if (result == DialogResult.Yes)
                 {
                     // Remove the version from S3
                     await s3Service.DeleteVersion(s3Object.Key, versionId);
-                    MessageBox.Show($"Version {versionId} of {s3Object.Key} deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    MessageBox.Show(
+                        string.Format(resourceManager.GetString("VersionDeletedSuccess"), versionId, s3Object.Key),
+                        resourceManager.GetString("Success"),
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
                     // Now remove empty parent nodes (folders) recursively
                     TreeNode parentNode = selectedNode.Parent;
 
@@ -709,7 +722,7 @@ namespace s3automatebackup.Forms
             }
             else
             {
-                MessageBox.Show("Please select a valid version to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(resourceManager.GetString("SelectValidVersion"), resourceManager.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion

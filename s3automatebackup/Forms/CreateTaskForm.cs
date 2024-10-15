@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace s3automatebackup.Forms
     public partial class CreateTaskForm : Form
     {
         public BackupTask Task { get; private set; }
+        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Forms.CreateTaskForm", typeof(CreateTaskForm).Assembly);
         private List<Configuration> Configurations = new();
         private StorageService storageService = new();
         bool ByPassDateCheck = false;
@@ -142,7 +144,7 @@ namespace s3automatebackup.Forms
 
             if (bucketComboBox.SelectedItem == null)
             {
-                MessageBox.Show("Please select a bucket.", "Missing Bucket", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(resourceManager.GetString("MissingBucket"), resourceManager.GetString("WarningTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -195,11 +197,11 @@ namespace s3automatebackup.Forms
             {
                 if (date <= dateNow)
                 {
-                    MessageBox.Show("Please select a date and time in the future.", "Invalid Date Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(resourceManager.GetString("InvalidDateSelection"), resourceManager.GetString("WarningTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    MessageBox.Show("Please fill in all the required fields before proceeding.", "Required Fields Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(resourceManager.GetString("RequiredFieldsMissing"), resourceManager.GetString("WarningTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -218,7 +220,7 @@ namespace s3automatebackup.Forms
             // Check if the selected date is in the past
             if (selectedDate <= DateTime.Now && !ByPassDateCheck)
             {
-                MessageBox.Show("Please select a date and time in the future.", "Invalid Date Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(resourceManager.GetString("InvalidDateSelection"), resourceManager.GetString("WarningTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 DateTime dateNow = DateTime.Now;
                 scheduledDateAndTimeDateTimePicker.Value = dateNow.AddHours(1);
             }
@@ -248,7 +250,7 @@ namespace s3automatebackup.Forms
         private void browsePathButton_Click(object sender, EventArgs e)
         {
             // Ask the user if they want to select a folder or a file
-            var result = MessageBox.Show("Do you want to select a folder? Click 'No' to select a file.", "Select Path Type", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            var result = MessageBox.Show(resourceManager.GetString("SelectPathType"), resourceManager.GetString("QuestionTitle"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
@@ -298,7 +300,7 @@ namespace s3automatebackup.Forms
                     {
                         // If the user cancels, uncheck the checkbox
                         encryptBackupCheckbox.Checked = false;
-                        MessageBox.Show("Encryption cancelled. Task will not be encrypted.");
+                        MessageBox.Show(resourceManager.GetString("EncryptionCancelled"), resourceManager.GetString("WarningTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
