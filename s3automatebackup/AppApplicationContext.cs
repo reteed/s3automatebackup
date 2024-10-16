@@ -12,7 +12,7 @@ namespace s3automatebackup
     {
         NotifyIcon notifyIcon = new NotifyIcon();
         MainForm mainForm = new();
-        ResourceManager resourceManager = new("s3automatebackup.AppApplicationContextResources", typeof(AppApplicationContext).Assembly);
+        ResourceManager resourceManager = new("s3automatebackup.Resources", typeof(AppApplicationContext).Assembly);
 
         public AppApplicationContext()
         {

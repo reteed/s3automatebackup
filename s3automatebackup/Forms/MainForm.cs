@@ -18,7 +18,7 @@ namespace s3automatebackup.Forms
 {
     public partial class MainForm : Form
     {
-        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Forms.MainForm", typeof(MainForm).Assembly);
+        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Resources", typeof(MainForm).Assembly);
         private StorageService storageService = new();
         List<Configuration> configurations = new();
         private bool isDoubleClick = false;

@@ -20,7 +20,7 @@ namespace s3automatebackup.Services
         private bool _disposed = false;
         private SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1); // Allow 1 task at a time
         public static event Action TasksUpdated;
-        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Services.BackupService", typeof(BackupService).Assembly);
+        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Resources", typeof(BackupService).Assembly);
 
 
         public BackupService()

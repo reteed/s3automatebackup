@@ -14,7 +14,7 @@ namespace s3automatebackup.Forms
     public partial class PrivateKeyForm : Form
     {
         public string PrivateKey { get; private set; }
-        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Forms.PrivateKeyForm", typeof(PrivateKeyForm).Assembly);
+        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Resources", typeof(PrivateKeyForm).Assembly);
 
         public PrivateKeyForm()
         {

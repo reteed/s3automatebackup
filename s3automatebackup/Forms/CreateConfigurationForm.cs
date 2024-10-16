@@ -16,7 +16,7 @@ namespace s3automatebackup.Forms
     public partial class CreateConfigurationForm : Form
     {
         public Configuration Configuration { get; private set; }
-        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Forms.CreateConfigurationForm", typeof(CreateConfigurationForm).Assembly);
+        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Resources", typeof(CreateConfigurationForm).Assembly);
 
         public CreateConfigurationForm()
         {

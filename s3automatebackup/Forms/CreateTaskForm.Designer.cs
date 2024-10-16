@@ -110,8 +110,8 @@
             // 
             // configurationComboBox
             // 
-            configurationComboBox.FormattingEnabled = true;
             resources.ApplyResources(configurationComboBox, "configurationComboBox");
+            configurationComboBox.FormattingEnabled = true;
             configurationComboBox.Name = "configurationComboBox";
             configurationComboBox.SelectedIndexChanged += configurationComboBox_SelectedIndexChanged;
             // 

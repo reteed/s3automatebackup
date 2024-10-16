@@ -16,7 +16,7 @@ namespace s3automatebackup.Forms
     public partial class CreateTaskForm : Form
     {
         public BackupTask Task { get; private set; }
-        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Forms.CreateTaskForm", typeof(CreateTaskForm).Assembly);
+        ResourceManager resourceManager = new ResourceManager("s3automatebackup.Resources", typeof(CreateTaskForm).Assembly);
         private List<Configuration> Configurations = new();
         private StorageService storageService = new();
         bool ByPassDateCheck = false;

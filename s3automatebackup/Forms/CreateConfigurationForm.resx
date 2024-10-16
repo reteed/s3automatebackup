@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,659 +117,230 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>505, 407</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="saveButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 30</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
-    <value>saveButton</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 407</value>
-  </data>
-  <data name="cancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 30</value>
-  </data>
-  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
-    <value>cancelButton</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="nameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="nameLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="nameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 45</value>
-  </data>
-  <data name="nameLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 15</value>
-  </data>
-  <data name="nameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="nameLabel.Text" xml:space="preserve">
-    <value>Name:</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.Name" xml:space="preserve">
-    <value>nameLabel</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="serverLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="serverLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="serverLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 45</value>
-  </data>
-  <data name="serverLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="serverLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 15</value>
-  </data>
-  <data name="serverLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="serverLabel.Text" xml:space="preserve">
-    <value>Server or URL:</value>
   </data>
   <data name="&gt;&gt;serverLabel.Name" xml:space="preserve">
     <value>serverLabel</value>
   </data>
-  <data name="&gt;&gt;serverLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;serverLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;smtpUsernameTextBox.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;serverLabel.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="accessKeyLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="accessKeyLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="accessKeyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 102</value>
-  </data>
-  <data name="accessKeyLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="accessKeyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 15</value>
-  </data>
-  <data name="accessKeyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="accessKeyLabel.Text" xml:space="preserve">
-    <value>Access Key:</value>
-  </data>
-  <data name="&gt;&gt;accessKeyLabel.Name" xml:space="preserve">
-    <value>accessKeyLabel</value>
-  </data>
-  <data name="&gt;&gt;accessKeyLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;accessKeyLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;accessKeyLabel.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="secretKeyLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="secretKeyLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="secretKeyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>404, 105</value>
-  </data>
-  <data name="secretKeyLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="secretKeyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 15</value>
-  </data>
-  <data name="secretKeyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="secretKeyLabel.Text" xml:space="preserve">
-    <value>Secret Key:</value>
-  </data>
-  <data name="&gt;&gt;secretKeyLabel.Name" xml:space="preserve">
-    <value>secretKeyLabel</value>
-  </data>
-  <data name="&gt;&gt;secretKeyLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;secretKeyLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;secretKeyLabel.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>213, 45</value>
-  </data>
-  <data name="nameTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 23</value>
-  </data>
-  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.Name" xml:space="preserve">
-    <value>nameTextBox</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="serverTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 45</value>
-  </data>
-  <data name="serverTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="serverTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 23</value>
-  </data>
-  <data name="serverTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;serverTextBox.Name" xml:space="preserve">
-    <value>serverTextBox</value>
-  </data>
-  <data name="&gt;&gt;serverTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;serverTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;serverTextBox.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="accessKeyTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 102</value>
-  </data>
-  <data name="accessKeyTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="accessKeyTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 23</value>
-  </data>
-  <data name="accessKeyTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;accessKeyTextBox.Name" xml:space="preserve">
-    <value>accessKeyTextBox</value>
-  </data>
-  <data name="&gt;&gt;accessKeyTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;accessKeyTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;accessKeyTextBox.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="secretKeyTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>479, 105</value>
-  </data>
-  <data name="secretKeyTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="secretKeyTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 23</value>
-  </data>
-  <data name="secretKeyTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;secretKeyTextBox.Name" xml:space="preserve">
-    <value>secretKeyTextBox</value>
-  </data>
-  <data name="&gt;&gt;secretKeyTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;secretKeyTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;secretKeyTextBox.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="smtpHostLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="smtpHostLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="smtpHostLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 167</value>
-  </data>
-  <data name="smtpHostLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 15</value>
-  </data>
-  <data name="smtpHostLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="smtpHostLabel.Text" xml:space="preserve">
-    <value>SMTP Host:</value>
-  </data>
-  <data name="&gt;&gt;smtpHostLabel.Name" xml:space="preserve">
-    <value>smtpHostLabel</value>
-  </data>
-  <data name="&gt;&gt;smtpHostLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;smtpHostLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;smtpHostLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="smtpHostTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 164</value>
-  </data>
-  <data name="smtpHostTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 23</value>
-  </data>
-  <data name="smtpHostTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;smtpHostTextBox.Name" xml:space="preserve">
-    <value>smtpHostTextBox</value>
-  </data>
-  <data name="&gt;&gt;smtpHostTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;smtpHostTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;smtpHostTextBox.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="smtpPortLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="smtpPortLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="smtpPortLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 168</value>
-  </data>
-  <data name="smtpPortLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 15</value>
-  </data>
-  <data name="smtpPortLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="smtpPortLabel.Text" xml:space="preserve">
-    <value>SMTP Port:</value>
-  </data>
-  <data name="&gt;&gt;smtpPortLabel.Name" xml:space="preserve">
-    <value>smtpPortLabel</value>
-  </data>
-  <data name="&gt;&gt;smtpPortLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;smtpPortLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;smtpPortLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="smtpPortTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>479, 165</value>
-  </data>
-  <data name="smtpPortTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 23</value>
-  </data>
-  <data name="smtpPortTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;smtpPortTextBox.Name" xml:space="preserve">
-    <value>smtpPortTextBox</value>
-  </data>
-  <data name="&gt;&gt;smtpPortTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;smtpPortTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;smtpPortTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="smtpUsernameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="smtpUsernameLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="smtpUsernameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 220</value>
-  </data>
-  <data name="smtpUsernameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 15</value>
-  </data>
-  <data name="smtpUsernameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="smtpUsernameLabel.Text" xml:space="preserve">
-    <value>SMTP Username:</value>
-  </data>
-  <data name="&gt;&gt;smtpUsernameLabel.Name" xml:space="preserve">
-    <value>smtpUsernameLabel</value>
-  </data>
-  <data name="&gt;&gt;smtpUsernameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;smtpUsernameLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;smtpUsernameLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="smtpUsernameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 217</value>
-  </data>
-  <data name="smtpUsernameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 23</value>
-  </data>
-  <data name="smtpUsernameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;smtpUsernameTextBox.Name" xml:space="preserve">
-    <value>smtpUsernameTextBox</value>
-  </data>
-  <data name="&gt;&gt;smtpUsernameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;smtpUsernameTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;smtpUsernameTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="smtpPasswordLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="smtpPasswordLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="smtpPasswordLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 220</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="secretKeyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>404, 105</value>
+  </data>
+  <data name="sendTestEmailButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 28</value>
   </data>
   <data name="smtpPasswordLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 15</value>
   </data>
-  <data name="smtpPasswordLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="smtpPasswordLabel.Text" xml:space="preserve">
-    <value>SMTP Password:</value>
-  </data>
-  <data name="&gt;&gt;smtpPasswordLabel.Name" xml:space="preserve">
-    <value>smtpPasswordLabel</value>
-  </data>
-  <data name="&gt;&gt;smtpPasswordLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;smtpPasswordLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;smtpPasswordLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="smtpPasswordTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>505, 220</value>
-  </data>
-  <data name="smtpPasswordTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 23</value>
-  </data>
-  <data name="smtpPasswordTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;smtpPasswordTextBox.Name" xml:space="preserve">
-    <value>smtpPasswordTextBox</value>
-  </data>
-  <data name="&gt;&gt;smtpPasswordTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;smtpPasswordTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;smtpPasswordTextBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="enableSslCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="enableSslCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="serverLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="enableSslCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 336</value>
-  </data>
-  <data name="enableSslCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 19</value>
-  </data>
-  <data name="enableSslCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="enableSslCheckBox.Text" xml:space="preserve">
-    <value>Enable SSL for SMTP.</value>
-  </data>
-  <data name="&gt;&gt;enableSslCheckBox.Name" xml:space="preserve">
-    <value>enableSslCheckBox</value>
-  </data>
-  <data name="&gt;&gt;enableSslCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;enableSslCheckBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;enableSslCheckBox.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;accessKeyLabel.Name" xml:space="preserve">
+    <value>accessKeyLabel</value>
   </data>
-  <data name="successEmailLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="successEmailLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="successEmailLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 275</value>
-  </data>
-  <data name="successEmailLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 15</value>
-  </data>
-  <data name="successEmailLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="successEmailLabel.Text" xml:space="preserve">
-    <value>Success E-mail:</value>
-  </data>
-  <data name="&gt;&gt;successEmailLabel.Name" xml:space="preserve">
-    <value>successEmailLabel</value>
-  </data>
-  <data name="&gt;&gt;successEmailLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;successEmailLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;successEmailLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="successEmailTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 272</value>
-  </data>
-  <data name="successEmailTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 23</value>
-  </data>
-  <data name="successEmailTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;successEmailTextBox.Name" xml:space="preserve">
-    <value>successEmailTextBox</value>
+  <data name="enableSslCheckBox.Text" xml:space="preserve">
+    <value>Enable SSL for SMTP.</value>
   </data>
   <data name="&gt;&gt;successEmailTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;successEmailTextBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;smtpHostLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="smtpUsernameLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;smtpPasswordLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="serverLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 45</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="failureEmailLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 30</value>
+  </data>
+  <data name="&gt;&gt;sendTestEmailButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;smtpPasswordLabel.Name" xml:space="preserve">
+    <value>smtpPasswordLabel</value>
+  </data>
+  <data name="&gt;&gt;enableSslCheckBox.Name" xml:space="preserve">
+    <value>enableSslCheckBox</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;secretKeyTextBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;successEmailTextBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="failureEmailLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="failureEmailLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="failureEmailLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>404, 275</value>
-  </data>
   <data name="failureEmailLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 15</value>
   </data>
-  <data name="failureEmailLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="failureEmailLabel.Text" xml:space="preserve">
-    <value>Failure E-mail:</value>
-  </data>
-  <data name="&gt;&gt;failureEmailLabel.Name" xml:space="preserve">
-    <value>failureEmailLabel</value>
-  </data>
-  <data name="&gt;&gt;failureEmailLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;failureEmailLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;accessKeyTextBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;failureEmailLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="failureEmailTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>494, 272</value>
-  </data>
-  <data name="failureEmailTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 23</value>
-  </data>
-  <data name="failureEmailTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;failureEmailTextBox.Name" xml:space="preserve">
-    <value>failureEmailTextBox</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>CreateConfigurationForm</value>
   </data>
   <data name="&gt;&gt;failureEmailTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;failureEmailTextBox.Parent" xml:space="preserve">
+  <data name="serverTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>425, 45</value>
+  </data>
+  <data name="smtpHostLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="smtpPortTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 23</value>
+  </data>
+  <data name="&gt;&gt;smtpHostTextBox.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;smtpPortTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="smtpPasswordTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>505, 220</value>
+  </data>
+  <data name="nameLabel.Text" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="failureEmailLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>404, 275</value>
+  </data>
+  <data name="smtpHostTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 164</value>
+  </data>
+  <data name="&gt;&gt;successEmailLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;failureEmailTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="accessKeyLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
-  <data name="sendTestEmailButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>466, 327</value>
+  <data name="accessKeyTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 102</value>
   </data>
-  <data name="sendTestEmailButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 28</value>
+  <data name="saveButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;smtpPasswordTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="sendTestEmailButton.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
-  <data name="sendTestEmailButton.Text" xml:space="preserve">
-    <value>Send Test E-Mail</value>
+  <data name="&gt;&gt;smtpUsernameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;sendTestEmailButton.Name" xml:space="preserve">
-    <value>sendTestEmailButton</value>
+  <data name="failureEmailLabel.Text" xml:space="preserve">
+    <value>Failure E-mail:</value>
   </data>
-  <data name="&gt;&gt;sendTestEmailButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;smtpUsernameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;sendTestEmailButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;smtpHostLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;sendTestEmailButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;serverLabel.ZOrder" xml:space="preserve">
+    <value>20</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>7, 15</value>
   </data>
+  <data name="secretKeyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="serverLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Create Configuration - S3AutomateBackup</value>
+  </data>
+  <data name="failureEmailLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="nameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;enableSslCheckBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;successEmailTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;accessKeyLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="nameLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>833, 486</value>
+  </data>
+  <data name="secretKeyLabel.Text" xml:space="preserve">
+    <value>Secret Key:</value>
+  </data>
+  <data name="nameTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;failureEmailLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="smtpUsernameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;secretKeyTextBox.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="enableSslCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;sendTestEmailButton.Name" xml:space="preserve">
+    <value>sendTestEmailButton</value>
+  </data>
+  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="successEmailLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 23</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;smtpPortLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;secretKeyLabel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -847,50 +418,449 @@
         8H//wAD//8AB///wB////B////////////8=
 </value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+  <data name="&gt;&gt;smtpUsernameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="nameLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;secretKeyTextBox.Name" xml:space="preserve">
+    <value>secretKeyTextBox</value>
+  </data>
+  <data name="smtpUsernameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 15</value>
+  </data>
+  <data name="smtpUsernameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;failureEmailLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="smtpHostLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;accessKeyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sendTestEmailButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="nameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 45</value>
+  </data>
+  <data name="sendTestEmailButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>466, 327</value>
+  </data>
+  <data name="secretKeyLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="secretKeyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;accessKeyLabel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="smtpPortLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="accessKeyLabel.Text" xml:space="preserve">
+    <value>Access Key:</value>
+  </data>
+  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>213, 45</value>
+  </data>
+  <data name="&gt;&gt;smtpHostLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="successEmailLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Create Configuration - S3AutomateBackup</value>
+  <data name="serverTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 23</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>CreateConfigurationForm</value>
+  <data name="serverLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="smtpUsernameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;failureEmailTextBox.Name" xml:space="preserve">
+    <value>failureEmailTextBox</value>
+  </data>
+  <data name="&gt;&gt;serverLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 30</value>
+  </data>
+  <data name="successEmailTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 272</value>
+  </data>
+  <data name="serverLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 15</value>
+  </data>
+  <data name="&gt;&gt;smtpPortLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Name" xml:space="preserve">
+    <value>nameTextBox</value>
+  </data>
+  <data name="&gt;&gt;failureEmailTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="smtpHostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 15</value>
+  </data>
+  <data name="smtpPasswordTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;smtpPortTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="serverLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="successEmailLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="successEmailTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.Name" xml:space="preserve">
+    <value>nameLabel</value>
+  </data>
+  <data name="enableSslCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;secretKeyTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>505, 407</value>
+  </data>
+  <data name="&gt;&gt;smtpPasswordTextBox.Name" xml:space="preserve">
+    <value>smtpPasswordTextBox</value>
+  </data>
+  <data name="&gt;&gt;successEmailLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;serverTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 15</value>
+  </data>
+  <data name="&gt;&gt;enableSslCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;smtpPortTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="nameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="failureEmailTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>494, 272</value>
+  </data>
+  <data name="smtpPasswordTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 23</value>
+  </data>
+  <data name="&gt;&gt;smtpPasswordLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="serverTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="smtpHostTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 23</value>
+  </data>
+  <data name="enableSslCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 336</value>
+  </data>
+  <data name="smtpPasswordLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;smtpPasswordTextBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="successEmailLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 275</value>
+  </data>
+  <data name="&gt;&gt;smtpPortTextBox.Name" xml:space="preserve">
+    <value>smtpPortTextBox</value>
+  </data>
+  <data name="secretKeyTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="accessKeyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 102</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 407</value>
+  </data>
+  <data name="secretKeyTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="failureEmailLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="enableSslCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 19</value>
+  </data>
+  <data name="&gt;&gt;successEmailTextBox.Name" xml:space="preserve">
+    <value>successEmailTextBox</value>
+  </data>
+  <data name="smtpPortLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 15</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="sendTestEmailButton.Text" xml:space="preserve">
+    <value>Send Test E-Mail</value>
+  </data>
+  <data name="smtpPasswordLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="successEmailLabel.Text" xml:space="preserve">
+    <value>Success E-mail:</value>
+  </data>
+  <data name="smtpUsernameLabel.Text" xml:space="preserve">
+    <value>SMTP Username:</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="RequiredFieldsMissing" xml:space="preserve">
-    <value>Please fill in all the required fields before proceeding.</value>
+  <data name="&gt;&gt;sendTestEmailButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="MissingInformation" xml:space="preserve">
-    <value>Please fill in all fields before testing the SMTP connection.</value>
+  <data name="&gt;&gt;smtpHostTextBox.Name" xml:space="preserve">
+    <value>smtpHostTextBox</value>
   </data>
-  <data name="InvalidPort" xml:space="preserve">
-    <value>Please enter a valid SMTP port number.</value>
+  <data name="smtpPortLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
   </data>
-  <data name="SmtpSuccess" xml:space="preserve">
-    <value>SMTP connection successful!</value>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="SmtpFailure" xml:space="preserve">
-    <value>SMTP connection failed:</value>
+  <data name="smtpHostLabel.Text" xml:space="preserve">
+    <value>SMTP Host:</value>
   </data>
-  <data name="WarningTitle" xml:space="preserve">
-    <value>Warning</value>
+  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
+    <value>saveButton</value>
   </data>
-  <data name="SuccessTitle" xml:space="preserve">
-    <value>Success</value>
+  <data name="smtpPortLabel.Text" xml:space="preserve">
+    <value>SMTP Port:</value>
   </data>
-  <data name="ErrorTitle" xml:space="preserve">
-    <value>Error</value>
+  <data name="smtpPortTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
-  <data name="SmtpTest" xml:space="preserve">
-    <value>SMTP Test</value>
+  <data name="&gt;&gt;secretKeyLabel.Name" xml:space="preserve">
+    <value>secretKeyLabel</value>
   </data>
-  <data name="SmtpTestMessage" xml:space="preserve">
-    <value>This is a test email to verify SMTP settings.</value>
+  <data name="&gt;&gt;nameLabel.ZOrder" xml:space="preserve">
+    <value>21</value>
   </data>
+  <data name="smtpUsernameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 23</value>
+  </data>
+  <data name="&gt;&gt;smtpUsernameTextBox.Name" xml:space="preserve">
+    <value>smtpUsernameTextBox</value>
+  </data>
+  <data name="&gt;&gt;serverLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="accessKeyTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="secretKeyTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 23</value>
+  </data>
+  <data name="accessKeyTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="accessKeyLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;failureEmailLabel.Name" xml:space="preserve">
+    <value>failureEmailLabel</value>
+  </data>
+  <data name="failureEmailTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="smtpPasswordLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>402, 220</value>
+  </data>
+  <data name="&gt;&gt;smtpPortLabel.Name" xml:space="preserve">
+    <value>smtpPortLabel</value>
+  </data>
+  <data name="&gt;&gt;smtpPortLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="accessKeyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;secretKeyLabel.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="smtpPasswordLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="smtpHostLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 167</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
+  </data>
+  <data name="&gt;&gt;serverTextBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;smtpHostTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="smtpHostLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="serverTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="secretKeyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 15</value>
+  </data>
+  <data name="enableSslCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="successEmailLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 15</value>
+  </data>
+  <data name="&gt;&gt;failureEmailTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="smtpPortLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>402, 168</value>
+  </data>
+  <data name="serverLabel.Text" xml:space="preserve">
+    <value>Server or URL:</value>
+  </data>
+  <data name="&gt;&gt;successEmailLabel.Name" xml:space="preserve">
+    <value>successEmailLabel</value>
+  </data>
+  <data name="smtpUsernameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 217</value>
+  </data>
+  <data name="&gt;&gt;smtpUsernameTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;smtpPasswordTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="successEmailTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 23</value>
+  </data>
+  <data name="&gt;&gt;smtpUsernameLabel.Name" xml:space="preserve">
+    <value>smtpUsernameLabel</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="smtpHostTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;smtpUsernameLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;failureEmailLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="smtpPortTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>479, 165</value>
+  </data>
+  <data name="&gt;&gt;serverTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;successEmailLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;smtpHostLabel.Name" xml:space="preserve">
+    <value>smtpHostLabel</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="smtpUsernameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 220</value>
+  </data>
+  <data name="accessKeyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 15</value>
+  </data>
+  <data name="&gt;&gt;smtpHostTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;accessKeyTextBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="cancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;accessKeyTextBox.Name" xml:space="preserve">
+    <value>accessKeyTextBox</value>
+  </data>
+  <data name="accessKeyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="failureEmailTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 23</value>
+  </data>
+  <data name="&gt;&gt;secretKeyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="secretKeyTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>479, 105</value>
+  </data>
+  <data name="accessKeyTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 23</value>
+  </data>
+  <data name="&gt;&gt;serverTextBox.Name" xml:space="preserve">
+    <value>serverTextBox</value>
+  </data>
+  <data name="secretKeyLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="smtpPasswordLabel.Text" xml:space="preserve">
+    <value>SMTP Password:</value>
+  </data>
+  <data name="smtpPortLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;accessKeyTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;smtpPasswordLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>
