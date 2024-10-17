@@ -127,7 +127,7 @@ namespace s3automatebackup.Forms
                         Subject = resourceManager.GetString("SmtpTest"),
                         Body = resourceManager.GetString("SmtpTestMessage")
                     });
-                    MessageBox.Show(resourceManager.GetString("SmtpSuccess") + $" Sent to {Configuration.SmtpUsername}.", resourceManager.GetString("Success"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(resourceManager.GetString("SmtpSuccess") + " " + resourceManager.GetString("SentTo") + " " + Configuration.SmtpUsername, resourceManager.GetString("Success"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

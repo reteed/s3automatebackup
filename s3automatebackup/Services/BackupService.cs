@@ -207,7 +207,7 @@ namespace s3automatebackup.Services
                 if (success)
                 {
                     // For an email sent to the user
-                    string successEmailBody = resourceManager.GetString("BackupSuccessMessage");
+                    string successEmailBody = string.Format(resourceManager.GetString("BackupSuccessMessage"), config.Name, task.BucketName);
 
                     SendBackupNotificationEmail(
                         config.SuccessEmail,

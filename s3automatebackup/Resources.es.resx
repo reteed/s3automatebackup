@@ -226,21 +226,24 @@
     <value>Salir</value>
   </data>
   <data name="BackupSuccessMessage" xml:space="preserve">
-    <value>Respaldo completado con éxito.</value>
+    <value>Respaldo Exitoso para la configuración {0} en el bucket {1}.</value>
   </data>
   <data name="BackupSuccessSubject" xml:space="preserve">
-    <value>Respaldo Exitoso</value>
+    <value>S3AutomateBackup - Backup completado con éxito.</value>
   </data>
   <data name="BackupFailed" xml:space="preserve">
-    <value>El respaldo falló para la configuración {0}.</value>
+    <value>S3AutomateBackup - El backup falló.</value>
   </data>
   <data name="BackupFailedBody" xml:space="preserve">
-    <value>El respaldo falló para la configuración {0} en el bucket {1}. Razón: {2}.</value>
+    <value>El backup falló para la configuración {0} en el bucket {1}. Razón: {2}.</value>
   </data>
   <data name="RemoveOldFilesMessage" xml:space="preserve">
     <value>Archivos antiguos y versiones eliminados con éxito del bucket {0}.</value>
   </data>
   <data name="InvalidPeriodKey" xml:space="preserve">
     <value>Clave de período inválida.</value>
+  </data>
+  <data name="SentTo" xml:space="preserve">
+    <value>Enviado a</value>
   </data>
 </root>

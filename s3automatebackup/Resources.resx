@@ -226,13 +226,13 @@
     <value>Exit</value>
   </data>
   <data name="BackupSuccessMessage" xml:space="preserve">
-    <value>Backup completed successfully.</value>
+    <value>Successful Backup for configuration {0} on bucket {1}.</value>
   </data>
   <data name="BackupSuccessSubject" xml:space="preserve">
-    <value>Successful Backup</value>
+    <value>S3AutomateBackup - Backup completed successfully.</value>
   </data>
   <data name="BackupFailed" xml:space="preserve">
-    <value>Backup failed for configuration {0}.</value>
+    <value>S3AutomateBackup - Backup failed.</value>
   </data>
   <data name="BackupFailedBody" xml:space="preserve">
     <value>The backup failed for configuration {0} on bucket {1}. Reason: {2}.</value>
@@ -242,5 +242,8 @@
   </data>
   <data name="InvalidPeriodKey" xml:space="preserve">
     <value>Invalid period key.</value>
+  </data>
+  <data name="SentTo" xml:space="preserve">
+    <value>Sent to</value>
   </data>
 </root>
