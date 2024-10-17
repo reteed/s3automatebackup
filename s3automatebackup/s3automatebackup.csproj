@@ -7,8 +7,8 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>cloud.ico</ApplicationIcon>
-    <FileVersion>0.1.4</FileVersion>
-    <AssemblyVersion>0.1.4</AssemblyVersion>
+    <FileVersion>0.1.5</FileVersion>
+    <AssemblyVersion>0.1.5</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="3.7.403.5" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.405" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 

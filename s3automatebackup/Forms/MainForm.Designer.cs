@@ -55,6 +55,7 @@
             configurationsContextMenuStrip = new ContextMenuStrip(components);
             editConfigurationToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem1 = new ToolStripMenuItem();
+            downloadBucketContentButton = new Button();
             mainTabControl.SuspendLayout();
             configurationsTabPage.SuspendLayout();
             tasksTabPage.SuspendLayout();
@@ -75,9 +76,9 @@
             // 
             // configurationsTabPage
             // 
-            resources.ApplyResources(configurationsTabPage, "configurationsTabPage");
             configurationsTabPage.Controls.Add(createConfigurationButton);
             configurationsTabPage.Controls.Add(configurationsListView);
+            resources.ApplyResources(configurationsTabPage, "configurationsTabPage");
             configurationsTabPage.Name = "configurationsTabPage";
             configurationsTabPage.UseVisualStyleBackColor = true;
             // 
@@ -98,9 +99,9 @@
             // 
             // tasksTabPage
             // 
-            resources.ApplyResources(tasksTabPage, "tasksTabPage");
             tasksTabPage.Controls.Add(scheduledTaskslistView);
             tasksTabPage.Controls.Add(createTaskButton);
+            resources.ApplyResources(tasksTabPage, "tasksTabPage");
             tasksTabPage.Name = "tasksTabPage";
             tasksTabPage.UseVisualStyleBackColor = true;
             // 
@@ -121,7 +122,7 @@
             // 
             // versionsTabPage
             // 
-            resources.ApplyResources(versionsTabPage, "versionsTabPage");
+            versionsTabPage.Controls.Add(downloadBucketContentButton);
             versionsTabPage.Controls.Add(removeBucketContent);
             versionsTabPage.Controls.Add(versionsTreeView);
             versionsTabPage.Controls.Add(refreshButton);
@@ -129,6 +130,7 @@
             versionsTabPage.Controls.Add(bucketLabel);
             versionsTabPage.Controls.Add(configurationComboBox);
             versionsTabPage.Controls.Add(configurationLabel);
+            resources.ApplyResources(versionsTabPage, "versionsTabPage");
             versionsTabPage.Name = "versionsTabPage";
             versionsTabPage.UseVisualStyleBackColor = true;
             // 
@@ -154,8 +156,8 @@
             // 
             // bucketComboBox
             // 
-            resources.ApplyResources(bucketComboBox, "bucketComboBox");
             bucketComboBox.FormattingEnabled = true;
+            resources.ApplyResources(bucketComboBox, "bucketComboBox");
             bucketComboBox.Name = "bucketComboBox";
             bucketComboBox.SelectedIndexChanged += bucketComboBox_SelectedIndexChanged;
             // 
@@ -166,8 +168,8 @@
             // 
             // configurationComboBox
             // 
-            resources.ApplyResources(configurationComboBox, "configurationComboBox");
             configurationComboBox.FormattingEnabled = true;
+            resources.ApplyResources(configurationComboBox, "configurationComboBox");
             configurationComboBox.Name = "configurationComboBox";
             configurationComboBox.SelectedIndexChanged += configurationComboBox_SelectedIndexChanged;
             // 
@@ -178,65 +180,72 @@
             // 
             // tasksContextMenuStrip
             // 
-            resources.ApplyResources(tasksContextMenuStrip, "tasksContextMenuStrip");
             tasksContextMenuStrip.ImageScalingSize = new Size(24, 24);
             tasksContextMenuStrip.Items.AddRange(new ToolStripItem[] { editTaskStripMenuItem, deleteToolStripMenuItem });
             tasksContextMenuStrip.Name = "contextMenuStrip1";
+            resources.ApplyResources(tasksContextMenuStrip, "tasksContextMenuStrip");
             // 
             // editTaskStripMenuItem
             // 
-            resources.ApplyResources(editTaskStripMenuItem, "editTaskStripMenuItem");
             editTaskStripMenuItem.Name = "editTaskStripMenuItem";
+            resources.ApplyResources(editTaskStripMenuItem, "editTaskStripMenuItem");
             editTaskStripMenuItem.Click += editTaskToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
-            resources.ApplyResources(deleteToolStripMenuItem, "deleteToolStripMenuItem");
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            resources.ApplyResources(deleteToolStripMenuItem, "deleteToolStripMenuItem");
             deleteToolStripMenuItem.Click += deleteTaskToolStripMenuItem_Click;
             // 
             // versionsContextMenuStrip
             // 
-            resources.ApplyResources(versionsContextMenuStrip, "versionsContextMenuStrip");
             versionsContextMenuStrip.ImageScalingSize = new Size(24, 24);
             versionsContextMenuStrip.Items.AddRange(new ToolStripItem[] { restoreToolStripMenuItem, downloadToolStripMenuItem, deleteVersionToolStripMenuItem });
             versionsContextMenuStrip.Name = "versionsContextMenuStrip";
+            resources.ApplyResources(versionsContextMenuStrip, "versionsContextMenuStrip");
             // 
             // restoreToolStripMenuItem
             // 
-            resources.ApplyResources(restoreToolStripMenuItem, "restoreToolStripMenuItem");
             restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
+            resources.ApplyResources(restoreToolStripMenuItem, "restoreToolStripMenuItem");
             restoreToolStripMenuItem.Click += restoreToolStripMenuItem_Click;
             // 
             // downloadToolStripMenuItem
             // 
-            resources.ApplyResources(downloadToolStripMenuItem, "downloadToolStripMenuItem");
             downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
+            resources.ApplyResources(downloadToolStripMenuItem, "downloadToolStripMenuItem");
             downloadToolStripMenuItem.Click += downloadToolStripMenuItem_Click;
             // 
             // deleteVersionToolStripMenuItem
             // 
-            resources.ApplyResources(deleteVersionToolStripMenuItem, "deleteVersionToolStripMenuItem");
             deleteVersionToolStripMenuItem.Name = "deleteVersionToolStripMenuItem";
+            resources.ApplyResources(deleteVersionToolStripMenuItem, "deleteVersionToolStripMenuItem");
             deleteVersionToolStripMenuItem.Click += deleteVersionToolStripMenuItem_Click;
             // 
             // configurationsContextMenuStrip
             // 
-            resources.ApplyResources(configurationsContextMenuStrip, "configurationsContextMenuStrip");
             configurationsContextMenuStrip.Items.AddRange(new ToolStripItem[] { editConfigurationToolStripMenuItem, deleteToolStripMenuItem1 });
             configurationsContextMenuStrip.Name = "editConfigurationContextMenuStrip";
+            resources.ApplyResources(configurationsContextMenuStrip, "configurationsContextMenuStrip");
             // 
             // editConfigurationToolStripMenuItem
             // 
-            resources.ApplyResources(editConfigurationToolStripMenuItem, "editConfigurationToolStripMenuItem");
             editConfigurationToolStripMenuItem.Name = "editConfigurationToolStripMenuItem";
+            resources.ApplyResources(editConfigurationToolStripMenuItem, "editConfigurationToolStripMenuItem");
             editConfigurationToolStripMenuItem.Click += editConfigurationToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem1
             // 
-            resources.ApplyResources(deleteToolStripMenuItem1, "deleteToolStripMenuItem1");
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            resources.ApplyResources(deleteToolStripMenuItem1, "deleteToolStripMenuItem1");
             deleteToolStripMenuItem1.Click += deleteConfigurationToolStripMenuItem_Click;
+            // 
+            // downloadBucketContentButton
+            // 
+            resources.ApplyResources(downloadBucketContentButton, "downloadBucketContentButton");
+            downloadBucketContentButton.Name = "downloadBucketContentButton";
+            downloadBucketContentButton.UseVisualStyleBackColor = true;
+            downloadBucketContentButton.Click += downloadBucketContentButton_Click;
             // 
             // MainForm
             // 
@@ -282,5 +291,6 @@
         private ContextMenuStrip configurationsContextMenuStrip;
         private ToolStripMenuItem editConfigurationToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem1;
+        private Button downloadBucketContentButton;
     }
 }

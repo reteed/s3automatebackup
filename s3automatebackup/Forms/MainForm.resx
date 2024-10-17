@@ -117,147 +117,537 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="createTaskButton.Text" xml:space="preserve">
-    <value>Create</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tasksTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="configurationLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="bucketComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>416, 13</value>
-  </data>
-  <data name="versionsTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>700, 320</value>
-  </data>
-  <data name="&gt;&gt;versionsTreeView.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="downloadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="&gt;&gt;configurationsTabPage.Name" xml:space="preserve">
-    <value>configurationsTabPage</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="configurationComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="&gt;&gt;bucketLabel.Name" xml:space="preserve">
-    <value>bucketLabel</value>
-  </data>
-  <data name="&gt;&gt;tasksTabPage.Name" xml:space="preserve">
-    <value>tasksTabPage</value>
-  </data>
-  <data name="&gt;&gt;configurationsListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="bucketLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="deleteVersionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="&gt;&gt;tasksContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="configurationsTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="&gt;&gt;refreshButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;configurationsContextMenuStrip.Name" xml:space="preserve">
-    <value>configurationsContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;bucketLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;configurationLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="versionsTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="removeBucketContent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>596, 378</value>
-  </data>
-  <data name="configurationLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI Black, 12pt, style=Bold</value>
-  </data>
-  <data name="createTaskButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>667, 17</value>
-  </data>
-  <data name="&gt;&gt;createTaskButton.Parent" xml:space="preserve">
-    <value>tasksTabPage</value>
-  </data>
-  <data name="versionsTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;tasksTabPage.Parent" xml:space="preserve">
-    <value>mainTabControl</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="refreshButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="&gt;&gt;deleteVersionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;versionsTabPage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="bucketLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI Black, 12pt, style=Bold</value>
-  </data>
-  <data name="&gt;&gt;mainTabControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="bucketLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 13</value>
-  </data>
-  <data name="versionsTabPage.Text" xml:space="preserve">
-    <value>Versions</value>
-  </data>
-  <data name="&gt;&gt;versionsTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;restoreToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mainTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="createConfigurationButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;mainTabControl.ZOrder" xml:space="preserve">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="createConfigurationButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>667, 15</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="createConfigurationButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="createConfigurationButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 30</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="createConfigurationButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="tasksContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 48</value>
+  <data name="createConfigurationButton.Text" xml:space="preserve">
+    <value>Create</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
+  <data name="&gt;&gt;createConfigurationButton.Name" xml:space="preserve">
+    <value>createConfigurationButton</value>
+  </data>
+  <data name="&gt;&gt;createConfigurationButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;createConfigurationButton.Parent" xml:space="preserve">
+    <value>configurationsTabPage</value>
   </data>
   <data name="&gt;&gt;createConfigurationButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;bucketLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="configurationsListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;editTaskStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="configurationsListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 58</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>S3AutomateBackup</value>
+  <data name="configurationsListView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
-  <data name="versionsTreeView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="configurationsListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>700, 343</value>
+  </data>
+  <data name="configurationsListView.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;configurationsListView.Name" xml:space="preserve">
+    <value>configurationsListView</value>
+  </data>
+  <data name="&gt;&gt;configurationsListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;configurationsListView.Parent" xml:space="preserve">
+    <value>configurationsTabPage</value>
+  </data>
+  <data name="&gt;&gt;configurationsListView.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="configurationsTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="configurationsTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="configurationsTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>794, 422</value>
+  </data>
+  <data name="configurationsTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="configurationsTabPage.Text" xml:space="preserve">
+    <value>Configurations</value>
+  </data>
+  <data name="&gt;&gt;configurationsTabPage.Name" xml:space="preserve">
+    <value>configurationsTabPage</value>
+  </data>
+  <data name="&gt;&gt;configurationsTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;configurationsTabPage.Parent" xml:space="preserve">
+    <value>mainTabControl</value>
+  </data>
+  <data name="&gt;&gt;configurationsTabPage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="scheduledTaskslistView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="scheduledTaskslistView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 61</value>
+  </data>
+  <data name="scheduledTaskslistView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="scheduledTaskslistView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>700, 340</value>
+  </data>
+  <data name="scheduledTaskslistView.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;scheduledTaskslistView.Name" xml:space="preserve">
+    <value>scheduledTaskslistView</value>
+  </data>
+  <data name="&gt;&gt;scheduledTaskslistView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scheduledTaskslistView.Parent" xml:space="preserve">
+    <value>tasksTabPage</value>
+  </data>
+  <data name="&gt;&gt;scheduledTaskslistView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="createTaskButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="createTaskButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>667, 17</value>
+  </data>
+  <data name="createTaskButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="createTaskButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 30</value>
+  </data>
+  <data name="createTaskButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="createTaskButton.Text" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="&gt;&gt;createTaskButton.Name" xml:space="preserve">
+    <value>createTaskButton</value>
+  </data>
+  <data name="&gt;&gt;createTaskButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;createTaskButton.Parent" xml:space="preserve">
+    <value>tasksTabPage</value>
+  </data>
+  <data name="&gt;&gt;createTaskButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tasksTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="tasksTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tasksTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>794, 422</value>
+  </data>
+  <data name="tasksTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tasksTabPage.Text" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="&gt;&gt;tasksTabPage.Name" xml:space="preserve">
+    <value>tasksTabPage</value>
+  </data>
+  <data name="&gt;&gt;tasksTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tasksTabPage.Parent" xml:space="preserve">
+    <value>mainTabControl</value>
+  </data>
+  <data name="&gt;&gt;tasksTabPage.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="downloadBucketContentButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 379</value>
+  </data>
+  <data name="downloadBucketContentButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 35</value>
+  </data>
+  <data name="downloadBucketContentButton.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="downloadBucketContentButton.Text" xml:space="preserve">
+    <value>Download bucket content</value>
+  </data>
+  <data name="&gt;&gt;downloadBucketContentButton.Name" xml:space="preserve">
+    <value>downloadBucketContentButton</value>
+  </data>
+  <data name="&gt;&gt;downloadBucketContentButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;downloadBucketContentButton.Parent" xml:space="preserve">
+    <value>versionsTabPage</value>
+  </data>
+  <data name="&gt;&gt;downloadBucketContentButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="removeBucketContent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="removeBucketContent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>596, 378</value>
+  </data>
+  <data name="removeBucketContent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 36</value>
+  </data>
+  <data name="removeBucketContent.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="removeBucketContent.Text" xml:space="preserve">
+    <value>Remove bucket content</value>
+  </data>
+  <data name="&gt;&gt;removeBucketContent.Name" xml:space="preserve">
+    <value>removeBucketContent</value>
+  </data>
+  <data name="&gt;&gt;removeBucketContent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;removeBucketContent.Parent" xml:space="preserve">
+    <value>versionsTabPage</value>
+  </data>
+  <data name="&gt;&gt;removeBucketContent.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="versionsTreeView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="versionsTreeView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 48</value>
+  </data>
+  <data name="versionsTreeView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="versionsTreeView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>700, 320</value>
+  </data>
+  <data name="versionsTreeView.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;versionsTreeView.Name" xml:space="preserve">
+    <value>versionsTreeView</value>
+  </data>
+  <data name="&gt;&gt;versionsTreeView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;versionsTreeView.Parent" xml:space="preserve">
+    <value>versionsTabPage</value>
+  </data>
+  <data name="&gt;&gt;versionsTreeView.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="refreshButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="refreshButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>649, 8</value>
+  </data>
+  <data name="refreshButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="refreshButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 30</value>
+  </data>
+  <data name="refreshButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="refreshButton.Text" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="&gt;&gt;refreshButton.Name" xml:space="preserve">
+    <value>refreshButton</value>
+  </data>
+  <data name="&gt;&gt;refreshButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;refreshButton.Parent" xml:space="preserve">
+    <value>versionsTabPage</value>
+  </data>
+  <data name="&gt;&gt;refreshButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="bucketComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>416, 13</value>
+  </data>
+  <data name="bucketComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="bucketComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 23</value>
+  </data>
+  <data name="bucketComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;bucketComboBox.Name" xml:space="preserve">
+    <value>bucketComboBox</value>
+  </data>
+  <data name="&gt;&gt;bucketComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bucketComboBox.Parent" xml:space="preserve">
+    <value>versionsTabPage</value>
+  </data>
+  <data name="&gt;&gt;bucketComboBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="bucketLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="bucketLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Black, 12pt, style=Bold</value>
+  </data>
+  <data name="bucketLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>343, 13</value>
+  </data>
+  <data name="bucketLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="bucketLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 21</value>
+  </data>
+  <data name="bucketLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="bucketLabel.Text" xml:space="preserve">
+    <value>Bucket:</value>
+  </data>
+  <data name="&gt;&gt;bucketLabel.Name" xml:space="preserve">
+    <value>bucketLabel</value>
+  </data>
+  <data name="&gt;&gt;bucketLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bucketLabel.Parent" xml:space="preserve">
+    <value>versionsTabPage</value>
+  </data>
+  <data name="&gt;&gt;bucketLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="configurationComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 13</value>
+  </data>
+  <data name="configurationComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="configurationComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 23</value>
+  </data>
+  <data name="configurationComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;configurationComboBox.Name" xml:space="preserve">
+    <value>configurationComboBox</value>
+  </data>
+  <data name="&gt;&gt;configurationComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;configurationComboBox.Parent" xml:space="preserve">
+    <value>versionsTabPage</value>
+  </data>
+  <data name="&gt;&gt;configurationComboBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="configurationLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="configurationLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Black, 12pt, style=Bold</value>
+  </data>
+  <data name="configurationLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="configurationLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="configurationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 21</value>
+  </data>
+  <data name="configurationLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="configurationLabel.Text" xml:space="preserve">
+    <value>Configuration:</value>
+  </data>
+  <data name="&gt;&gt;configurationLabel.Name" xml:space="preserve">
+    <value>configurationLabel</value>
+  </data>
+  <data name="&gt;&gt;configurationLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;configurationLabel.Parent" xml:space="preserve">
+    <value>versionsTabPage</value>
+  </data>
+  <data name="&gt;&gt;configurationLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="versionsTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="versionsTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="versionsTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>794, 422</value>
+  </data>
+  <data name="versionsTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="versionsTabPage.Text" xml:space="preserve">
+    <value>Versions</value>
+  </data>
+  <data name="&gt;&gt;versionsTabPage.Name" xml:space="preserve">
+    <value>versionsTabPage</value>
+  </data>
+  <data name="&gt;&gt;versionsTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;versionsTabPage.Parent" xml:space="preserve">
+    <value>mainTabControl</value>
+  </data>
+  <data name="&gt;&gt;versionsTabPage.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mainTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-2, 1</value>
+  </data>
+  <data name="mainTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>802, 450</value>
+  </data>
+  <data name="mainTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mainTabControl.Name" xml:space="preserve">
+    <value>mainTabControl</value>
+  </data>
+  <data name="&gt;&gt;mainTabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainTabControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainTabControl.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="tasksContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="editTaskStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 22</value>
+  </data>
+  <data name="editTaskStripMenuItem.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="tasksContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 48</value>
+  </data>
+  <data name="&gt;&gt;tasksContextMenuStrip.Name" xml:space="preserve">
+    <value>tasksContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;tasksContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="versionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="restoreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 22</value>
+  </data>
+  <data name="restoreToolStripMenuItem.Text" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="downloadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 22</value>
+  </data>
+  <data name="downloadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="deleteVersionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 22</value>
+  </data>
+  <data name="deleteVersionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="versionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 70</value>
+  </data>
+  <data name="&gt;&gt;versionsContextMenuStrip.Name" xml:space="preserve">
+    <value>versionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;versionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="configurationsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>211, 17</value>
+  </metadata>
+  <data name="editConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 22</value>
+  </data>
+  <data name="editConfigurationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="deleteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="configurationsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 48</value>
+  </data>
+  <data name="&gt;&gt;configurationsContextMenuStrip.Name" xml:space="preserve">
+    <value>configurationsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;configurationsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>800, 450</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -335,424 +725,58 @@
         8H//wAD//8AB///wB////B////////////8=
 </value>
   </data>
-  <data name="tasksTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
-  <data name="createConfigurationButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>667, 15</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>S3AutomateBackup</value>
   </data>
-  <data name="refreshButton.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="&gt;&gt;editTaskStripMenuItem.Name" xml:space="preserve">
+    <value>editTaskStripMenuItem</value>
   </data>
-  <data name="removeBucketContent.Text" xml:space="preserve">
-    <value>Remove bucket content</value>
-  </data>
-  <data name="&gt;&gt;versionsTabPage.Name" xml:space="preserve">
-    <value>versionsTabPage</value>
-  </data>
-  <data name="refreshButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>649, 8</value>
-  </data>
-  <data name="&gt;&gt;configurationsTabPage.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;createTaskButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bucketComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="createTaskButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="&gt;&gt;versionsTreeView.Name" xml:space="preserve">
-    <value>versionsTreeView</value>
-  </data>
-  <data name="&gt;&gt;createTaskButton.Name" xml:space="preserve">
-    <value>createTaskButton</value>
-  </data>
-  <data name="bucketComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="&gt;&gt;deleteVersionToolStripMenuItem.Name" xml:space="preserve">
-    <value>deleteVersionToolStripMenuItem</value>
-  </data>
-  <data name="bucketLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="tasksTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="removeBucketContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 36</value>
-  </data>
-  <data name="deleteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
-  </data>
-  <data name="&gt;&gt;configurationsListView.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;configurationLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="configurationsTabPage.Text" xml:space="preserve">
-    <value>Configurations</value>
-  </data>
-  <data name="removeBucketContent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;bucketComboBox.Parent" xml:space="preserve">
-    <value>versionsTabPage</value>
-  </data>
-  <data name="&gt;&gt;tasksContextMenuStrip.Name" xml:space="preserve">
-    <value>tasksContextMenuStrip</value>
-  </data>
-  <data name="configurationsListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>700, 343</value>
-  </data>
-  <data name="&gt;&gt;bucketComboBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;editTaskStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;deleteToolStripMenuItem.Name" xml:space="preserve">
     <value>deleteToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;configurationComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="editConfigurationToolStripMenuItem.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="configurationsListView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="&gt;&gt;createConfigurationButton.Parent" xml:space="preserve">
-    <value>configurationsTabPage</value>
-  </data>
-  <data name="versionsTreeView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;removeBucketContent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;createConfigurationButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="refreshButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 30</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="restoreToolStripMenuItem.Text" xml:space="preserve">
-    <value>Restore</value>
-  </data>
-  <data name="&gt;&gt;editConfigurationToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;configurationComboBox.Parent" xml:space="preserve">
-    <value>versionsTabPage</value>
-  </data>
-  <data name="configurationsTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MainForm</value>
-  </data>
-  <data name="&gt;&gt;configurationLabel.Name" xml:space="preserve">
-    <value>configurationLabel</value>
-  </data>
-  <data name="&gt;&gt;refreshButton.Name" xml:space="preserve">
-    <value>refreshButton</value>
-  </data>
-  <data name="&gt;&gt;mainTabControl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="removeBucketContent.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;removeBucketContent.Name" xml:space="preserve">
-    <value>removeBucketContent</value>
-  </data>
-  <data name="mainTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>802, 450</value>
-  </data>
-  <data name="configurationComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 23</value>
-  </data>
-  <data name="&gt;&gt;removeBucketContent.Parent" xml:space="preserve">
-    <value>versionsTabPage</value>
-  </data>
-  <data name="deleteToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="&gt;&gt;bucketComboBox.Name" xml:space="preserve">
-    <value>bucketComboBox</value>
-  </data>
-  <data name="&gt;&gt;scheduledTaskslistView.Parent" xml:space="preserve">
-    <value>tasksTabPage</value>
-  </data>
-  <data name="restoreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 22</value>
-  </data>
-  <data name="tasksTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>794, 422</value>
-  </data>
-  <data name="bucketLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 21</value>
-  </data>
-  <data name="&gt;&gt;configurationsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="configurationLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="createConfigurationButton.Text" xml:space="preserve">
-    <value>Create</value>
-  </data>
-  <data name="&gt;&gt;createTaskButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="configurationsListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 58</value>
-  </data>
-  <data name="createTaskButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="configurationComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="refreshButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="createTaskButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="&gt;&gt;scheduledTaskslistView.Name" xml:space="preserve">
-    <value>scheduledTaskslistView</value>
-  </data>
-  <data name="versionsTreeView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 48</value>
-  </data>
-  <data name="&gt;&gt;downloadToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;restoreToolStripMenuItem.Name" xml:space="preserve">
     <value>restoreToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;bucketLabel.Parent" xml:space="preserve">
-    <value>versionsTabPage</value>
-  </data>
-  <data name="bucketLabel.Text" xml:space="preserve">
-    <value>Bucket:</value>
-  </data>
-  <data name="bucketComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 23</value>
-  </data>
-  <data name="editConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
-  </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem1.Name" xml:space="preserve">
-    <value>deleteToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;configurationsListView.Parent" xml:space="preserve">
-    <value>configurationsTabPage</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 450</value>
-  </data>
-  <data name="mainTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="bucketLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="configurationsListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="configurationLabel.Text" xml:space="preserve">
-    <value>Configuration:</value>
+  <data name="&gt;&gt;restoreToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;downloadToolStripMenuItem.Name" xml:space="preserve">
     <value>downloadToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;versionsTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;downloadToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="configurationLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 21</value>
+  <data name="&gt;&gt;deleteVersionToolStripMenuItem.Name" xml:space="preserve">
+    <value>deleteVersionToolStripMenuItem</value>
   </data>
-  <data name="refreshButton.Text" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
-  <data name="tasksTabPage.Text" xml:space="preserve">
-    <value>Tasks</value>
-  </data>
-  <data name="configurationsTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
-  </data>
-  <data name="createConfigurationButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 30</value>
-  </data>
-  <data name="downloadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 22</value>
-  </data>
-  <data name="scheduledTaskslistView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+  <data name="&gt;&gt;deleteVersionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;editConfigurationToolStripMenuItem.Name" xml:space="preserve">
     <value>editConfigurationToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;tasksTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;editConfigurationToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="configurationLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="configurationsTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>794, 422</value>
-  </data>
-  <data name="configurationsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 48</value>
-  </data>
-  <data name="bucketComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;tasksTabPage.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;configurationsListView.Name" xml:space="preserve">
-    <value>configurationsListView</value>
-  </data>
-  <data name="scheduledTaskslistView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 61</value>
-  </data>
-  <data name="&gt;&gt;scheduledTaskslistView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="versionsTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
-  </data>
-  <data name="versionsTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>794, 422</value>
-  </data>
-  <data name="createConfigurationButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="&gt;&gt;removeBucketContent.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="editTaskStripMenuItem.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="versionsTreeView.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;versionsTreeView.Parent" xml:space="preserve">
-    <value>versionsTabPage</value>
+  <data name="&gt;&gt;deleteToolStripMenuItem1.Name" xml:space="preserve">
+    <value>deleteToolStripMenuItem1</value>
   </data>
   <data name="&gt;&gt;deleteToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;versionsContextMenuStrip.Name" xml:space="preserve">
-    <value>versionsContextMenuStrip</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
   </data>
-  <data name="editTaskStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;configurationLabel.Parent" xml:space="preserve">
-    <value>versionsTabPage</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
-  </data>
-  <data name="&gt;&gt;configurationsTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="createConfigurationButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;editTaskStripMenuItem.Name" xml:space="preserve">
-    <value>editTaskStripMenuItem</value>
-  </data>
-  <data name="versionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 70</value>
-  </data>
-  <data name="configurationComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 13</value>
-  </data>
-  <data name="&gt;&gt;mainTabControl.Name" xml:space="preserve">
-    <value>mainTabControl</value>
-  </data>
-  <data name="mainTabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="scheduledTaskslistView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>700, 340</value>
-  </data>
-  <data name="&gt;&gt;refreshButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="configurationLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="&gt;&gt;configurationComboBox.Name" xml:space="preserve">
-    <value>configurationComboBox</value>
-  </data>
-  <data name="mainTabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-2, 1</value>
-  </data>
-  <data name="&gt;&gt;scheduledTaskslistView.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="configurationsListView.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;createConfigurationButton.Name" xml:space="preserve">
-    <value>createConfigurationButton</value>
-  </data>
-  <data name="&gt;&gt;versionsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;configurationsTabPage.Parent" xml:space="preserve">
-    <value>mainTabControl</value>
-  </data>
-  <data name="scheduledTaskslistView.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;configurationComboBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;refreshButton.Parent" xml:space="preserve">
-    <value>versionsTabPage</value>
-  </data>
-  <data name="deleteVersionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 22</value>
-  </data>
-  <data name="&gt;&gt;versionsTabPage.Parent" xml:space="preserve">
-    <value>mainTabControl</value>
-  </data>
-  <data name="scheduledTaskslistView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <metadata name="configurationsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>211, 17</value>
-  </metadata>
-  <metadata name="versionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="tasksContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

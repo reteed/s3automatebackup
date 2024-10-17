@@ -725,6 +725,45 @@ namespace s3automatebackup.Forms
                 MessageBox.Show(resourceManager.GetString("SelectValidVersion"), resourceManager.GetString("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private async void downloadBucketContentButton_Click(object sender, EventArgs e)
+        {
+            if (bucketComboBox.SelectedIndex != -1)
+            {
+                // Get the selected bucket from the combo box
+                string selectedBucket = (string)bucketComboBox.SelectedValue;
+
+                if (!string.IsNullOrEmpty(selectedBucket))
+                {
+                    using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+                    {
+                        if (folderDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            string selectedPath = folderDialog.SelectedPath;
+
+                            try
+                            {
+                                // Initialize the S3 service and set the bucket name
+                                s3Service._bucketName = selectedBucket;
+
+                                // Start downloading the content as a zip
+                                await s3Service.DownloadBucketAsZipAsync(selectedPath);
+
+                                MessageBox.Show("Bucket content downloaded and saved as a zip file.", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"An error occurred while downloading: {ex.Message}", "Download Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a valid bucket.", "Invalid Bucket", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
         #endregion
     }
 }

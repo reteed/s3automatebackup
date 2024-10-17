@@ -8,6 +8,9 @@ using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using System;
 using System.IO;
+using s3automatebackup.Forms;
+using System.IO.Compression;
+using System.Security.Cryptography;
 
 namespace s3automatebackup.Services
 {
@@ -448,6 +451,122 @@ namespace s3automatebackup.Services
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
                 throw;
+            }
+        }
+
+        public async Task DownloadBucketAsZipAsync(string downloadPath)
+        {
+            // Temporary directory for downloading the S3 bucket content
+            string tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDirectory);
+
+            string privateKey = null; // This will store the private key
+            bool isPrivateKeyRequested = false; // Flag to track if the key has been requested
+
+            // List all objects in the S3 bucket
+            List<S3Object> s3Objects = await ListAllObjects(_bucketName);
+
+            foreach (S3Object s3Object in s3Objects)
+            {
+                // Get the latest version of the object
+                List<S3ObjectVersion> versions = await GetObjectVersions(s3Object.Key);
+                S3ObjectVersion latestVersion = versions.OrderByDescending(v => v.LastModified).FirstOrDefault();
+
+                if (latestVersion != null)
+                {
+                    // Determine the local file path (preserve hierarchy)
+                    string localFilePath = Path.Combine(tempDirectory, s3Object.Key.Replace("/", "\\"));
+
+                    // Ensure the directory structure exists
+                    string localDirectory = Path.GetDirectoryName(localFilePath);
+                    if (!Directory.Exists(localDirectory))
+                    {
+                        Directory.CreateDirectory(localDirectory);
+                    }
+
+                    // Download the latest version of the object
+                    await DownloadVersion(s3Object.Key, latestVersion.VersionId, localFilePath);
+
+                    // Check if the file is encrypted (.enc extension)
+                    if (s3Object.Key.EndsWith(".enc", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Ask for the private key once if it hasn't been requested yet
+                        if (!isPrivateKeyRequested)
+                        {
+                            using (PrivateKeyForm privateKeyForm = new PrivateKeyForm())
+                            {
+                                if (privateKeyForm.ShowDialog() == DialogResult.OK)
+                                {
+                                    privateKey = privateKeyForm.PrivateKey;
+                                    isPrivateKeyRequested = true;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Private key is required to decrypt the files.", "Decryption Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return; // Exit if the user cancels the private key entry
+                                }
+                            }
+                        }
+
+                        // Decrypt the file
+                        string decryptedFilePath = localFilePath.Replace(".enc", "");
+                        bool decrypted = DecryptFile(localFilePath, decryptedFilePath, privateKey);
+
+                        if (decrypted)
+                        {
+                            // Delete the encrypted file and keep the decrypted version
+                            File.Delete(localFilePath);
+                            localFilePath = decryptedFilePath; // Use the decrypted file for zipping
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Failed to decrypt {localFilePath}.", "Decryption Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return; // Stop the operation if decryption fails
+                        }
+                    }
+                }
+            }
+
+            // Create a zip file from the downloaded directory
+            string zipFilePath = Path.Combine(downloadPath, $"{_bucketName}_backup_{DateTime.Now:yyyyMMdd_HHmmss}.zip");
+            ZipFile.CreateFromDirectory(tempDirectory, zipFilePath);
+
+            // Clean up the temporary directory
+            Directory.Delete(tempDirectory, true);
+
+            Console.WriteLine($"Bucket content downloaded and zipped at: {zipFilePath}");
+        }
+
+        private bool DecryptFile(string inputFilePath, string outputFilePath, string decryptionKey)
+        {
+            try
+            {
+                using (FileStream inputFileStream = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read))
+                using (FileStream outputFileStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write))
+                using (Aes aes = Aes.Create())
+                {
+                    // Derive key and IV from the decryption key using a salt (e.g., PBKDF2)
+                    var key = new Rfc2898DeriveBytes(decryptionKey, Encoding.UTF8.GetBytes("S3EncryptSalt"), 10000);
+                    aes.Key = key.GetBytes(32);  // AES-256
+                    aes.IV = key.GetBytes(16);   // AES block size is 16 bytes
+
+                    using (CryptoStream cryptoStream = new CryptoStream(inputFileStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                    {
+                        byte[] buffer = new byte[4096];
+                        int bytesRead;
+                        while ((bytesRead = cryptoStream.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            outputFileStream.Write(buffer, 0, bytesRead);
+                        }
+                    }
+                }
+
+                return true; // Decryption successful
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Decryption failed: {ex.Message}");
+                return false; // Decryption failed
             }
         }
     }
